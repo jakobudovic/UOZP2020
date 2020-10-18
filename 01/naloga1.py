@@ -46,23 +46,12 @@ def unwrap(arr):
         arr = arr[0]
     return arr
 
-
 def merge_clusters(clusters, c1, c2):
     # indexes where clusters c1 & c2 are stored in clusters arr
     idx1 = clusters.index(c1)
-    idx2 = clusters.index(c2)
-    print()
     clusters[idx1] = [clusters[idx1]]  # create double array to prepare to insert another array into it
-    # print("nested:", clusters)
     clusters[idx1].insert(len(clusters[idx1]) - 1, c2)  # insert c2 to the end of the c1
-    # print("inserted:", clusters)
-    print(clusters)
-    print(c2)
     clusters.remove(c2)  # remove cluster c2
-    # print("removed:", clusters)
-    print(clusters)
-    pass
-
 
 # flatten an array that you don't know the dimensions of
 def flatten_rec(arr, new_arr):
@@ -77,6 +66,7 @@ class HierarchicalClustering:
     def __init__(self, data):
         """Initialize the clustering"""
         self.data = data
+        print(data)
         # self.clusters stores current clustering. It starts as a list of lists
         # of single elements, but then evolves into clusterings of the type
         # [[["Albert"], [["Branka"], ["Cene"]]], [["Nika"], ["Polona"]]]
@@ -134,7 +124,6 @@ class HierarchicalClustering:
         for c1 in self.clusters:
             for c2 in self.clusters:
                 if c1 is c2:
-                    # print("c1, c2: ", c1, c2, "min_dist:", min_dist, "min_c1, min_c2:", min_c1, min_c2)
                     pass  # so we don't compare the same cluster to itself
                 else:
                     dist = self.cluster_distance(c1, c2)
@@ -142,14 +131,6 @@ class HierarchicalClustering:
                         min_dist = dist
                         min_c1 = c1
                         min_c2 = c2
-        print()
-        print("min_dist:", min_dist)
-        print("min_c1:")
-        print(min_c1)
-        print("min_c2:")
-        print(min_c2)
-        print("clusters:")
-        print(self.clusters)
         return min_c1, min_c2, min_dist
 
     def run(self):
@@ -166,18 +147,15 @@ class HierarchicalClustering:
         distances = []
         # until we have more than 1 cluster
         while (num_clusters > 2):
-
-            print("num_clusters:", num_clusters)
             c1, c2, min_dist = self.closest_clusters()  # we get closest clusters and save them in c1, c2 & dist.
-            print("c1:", c1)
-            print("c2:", c2)
-            print(min_dist)
             merge_clusters(clusters, c1, c2)
             self.clusters = unwrap(clusters)
             num_clusters = len(self.clusters)
             distances.append(min_dist)
         print("clusters final:")
         print(self.clusters)
+        print("distances:")
+        print(distances)
 
     def plot_tree(self):
         """
