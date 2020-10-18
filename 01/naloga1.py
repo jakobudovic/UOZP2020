@@ -67,6 +67,15 @@ def flatten_rec(arr, new_arr):
         for l in arr:
             flatten_rec(l, new_arr)
 
+def izris(arr, i):
+    if len(arr) == 1:
+        print("    " * i, "---- ", arr[0], sep='')
+    else:
+        i += 1
+        izris(arr[0], i)
+        print("    " * (i - 1), "----|", sep='')
+        izris(arr[1], i)
+
 
 class HierarchicalClustering:
     def __init__(self, data):
@@ -168,10 +177,11 @@ class HierarchicalClustering:
         Use cluster information to plot an ASCII representation of the cluster
         tree.
         """
+        izris(self.clusters, 0)
         pass
 
 if __name__ == "__main__":
     DATA_FILE = "eurovision-finals-1975-2019.csv"
     hc = HierarchicalClustering(read_file(DATA_FILE))
     hc.run()
-    # hc.plot_tree()
+    hc.plot_tree()
