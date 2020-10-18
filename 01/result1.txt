@@ -1,0 +1,105 @@
+                    ---- Greece
+                ----|
+                    ---- Cyprus
+            ----|
+                        ---- Yugoslavia
+                    ----|
+                        ---- Luxembourg
+                ----|
+                    ---- Italy
+        ----|
+                        ---- Slovenia
+                    ----|
+                        ---- Croatia
+                ----|
+                        ---- Romania
+                    ----|
+                        ---- Albania
+            ----|
+                    ---- Iceland
+                ----|
+                        ---- Latvia
+                    ----|
+                        ---- Estonia
+    ----|
+                    ---- Spain
+                ----|
+                        ---- Switzerland
+                    ----|
+                        ---- Portugal
+            ----|
+                        ---- Turkey
+                    ----|
+                        ---- Malta
+                ----|
+                        ---- Israel
+                    ----|
+                        ---- Ireland
+        ----|
+                        ---- Norway
+                    ----|
+                        ---- Denmark
+                ----|
+                        ---- Sweden
+                    ----|
+                        ---- France
+            ----|
+                        ---- United Kingdom
+                    ----|
+                            ---- The Netherlands
+                        ----|
+                            ---- Finland
+                ----|
+                        ---- Germany
+                    ----|
+                            ---- Belgium
+                        ----|
+                            ---- Austria
+----|
+                    ---- Lithuania
+                ----|
+                        ---- Poland
+                    ----|
+                        ---- Hungary
+            ----|
+                        ---- Montenegro
+                    ----|
+                        ---- F.Y.R. Macedonia
+                ----|
+                    ---- Bosnia & Herzegovina
+        ----|
+                        ---- Serbia & Montenegro
+                    ----|
+                            ---- North Macedonia
+                        ----|
+                            ---- Morocco
+                ----|
+                    ---- Andorra
+            ----|
+                    ---- Monaco
+                ----|
+                        ---- Slovakia
+                    ----|
+                        ---- Australia
+    ----|
+                    ---- Russia
+                ----|
+                    ---- Moldova
+            ----|
+                    ---- Ukraine
+                ----|
+                        ---- Georgia
+                    ----|
+                        ---- Bulgaria
+        ----|
+                    ---- Belarus
+                ----|
+                        ---- Azerbaijan
+                    ----|
+                        ---- Armenia
+            ----|
+                    ---- Serbia
+                ----|
+                        ---- San Marino
+                    ----|
+                        ---- Czech Republic
