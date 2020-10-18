@@ -37,6 +37,12 @@ def read_file(file_name):
         # the sorted array of distinct countries.
         dic[giver][idx] += int(l[4])
 
+    # write max numbers of voting on the diagonal
+    # Country favorizes itself, so a max value would make more sense to be there instead of a min (0)
+    for k,v in dic.items():
+        idx = list(dic.keys()).index(k) # we store an index so we see how "far" the diagonal is in the values (matrix)
+        dic[k][idx] = max(v) # assign value to the diagonal
+
     return dic
 
 
@@ -163,6 +169,7 @@ class HierarchicalClustering:
         tree.
         """
         pass
+
 if __name__ == "__main__":
     DATA_FILE = "eurovision-finals-1975-2019.csv"
     hc = HierarchicalClustering(read_file(DATA_FILE))
