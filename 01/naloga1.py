@@ -3,6 +3,7 @@ import numpy as np
 import pandas as pd
 import copy
 import sys
+import matplotlib.pyplot as plt
 
 # function to read file and store data in dictionary
 def read_file(file_name):
@@ -178,6 +179,10 @@ class HierarchicalClustering:
         tree.
         """
         izris(self.clusters, 0)
+        pass
+
+    def plot_graph(self):
+
         pass
 
 if __name__ == "__main__":
