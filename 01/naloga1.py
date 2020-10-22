@@ -44,6 +44,19 @@ def read_file(file_name):
         idx = list(dic.keys()).index(k) # we store an index so we see how "far" the diagonal is in the values (matrix)
         dic[k][idx] = max(v) # assign value to the diagonal
 
+    occurences = {}
+    for l in values:
+        country = l[2]
+        year = l[0]
+        occurences.setdefault(country, set()).add(year)
+    print("values:", values)
+    print("values:", occurences)
+
+    for key, value in occurences.items():
+        if len(value) < 6:
+            print("remove:", key, len(value)) # remove countries with 5 or less occurrences
+            dic.pop(key)
+
     return dic
 
 
@@ -188,5 +201,6 @@ class HierarchicalClustering:
 if __name__ == "__main__":
     DATA_FILE = "eurovision-finals-1975-2019.csv"
     hc = HierarchicalClustering(read_file(DATA_FILE))
-    hc.run()
-    hc.plot_tree()
+    print(hc)
+    # hc.run()
+    # hc.plot_tree()
