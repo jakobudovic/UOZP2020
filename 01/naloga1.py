@@ -12,7 +12,7 @@ def read_file(file_name):
     :param file_name: name of the file containing the data
     :return: dictionary with element names as keys and feature vectors as values
     """
-    f = open(file_name, "rt", encoding="utf8")
+    f = open(file_name, "rt")
     values = csv.reader(f)
     header_line = next(values)  # skip header cell
 
@@ -49,16 +49,12 @@ def read_file(file_name):
         country = l[2]
         year = l[0]
         occurences.setdefault(country, set()).add(year)
-    print("values:", values)
-    print("values:", occurences)
 
     for key, value in occurences.items():
-        if len(value) < 6:
-            print("remove:", key, len(value)) # remove countries with 5 or less occurrences
+        if len(value) < 6: # remove countries with 5 or less occurrences
             dic.pop(key)
 
     return dic
-
 
 # used to unwrap arrays in arrays
 def unwrap(arr):
@@ -95,22 +91,20 @@ class HierarchicalClustering:
     def __init__(self, data):
         """Initialize the clustering"""
         self.data = data
-        print(data)
         # self.clusters stores current clustering. It starts as a list of lists
         # of single elements, but then evolves into clusterings of the type
         # [[["Albert"], [["Branka"], ["Cene"]]], [["Nika"], ["Polona"]]]
         self.clusters = [[name] for name in self.data.keys()]
-        print(self.clusters)
 
     def row_distance(self, r1, r2):
         """
         Distance between two rows.
         Implement either Euclidean or Manhattan distance.
         Example call: self.row_distance("Polona", "Rajko")
+        r1, r2 = string, string
         """
-
-        v1 = self.data[r1[0]]
-        v2 = self.data[r2[0]]
+        v1 = self.data[r1]
+        v2 = self.data[r2]
 
         e = sum((p - q) ** 2 for p, q in zip(v1, v2)) ** .5
         return e
@@ -135,8 +129,8 @@ class HierarchicalClustering:
         for c in c1_flat:
             for d in c2_flat:
                 # distance between c & d
-                dist += self.row_distance(c, d)
-        dist /= (len(c1) * len(c2))
+                dist += self.row_distance(c[0], d[0])
+        dist /= (len(c1_flat) * len(c2_flat))
         return dist
 
     def closest_clusters(self):
@@ -172,7 +166,6 @@ class HierarchicalClustering:
         """
         num_clusters = len(self.clusters)
         clusters = self.clusters
-        print(num_clusters)
         distances = []
         # until we have more than 1 cluster
         while (num_clusters > 2):
@@ -181,10 +174,6 @@ class HierarchicalClustering:
             self.clusters = unwrap(clusters)
             num_clusters = len(self.clusters)
             distances.append(min_dist)
-        print("clusters final:")
-        print(self.clusters)
-        print("distances:")
-        print(distances)
 
     def plot_tree(self):
         """
@@ -201,6 +190,5 @@ class HierarchicalClustering:
 if __name__ == "__main__":
     DATA_FILE = "eurovision-finals-1975-2019.csv"
     hc = HierarchicalClustering(read_file(DATA_FILE))
-    print(hc)
-    # hc.run()
-    # hc.plot_tree()
+    hc.run()
+    hc.plot_tree()
