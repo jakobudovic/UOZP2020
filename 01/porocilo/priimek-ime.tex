@@ -80,13 +80,19 @@ pristope. Na koncu bomo tudi evalvirali dobljen rezultat in postopek pridobitve 
 izboljšali v prihodnosti.
 
 \subsection{Podatki.}
-Če je naloga zasnovana tako, da vključuje analizo izbranih podatkov, v
-tem razdelku opišeš, kakšni so ti podatki in navedeš nekaj osnovnih
-statističnih lastnosti teh podatkov. Slednje vključujejo velikost
-podatkov (na primer število primerov, število in vrsto atributov), delež
-manjkajočih podatkov, opis in porazdelitev vrednosti ciljnih
-spremenljivk, in podobno. Če si podatke pridobil sam, tu opišeš, na
-kakšen način, kje in kako.
+Podatke za nalogo smo dobili že v obliki ene csv (comma separated values) datoteke. Zanje nismo potrebovali dodatne ekstrakcije
+(webscraping) metode.
+Datoteko eurovision-finals-1975-2019.csv je sestavlja 5 stolpcev/atributov:
+Year, Jury or Televoting, From country, To country, Points.
+Relavantna polja za analizo so praktično vsa, razen polja "Jury or Televoting".
+Tip vrednosti relavantnih polj so celoštevilski, razen imena držav so tipa string.
+
+Vseh podatkov je 33374, pri čimer z besedo podatek dejansko mislim le vrstico, ki nam pove podrobnosti nekega oddanega glasu.
+Možne vrednosti pri stolpcu 3 in 4 je 53 različnih držav tipa string. Države lahko trenutno še obstajajo, ali pa so že
+razpadle na nove države (Jugoslavija). Ker govorimo o Evroviziji, so države večinoma pripadnice Evrope.
+Polje Year oziroma leto glasovanja/tekmovanja se razteza od leta 1975, pa vse do lanskega leta (2019). Skupno imamo torej
+podatke o glasovanju za 44 let.
+Zadnji stolpec, točke, zajemajo vrednosti od 0 (najslabše/najmanj točk) pa do 12 (maksimalno število, največ točk, najboljši glas).
 
 \section{Metode.}
 Tu opišeš, na kakšen način si rešil nalogo (tehnike in metode, ki si
