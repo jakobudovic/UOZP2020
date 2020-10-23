@@ -25,9 +25,9 @@ print("points2:", points2)
 # print(values[:,4])
 # print(len(values[:,4]))
 
-plt.bar(points, np.arange(len(points)))
-# plt.hist(points2, bins=12)
+# plt.bar(points, np.arange(len(points)))
+plt.hist(points, bins=11)
 # plt.bar(points, np.arange(len(points)))
 plt.show()
 
-print(len(points2))
+print(len(points))

@@ -60,7 +60,7 @@ backgroundcolor=\color{light-gray},
 
 
 % Naloga
-\title{1. Domača naloga}
+\title{Naloga 1}
 % Ime Priimek (vpisna)
 \author{Jakob Udovič (63180301)}
 \date{\today}
@@ -92,52 +92,203 @@ Možne vrednosti pri stolpcu 3 in 4 je 53 različnih držav tipa string. Države
 razpadle na nove države (Jugoslavija). Ker govorimo o Evroviziji, so države večinoma pripadnice Evrope.
 Polje Year oziroma leto glasovanja/tekmovanja se razteza od leta 1975, pa vse do lanskega leta (2019). Skupno imamo torej
 podatke o glasovanju za 44 let.
+
 Zadnji stolpec, točke, zajemajo vrednosti od 0 (najslabše/najmanj točk) pa do 12 (maksimalno število, največ točk, najboljši glas).
+Ti podatki so lepo vidni na sliki~\ref{slika1}.
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[scale=0.45]{zero-values-votes.png}
+\caption{Prikaz porazdelitve točk vseh glasov med letoma 1975 in 2019.}
+\label{slika1}
+\end{center}
+\end{figure}
+
+Zanima nas, kako so te točke porazdeljene. Pomagal sem si s funkcijo za izris histograma hist() iz knjižnice matplotlib.
+Opazimo lahko, da je glasov z vrednostjo 0 občutno več, kot vseh ostalih. To je precej pričakovano, saj je na enem dogodku
+tekmovalo tudi do 53 držav, točke (x $>$ 0) pa lahko dodeliš le 12 državam. Zato kar nekaj (večina) polj s točkami vsebuje vrednost 0.
+Po podrobnejšem pregledu ostalih vrednosti se lepo vidi tudi, da je ostalih točk enako.
+\\Tudi to je precej samoumevno -
+glasove vedno oddaš za vse možne točke (ne moreš se vzdržati na primer glasu za maksimalno število točk...).
 
 Za lažjo analizo podatkov sem iz slovarja izločil vse države, ki so se na tekmovanju pojavile 5x ali manj. V tem primeru so bile
-to Moroko, Srbija in črna gora, Avstralija in Severna makedonija. Slednja se je na tekmovanju pojavila samo enkrat, kar se
+to Moroko, Srbija in črna gora, Avstralija in Severna Makedonija. Slednja se je na tekmovanju pojavila samo enkrat, kar se
 mi ni zdelo smiselno oziroma omembe vredno. Zanimajo nas bolj "stare članice".
 
-\section{Metode.}
+\section{Računanje razdalj.}
 Pri gručenju držav, ki se med seboj favorizirajo, sem za njihovo podobnost glasovanja uporabil evklidsko razdaljo.
 Bistvene razlike med evklidsko in manhattansko razdaljo nisem opazil. Menim, da bi bile obe dovolj dobri.
 Pri računanju razdalje med dvema clusterjema sem se sprehodil čez vse možne kombinacije pripadnikov teh dveh gruč.
 To je sicer kar potratno, kar se tiče časovne kompleksnosti, o čimer bom več povedal na koncu.
 
-Tu opišeš, na kakšen način si rešil nalogo (tehnike in metode, ki si
-jih uporabil). Lahko vključiš tudi zanimiv del programske kode, ki
-si jo morda pri tem razvil ali pa v poročilo dodatno vključiš sliko,
-kot je na primer slika~\ref{slika1}. Vse slike in tabele, ki jih
-vključiš v poročilo, morajo biti navedene v besedilu oziroma se moraš
-na njih sklicati.
+Ko so posamezne gruče vsebovale po več držav, sem za izračun razdalje med gručami uporabljal povprečno razdaljo
+(\href{https://www.statistics.com/glossary/average-linkage-clustering/}{average linkage}).
+\\Države gruč z najmanjšo razdaljo so bile združene v eno gručo. Ta postopek je potekal vse dokler nismo imeli le še ene
+gruče z vsemi državami.
 
-\begin{figure}[htbp]
+Tu lako vidimo osrčje računanja povprečne dolžine med dvema skupinama držav. Algoritem se sprehodi skozi vse države znotraj
+obeh skupin in jih "primerja" med seboj. Primerja jih na način da kliče funkcijo row\_distance(), ki kot argument sprejme
+imeni dveh držav in vrne evklidsko razdaljo njunih vektorjev glasovanja.
+
+\begin{lstlisting}[language=Python, caption=merge\_clusters(clusters{,} c1{,} c2)]
+for c in c1_flat:
+    for d in c2_flat:
+        # distance between c & d
+        dist += self.row_distance(c[0], d[0])
+dist /= (len(c1_flat) * len(c2_flat))
+\end{lstlisting}
+
+Računanje \href{https://en.wikipedia.org/wiki/Euclidean_distance}{evklidske razdalje} dveh vektorjev p in q:
+
+\begin{lstlisting}[language=Python, caption=euclidean distance]
+e = sum((p - q) ** 2 for p, q in zip(v1, v2)) ** .5
+\end{lstlisting}
+
+Končen ASCII izris dendrograma sem implementiral z rekurzivno funkcijo, ki kot argument prejme en objekt tipa list.
+List vsebuje eno skupino (vseh) držav, ki se nato razdeli na dve podskupini, vsaka izmed njih še na dve in tako naprej
+vse dokler ne dobimo posameznih držav.
+\pagebreak
+\begin{lstlisting}[language=Python, caption=Function izris()]
+def izris(arr, i):
+    if len(arr) == 1:
+        print("    " * i, "---- ", arr[0], sep='')
+    else:
+        i += 1
+        izris(arr[0], i)
+        print("    " * (i - 1), "----|", sep='')
+        izris(arr[1], i)
+\end{lstlisting}
+
+\begin{figure}[h!]
 \begin{center}
-\includegraphics[scale=0.3]{slika-primer.png}
+\includegraphics[scale=03]{slika-primer.png}
 \caption{Vsako sliko opremi s podnapisom, ki pove, kaj slika prikazuje.}
-\label{slika1}
+\label{slika2}
 \end{center}
 \end{figure}
 
-V to poglavje lahko tudi vključiš kakšen metodološko zanimiv del
-kode. Primer vključitve kode oziroma implementirane funkcije v
-programskem jeziku Python je:
-
+\section{Dendrogram.} $\downarrow$
 \begin{lstlisting}
-def fib(n):
-    if n == 0:
-        return 0
-    elif n == 1:
-        return 1
-    else:
-        return fib(n-1) + fib(n-2)
+        ---- Greece
+    ----|
+        ---- Cyprus
+----|
+                ---- Malta
+            ----|
+                    ---- Turkey
+                ----|
+                        ---- Luxembourg
+                    ----|
+                        ---- Italy
+        ----|
+                        ---- Lithuania
+                    ----|
+                        ---- Latvia
+                ----|
+                    ---- Estonia
+            ----|
+                            ---- Slovenia
+                        ----|
+                                ---- F.Y.R. Macedonia
+                            ----|
+                                    ---- Croatia
+                                ----|
+                                    ---- Bosnia & Herzegovina
+                    ----|
+                        ---- Albania
+                ----|
+                            ---- Romania
+                        ----|
+                            ---- Moldova
+                    ----|
+                            ---- Poland
+                        ----|
+                                    ---- Montenegro
+                                ----|
+                                                ---- San Marino
+                                            ----|
+                                                    ---- Hungary
+                                                ----|
+                                                        ---- Serbia
+                                                    ----|
+                                                        ---- Czech Republic
+                                        ----|
+                                            ---- Bulgaria
+                                    ----|
+                                            ---- Yugoslavia
+                                        ----|
+                                                    ---- Slovakia
+                                                ----|
+                                                    ---- Monaco
+                                            ----|
+                                                ---- Andorra
+                            ----|
+                                        ---- Belarus
+                                    ----|
+                                            ---- Georgia
+                                        ----|
+                                                ---- Russia
+                                            ----|
+                                                    ---- Ukraine
+                                                ----|
+                                                    ---- Azerbaijan
+                                ----|
+                                    ---- Armenia
+    ----|
+                        ---- Israel
+                    ----|
+                                ---- United Kingdom
+                            ----|
+                                ---- Ireland
+                        ----|
+                                ---- Switzerland
+                            ----|
+                                        ---- Germany
+                                    ----|
+                                            ---- The Netherlands
+                                        ----|
+                                            ---- Belgium
+                                ----|
+                                    ---- Austria
+                ----|
+                            ---- Spain
+                        ----|
+                            ---- Portugal
+                    ----|
+                        ---- France
+            ----|
+                ---- Finland
+        ----|
+                ---- Iceland
+            ----|
+                        ---- Sweden
+                    ----|
+                        ---- Norway
+                ----|
+                    ---- Denmark
 \end{lstlisting}
 
-Izris te kode je lahko sicer tudi lepši, poskušaš lahko najti še
-primernejši način vključevanja kode v Pythonu oziroma v tvojem izbranem
-programskem jeziku v okolje \LaTeX{}.
 
-\section{Rezultati.}
+\section{Skupine in njihove preferenčne izbire.}
+
+\begin{table}[htbp]
+\caption{Preferenčne skupine držav in njihove članice}
+\label{tab1}
+\begin{center}
+\begin{tabular}{llp{3cm}}
+\hline
+ime spremenljivke & definicijsko območje & opis \\
+\hline
+cena & [0, 500] & cena izdelka v EUR\\
+teža & [1, 1000] & teža izdelka v dag \\
+kakovost & [slaba|srednja|dobra] & kakovost izdelka \\
+\hline
+\end{tabular}
+\end{center}
+\end{table}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 V tem poglavju podaš rezultate s kratkim (enoodstavčnim)
 komentarjem. Rezultate lahko prikažeš tudi v tabeli (primer je
