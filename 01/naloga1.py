@@ -4,6 +4,8 @@ import pandas as pd
 import copy
 import sys
 import matplotlib.pyplot as plt
+from random import randint
+
 
 # function to read file and store data in dictionary
 def read_file(file_name):
@@ -87,6 +89,15 @@ def izris(arr, i):
         izris(arr[1], i)
 
 
+def get_xpos(arr, out):
+    global index
+    if len(arr) == 1:
+        out[arr[0]] = index
+        index = index+1
+    else:
+        get_xpos(arr[0], out)
+        get_xpos(arr[1], out)
+
 class HierarchicalClustering:
     def __init__(self, data):
         """Initialize the clustering"""
@@ -95,6 +106,7 @@ class HierarchicalClustering:
         # of single elements, but then evolves into clusterings of the type
         # [[["Albert"], [["Branka"], ["Cene"]]], [["Nika"], ["Polona"]]]
         self.clusters = [[name] for name in self.data.keys()]
+        self.countries = [[name] for name in self.data.keys()] # save for later, plotting graph
 
     def row_distance(self, r1, r2):
         """
@@ -167,28 +179,143 @@ class HierarchicalClustering:
         num_clusters = len(self.clusters)
         clusters = self.clusters
         distances = []
+        locations = []
         # until we have more than 1 cluster
         while (num_clusters > 2):
             c1, c2, min_dist = self.closest_clusters()  # we get closest clusters and save them in c1, c2 & dist.
+            idx1 = clusters.index(c1)
+            idx2 = clusters.index(c2)
+            locations.append((idx1, idx2)) # save locations of elements for later plotting
             merge_clusters(clusters, c1, c2)
             self.clusters = unwrap(clusters)
             num_clusters = len(self.clusters)
             distances.append(min_dist)
+
+        self.distances = distances
+        self.locations = locations
+
+        print("distances:", distances)
+        print("locations:", locations)
 
     def plot_tree(self):
         """
         Use cluster information to plot an ASCII representation of the cluster
         tree.
         """
+        print("self.clusters:", self.clusters)
         izris(self.clusters, 0)
         pass
 
     def plot_graph(self):
 
+        label_map = {
+            0: {'label': 'BA', 'xpos': 0, 'ypos': 0},
+            1: {'label': 'FI', 'xpos': 3, 'ypos': 0},
+            2: {'label': 'MI', 'xpos': 4, 'ypos': 0},
+            3: {'label': 'NA', 'xpos': 1, 'ypos': 0},
+            4: {'label': 'RM', 'xpos': 2, 'ypos': 0},
+            5: {'label': 'TO', 'xpos': 5, 'ypos': 0},
+        }
+        print("countries:", self.countries)
+        print("countries len:", len(self.countries))
+        label_map = {}
+
+        # init the dict
+        for i,c in enumerate(self.countries):
+            label_map[i] = {}
+        # print("label_map:", label_map)
+        """
+        get indexes where countries should be on the map
+        dict = {'Greece': 0, 'Cyprus': 1, 'Malta': 2, ... }
+        get_xpos(arr, out, index)
+        """
+        dict = {}
+        get_xpos(self.clusters, dict)
+        print("dict:", dict)
+        self.dict = dict
+
+        for i, val in label_map.items():
+            val["label"] = self.countries[i][0]
+            val["xpos"] = dict[self.countries[i][0]] # get index where country in our dict of x coordinates is
+            val["ypos"] = 0 # always 0
+
+        self.label_map = label_map
+        print("label_map:", label_map)
+
+
+        self.plot()
+
         pass
 
+    def plot(self):
+        """
+        Source: https://stackoverflow.com/questions/56123380/how-to-draw-dendrogram-in-matplotlib-without-using-scipy
+        levels = [138, 219, 255, 268, 295]
+        locations = [(2, 5), (3, 4), (0, 3), (0, 1), (0, 2)]
+
+        label_map = {
+            0: {'label': 'BA', 'xpos': 0, 'ypos': 0},
+            1: {'label': 'FI', 'xpos': 3, 'ypos': 0},
+            2: {'label': 'MI', 'xpos': 4, 'ypos': 0},
+            3: {'label': 'NA', 'xpos': 1, 'ypos': 0},
+            4: {'label': 'RM', 'xpos': 2, 'ypos': 0},
+            5: {'label': 'TO', 'xpos': 5, 'ypos': 0},
+        }
+        """
+        max_level = max(self.distances)
+        levels = [l / max_level for l in self.distances] # normalize
+        locations = self.locations
+        label_map = self.label_map
+
+        fig, ax = plt.subplots()
+        # plt.figure(figsize=(4, 12))
+
+        for i, (new_level, (loc0, loc1)) in enumerate(zip(levels, locations)):
+            print('step {0}:\t connecting ({1},{2}) at level {3}'.format(i, loc0, loc1, new_level))
+
+            x0, y0 = label_map[loc0]['xpos'], label_map[loc0]['ypos']
+            x1, y1 = label_map[loc1]['xpos'], label_map[loc1]['ypos']
+
+            print('\t points are: {0}:({2},{3}) and {1}:({4},{5})'.format(loc0, loc1, x0, y0, x1, y1))
+
+            p, c = mk_fork(x0, x1, y0, y1, new_level)
+
+            ax.plot(*p)
+            ax.scatter(*c)
+
+            aa = randint(7, 12)
+            for h in range(randint(0, 10)): # test, delete it
+                aa = aa**h
+
+
+            print('\t connector is at:{0}'.format(c))
+
+            label_map[loc0]['xpos'] = c[0]
+            label_map[loc0]['ypos'] = c[1]
+            label_map[loc0]['label'] = '{0}/{1}'.format(label_map[loc0]['label'], label_map[loc1]['label'])
+            print('\t updating label_map[{0}]:{1}'.format(loc0, label_map[loc0]))
+
+            # ax.text(*c, label_map[loc0]['label'])
+
+        _xticks = np.arange(0, len(self.countries), 1)
+        _xticklabels = self.dict.keys()
+
+        ax.set_xticks(_xticks)
+        ax.set_xticklabels(_xticklabels, rotation=90, fontsize=7)
+
+        ax.set_ylim(0, 1.05 * np.max(levels))
+
+        plt.show()
+
+def mk_fork(x0,x1,y0,y1,new_level):
+    points=[[x0,x0,x1,x1],[y0,new_level,new_level,y1]]
+    connector=[(x0+x1)/2.,new_level]
+    return (points),connector
+
 if __name__ == "__main__":
+    index = 0
     DATA_FILE = "eurovision-finals-1975-2019.csv"
     hc = HierarchicalClustering(read_file(DATA_FILE))
     hc.run()
     hc.plot_tree()
+    hc.plot_graph()
