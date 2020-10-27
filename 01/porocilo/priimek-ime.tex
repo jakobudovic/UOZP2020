@@ -20,9 +20,14 @@
 \usepackage{listings} % za vključevanje kode
 \usepackage{hyperref}
 \usepackage{titlesec}
+% mine
+% \usepackage{fourier}
+\usepackage{array}
+\usepackage{makecell}
+
 
 \renewcommand{\baselinestretch}{1.2} % za boljšo berljivost večji razmak
-\renewcommand{\appendixpagename}{\normalfont\Large\bfseries{Priloge}}
+% \renewcommand{\appendixpagename}{\normalfont\Large\bfseries{Priloge}}
 
 
 \titleformat{name=\section}[runin]
@@ -75,15 +80,25 @@ tekmovanju je čas za glasovanje in praznovanje, kasneje pa tudi za analizo poda
 Želeli si bomo spoznati, ali je glasovanje zmamgovalcev med državami samimi res nepristransko, ali morda na le-to kaj vpliva.
 V nadaljevanju bomo spoznali pristop do tovrstnega problema, ekstrakcijo in filtriranje podatkov, način(e) primerjave
 držav, analizo rezultatov in njihovo razumevanje.
-Na poti se bomo srečali tudi s kar nekaj problemi, katere bomo poizkušali elegantno rešiti. Za le-to bomo uporabili različne
+Na poti se bomo srečali tudi s kar nekaj problemi, katere bomo poizkusili elegantno rešiti. Za le-to bomo uporabili različne
 pristope. Na koncu bomo tudi evalvirali dobljen rezultat in postopek pridobitve le-tega ter pokomentirali, kaj bi lahko še
 izboljšali v prihodnosti.
 
 \subsection{Podatki.}
-Podatke za nalogo smo dobili že v obliki ene csv (comma separated values) datoteke. Zanje nismo potrebovali dodatne ekstrakcije
-(webscraping) metode.
-Datoteko eurovision-finals-1975-2019.csv je sestavlja 5 stolpcev/atributov:
-Year, Jury or Televoting, From country, To country, Points.
+Podatke za nalogo smo dobili že v obliki ene csv (comma separated values) datoteke. Zanje zato nismo potrebovali dodatne ekstrakcije
+(npr. webscraping) metode.
+Datoteko eurovision-finals-1975-2019.csv sestavlja 5 stolpcev/atributov:
+
+- Year,
+
+- Jury or Televoting,
+
+- From country,
+
+- To country,
+
+- Points.
+
 Relavantna polja za analizo so praktično vsa, razen polja "Jury or Televoting".
 Tip vrednosti relavantnih polj so celoštevilski, razen imena držav so tipa string.
 
@@ -112,11 +127,11 @@ glasove vedno oddaš za vse možne točke (ne moreš se vzdržati na primer glas
 
 Za lažjo analizo podatkov sem iz slovarja izločil vse države, ki so se na tekmovanju pojavile 5x ali manj. V tem primeru so bile
 to Moroko, Srbija in črna gora, Avstralija in Severna Makedonija. Slednja se je na tekmovanju pojavila samo enkrat, kar se
-mi ni zdelo smiselno oziroma omembe vredno. Zanimajo nas bolj "stare članice".
+mi ni zdelo smiselno oziroma omembe vredno. Zanimajo nas bolj ''stare članice''.
 
 \section{Računanje razdalj.}
 Pri gručenju držav, ki se med seboj favorizirajo, sem za njihovo podobnost glasovanja uporabil evklidsko razdaljo.
-Bistvene razlike med evklidsko in manhattansko razdaljo nisem opazil. Menim, da bi bile obe dovolj dobri.
+Bistvene razlike med evklidsko in manhattansko razdaljo nisem opazil. Menim, da bi bili obe dovolj dobri.
 Pri računanju razdalje med dvema clusterjema sem se sprehodil čez vse možne kombinacije pripadnikov teh dveh gruč.
 To je sicer kar potratno, kar se tiče časovne kompleksnosti, o čimer bom več povedal na koncu.
 
@@ -139,7 +154,7 @@ dist /= (len(c1_flat) * len(c2_flat))
 
 Računanje \href{https://en.wikipedia.org/wiki/Euclidean_distance}{evklidske razdalje} dveh vektorjev p in q:
 
-\begin{lstlisting}[language=Python, caption=euclidean distance]
+\begin{lstlisting}[language=Python, caption=Evklidska razdalja]
 e = sum((p - q) ** 2 for p, q in zip(v1, v2)) ** .5
 \end{lstlisting}
 
@@ -147,7 +162,7 @@ Končen ASCII izris dendrograma sem implementiral z rekurzivno funkcijo, ki kot 
 List vsebuje eno skupino (vseh) držav, ki se nato razdeli na dve podskupini, vsaka izmed njih še na dve in tako naprej
 vse dokler ne dobimo posameznih držav.
 \pagebreak
-\begin{lstlisting}[language=Python, caption=Function izris()]
+\begin{lstlisting}[language=Python, caption=Rekurzivna funkcija izris()]
 def izris(arr, i):
     if len(arr) == 1:
         print("    " * i, "---- ", arr[0], sep='')
@@ -158,13 +173,7 @@ def izris(arr, i):
         izris(arr[1], i)
 \end{lstlisting}
 
-\begin{figure}[h!]
-\begin{center}
-\includegraphics[scale=03]{slika-primer.png}
-\caption{Vsako sliko opremi s podnapisom, ki pove, kaj slika prikazuje.}
-\label{slika2}
-\end{center}
-\end{figure}
+
 
 \section{Dendrogram.} $\downarrow$
 \begin{lstlisting}
@@ -267,18 +276,19 @@ def izris(arr, i):
                     ---- Denmark
 \end{lstlisting}
 
+\newpage
+
 \begin{figure}[h!]
 \begin{center}
-\includegraphics[scale=0.45]{graphical.png}
+\includegraphics[scale=0.3]{graphical.png}
 \caption{Grafični prikaz ASCII dendrograma (z ustreznimi normaliziranimi dolžinami) zgoraj.}
-\label{slika3}
+\label{slika2}
 \end{center}
 \end{figure}
 
 
 \section{Skupine in njihove preferenčne izbire.}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Skupine in njihove preferenčne izbire. Glede na rezultate razvrščanja smiselno določite skupine. Vsaki skupini v tabeli dopišite preferirane države in tiste, za katere ne glasujejo. Opišite, kako ste določili skupine in preferirane države. (1 tabela in 1 odstavek)
 
 \begin{table}[htbp]
 \caption{Preferenčne skupine držav in njihove članice}
@@ -286,89 +296,49 @@ Skupine in njihove preferenčne izbire. Glede na rezultate razvrščanja smiseln
 \begin{center}
 \begin{tabular}{llp{3cm}}
 \hline
-ime spremenljivke & definicijsko območje & opis \\
+Skupina držav & \makecell{Države pripadnice} & Skupine držav, za katere (skupina) ne glasuje \\
 \hline
-cena & [0, 500] & cena izdelka v EUR\\
-teža & [1, 1000] & teža izdelka v dag \\
-kakovost & [slaba|srednja|dobra] & kakovost izdelka \\
+Pribaltsko - sredozemska  & \makecell{Greece, Cyprus, Malta, \\ Turkey, Luxembourg, Italy, \\ Lithuania, Latvia, Estonia} &
+\makecell{Skandinavska, \\ Romanska, \\ Germanska}\\
+\hline
+Slovanska & \makecell{Slovenia, F. Y . R . Macedonia, Croatia, \\ Bosnia \& Herzegovina, Albania, Romania
+\\ Moldova, Poland, Montenegro, San Marino, \\ Hungary, Serbia, Czech Republic, Bulgaria,
+\\ Yugoslavia, Slovakia, Monaco, Andorra, Belarus, \\ Georgia, Russia, Ukraine, Azerbaijan, Armenia} &
+\makecell{Skandinavska, \\ Romanska} &
+\hline
+Združeno Kraljestvo & \makecell{Israel, United Kingdom, \\ Ireland, Switzerland, \\ } &
+\makecell{Pribaltsko - sredozemska \\ Skandinavska} &  \\
+\hline
+Germanska & \makecell{Germany, The Netherlands, \\ Belgium, Austria} &
+\makecell{Pribaltsko - sredozemska} &  \\
+\hline
+Romanska & \makecell{Spain, Portugal, France} &
+\makecell{Pribaltsko - sredozemska, \\ Slovanska} &  \\
+\hline
+Skandinavska & \makecell{Finland, Iceland, Sweden, \\Norway, Denmark} &
+\makecell{Pribaltsko - sredozemska, \\ Slovanska, \\ Združeno Kraljestvo} &  \\
 \hline
 \end{tabular}
 \end{center}
 \end{table}
-
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-V tem poglavju podaš rezultate s kratkim (enoodstavčnim)
-komentarjem. Rezultate lahko prikažeš tudi v tabeli (primer je
-tabela~\ref{tab1}).
+Države sem po analizi rezultatov lahko sestavil v skupno 6 skupin. Pri le-teh lahko vidimo neke vzorce povezovanja.
 
-Odstavke pri pisanju poročila v LaTeX-u ločiš tako, da pred novim
-odstavkom pustiš prazno vrstico. Tudi, če pišeš poročilo v kakšnem
-drugem urejevalniku, morajo odstavki biti vidno ločeni. To narediš z
-zamikanjem ali pa z dodatnim presledkom.
+Najbolj očiten vzork za nastanek skupin bi bila geografska lokacija posameznih držav. Hitro lahko vidimo, da se dobro
+povezujejo države sosede. Drugi vzrok povezovanja je tudi jezikovna skupina članic skupin. Seveda imamo nekaj izjem
+(npr. Izrael v skupini Združenega kraljestva) vendar načeloma vse države, bolj ali manj, sledijo zgornjima pogojema.
 
-\begin{table}[htbp]
-\caption{Atributi in njihove zaloge vrednosti.}
-\label{tab1}
-\begin{center}
-\begin{tabular}{llp{3cm}}
-\hline
-ime spremenljivke & definicijsko območje & opis \\
-\hline
-cena & [0, 500] & cena izdelka v EUR\\
-teža & [1, 1000] & teža izdelka v dag \\
-kakovost & [slaba|srednja|dobra] & kakovost izdelka \\
-\hline
-\end{tabular}
-\end{center}
-\end{table}
-
-Podajanje rezultati naj bo primerno strukturirano. Če ima naloga več
-podnalog, uporabi podpoglavja. Če bi želel poročati o rezultatih
-izčrpno in pri tem uporabiti vrsto tabel ali grafov, razmisli o
-varianti, kjer v tem poglavju prikažeš in komentiraš samo glavne
-rezultate, kakšne manj zanimive detajle pa vključite v prilogo (glej
-prilogi~\ref{app-res} in~\ref{app-code}).
-
-\section{Izjava o izdelavi domače naloge.}
-Domačo nalogo in pripadajoče programe sem izdelal sam.
-
-\appendix
-\appendixpage
-\section{\label{app-res}Podrobni rezultati poskusov.}
-
-Če je rezultatov v smislu tabel ali pa grafov v nalogi mnogo,
-predstavi v osnovnem besedilu samo glavne, podroben prikaz
-rezultatov pa lahko predstaviš v prilogi. V glavnem besedilu ne
-pozabi navesti, da so podrobni rezultati podani v prilogi.
-
-\section{\label{app-code}Programska koda.}
-
-Za domače naloge bo tipično potrebno kaj sprogramirati. Če ne bo od
-vas zahtevano, da kodo oddate posebej, to vključite v prilogo. Čisto
-za okus sem tu postavil nekaj kode, ki uporablja Orange
-(\url{http://www.biolab.si/orange}) in razvrščanje v skupine.
+V zadnjem stolpcu so pri vsaki skupini naštete skupine, za katere le-ta ne glasuje. Odločitev za to je oddaljenost gruč
+lepo vidna na ASCII izpisu zgoraj. Bolj, kot sta bili skupini narazen, manj točk sta si na tekmovanjih tekom let podeljevali.
+\\
+\textbf{Komentar:}
 
 
-\begin{lstlisting}
-import random
-import Orange
+    Za boljše oziroma natančnejše rezultate bi evklidske razdalje lahko računali le med državami, ki se določeno leto HKRATI
+    pojavijo na tekmovanju. Za boljšo optimizacijo in posledično hitrejši algoritem pa bi lahko vrednosti razdalj shranjevali
+    v nekakšno podatkovno obliko podobno matriki razdalj.
 
-data_names = ["iris", "housing", "vehicle"]
-data_sets = [Orange.data.Table(name) for name in data_names]
-
-print "%10s %3s %3s %3s" % ("", "Rnd", "Div", "HC")
-for data, name in zip(data_sets, data_names):
-    random.seed(42)
-    km_random = Orange.clustering.kmeans.Clustering(data, centroids = 3)
-    km_diversity = Orange.clustering.kmeans.Clustering(data, centroids = 3,
-        initialization=Orange.clustering.kmeans.init_diversity)
-    km_hc = Orange.clustering.kmeans.Clustering(data, centroids = 3,
-        initialization=Orange.clustering.kmeans.init_hclustering(n=100))
-    print "%10s %3d %3d %3d" % (name, km_random.iteration, \
-    km_diversity.iteration, km_hc.iteration)
-\end{lstlisting}
 
 \end{document}
