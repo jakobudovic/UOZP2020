@@ -2,12 +2,21 @@ from os import listdir
 from os.path import join
 
 
-def terke(text, n):
+
+
+def kmers(s, k=3):
+    """Generates k-mers for an input string."""
+    for i in range(len(s)-k+1):
+        yield s[i:i+k]
+
+
+
+def terke(text, K=4):
     """
     Vrne slovar s preštetimi terkami dolžine n.
     """
-    pass
-
+    for i in range(len(s)-k+1):
+        yield s[i:i+k]
 
 def read_clustering_data(n_terke):
     # Prosim, ne spreminjajte te funkcije. Vso potrebno obdelavo naredite
@@ -83,8 +92,12 @@ def del5():
 
 
 if __name__ == "__main__":
-    pass
+    file_name = "./texts/germanski/ww_en.txt"
+    f = open(file_name, "rt")
+    print(f)
+    # dic = terke(f, 4)
     # odkomenirajte del naloge, ki ga želite pognati
     # del2()
     # del4()
     # del5()
+    pass
