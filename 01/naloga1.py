@@ -194,20 +194,20 @@ class HierarchicalClustering:
         self.distances = distances
         self.locations = locations
 
-        print("distances:", distances)
-        print("locations:", locations)
+        # print("distances:", distances)
+        # print("locations:", locations)
 
     def plot_tree(self):
         """
         Use cluster information to plot an ASCII representation of the cluster
         tree.
         """
-        print("self.clusters:", self.clusters)
+        # print("self.clusters:", self.clusters)
         izris(self.clusters, 0)
         pass
 
     def plot_graph(self):
-
+        """
         label_map = {
             0: {'label': 'BA', 'xpos': 0, 'ypos': 0},
             1: {'label': 'FI', 'xpos': 3, 'ypos': 0},
@@ -216,8 +216,9 @@ class HierarchicalClustering:
             4: {'label': 'RM', 'xpos': 2, 'ypos': 0},
             5: {'label': 'TO', 'xpos': 5, 'ypos': 0},
         }
-        print("countries:", self.countries)
-        print("countries len:", len(self.countries))
+        """
+        # print("countries:", self.countries)
+        # print("countries len:", len(self.countries))
         label_map = {}
 
         # init the dict
@@ -231,7 +232,7 @@ class HierarchicalClustering:
         """
         dict = {}
         get_xpos(self.clusters, dict)
-        print("dict:", dict)
+        # print("dict:", dict)
         self.dict = dict
 
         for i, val in label_map.items():
@@ -240,7 +241,7 @@ class HierarchicalClustering:
             val["ypos"] = 0 # always 0
 
         self.label_map = label_map
-        print("label_map:", label_map)
+        # print("label_map:", label_map)
 
 
         self.plot()
@@ -271,12 +272,12 @@ class HierarchicalClustering:
         # plt.figure(figsize=(4, 12))
 
         for i, (new_level, (loc0, loc1)) in enumerate(zip(levels, locations)):
-            print('step {0}:\t connecting ({1},{2}) at level {3}'.format(i, loc0, loc1, new_level))
+            # print('step {0}:\t connecting ({1},{2}) at level {3}'.format(i, loc0, loc1, new_level))
 
             x0, y0 = label_map[loc0]['xpos'], label_map[loc0]['ypos']
             x1, y1 = label_map[loc1]['xpos'], label_map[loc1]['ypos']
 
-            print('\t points are: {0}:({2},{3}) and {1}:({4},{5})'.format(loc0, loc1, x0, y0, x1, y1))
+            # print('\t points are: {0}:({2},{3}) and {1}:({4},{5})'.format(loc0, loc1, x0, y0, x1, y1))
 
             p, c = mk_fork(x0, x1, y0, y1, new_level)
 
@@ -288,12 +289,12 @@ class HierarchicalClustering:
                 aa = aa**h
 
 
-            print('\t connector is at:{0}'.format(c))
+            # print('\t connector is at:{0}'.format(c))
 
             label_map[loc0]['xpos'] = c[0]
             label_map[loc0]['ypos'] = c[1]
             label_map[loc0]['label'] = '{0}/{1}'.format(label_map[loc0]['label'], label_map[loc1]['label'])
-            print('\t updating label_map[{0}]:{1}'.format(loc0, label_map[loc0]))
+            # print('\t updating label_map[{0}]:{1}'.format(loc0, label_map[loc0]))
 
             # ax.text(*c, label_map[loc0]['label'])
 

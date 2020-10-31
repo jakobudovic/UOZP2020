@@ -91,9 +91,9 @@ class HierarchicalClusteringTest(unittest.TestCase):
         hc.row_distance = lambda a, b: distance.euclidean(
                 self.data[a], self.data[b])
 
-        print("----------------")
-        print(hc.cluster_distance(ca, cb))
-        print(available_dists)
+        # print("----------------")
+        # print(hc.cluster_distance(ca, cb))
+        # print(available_dists)
         equal = np.isclose(hc.cluster_distance(ca, cb),
                            available_dists, atol=1e-2)
 
@@ -136,7 +136,7 @@ class ReadFileTest(unittest.TestCase):
         self.assertGreater(len(data), 15)
         self.assertIn("Slovenia", data)
         values_len = [len(a) for a in data.values()]
-        print(data)
+        # print(data)
         # all vectors are of the same length
         self.assertEqual(1, len(set(values_len)))
 
