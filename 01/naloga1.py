@@ -1,3 +1,9 @@
+"""
+Oktober 2020
+Jakob Udovič
+63180301
+"""
+
 import csv
 import numpy as np
 import pandas as pd
