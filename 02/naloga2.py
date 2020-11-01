@@ -126,6 +126,9 @@ def compute_distances(data):
                 # print("i;", i, ", j:", j, "dist: ", dist, "       countries: ", c1[0], c2[0])
                 dists_mtx[i][j] = dist
                 dists_mtx[j][i] = dist
+            elif j == i:
+                dists_mtx[i][i] = 1
+
     return dists_mtx, clusters
 
 
@@ -151,15 +154,18 @@ def k_medoids(data, medoids):
 
     dists_mtx = [[0] * num_clusters for i in range(num_clusters)]
 
-    for i, c1 in enumerate(clusters):
-        for j, c2 in enumerate(clusters):
-            if j > i:  # zgornje trikotna matrika
-                dist = cosine_dist(data[c1[0]], data[c2[0]])
-                # print("i;", i, ", j:", j, "dist: ", dist, "       countries: ", c1[0], c2[0])
-                dists_mtx[i][j] = dist
-                dists_mtx[j][i] = dist
-            elif j == i:
-                dists_mtx[i][i] = 1
+    if clusters[0] not in global_keys:
+        for i, c1 in enumerate(clusters):
+            for j, c2 in enumerate(clusters):
+                if j > i:  # zgornje trikotna matrika
+                    dist = cosine_dist(data[c1[0]], data[c2[0]])
+                    # print("i;", i, ", j:", j, "dist: ", dist, "       countries: ", c1[0], c2[0])
+                    dists_mtx[i][j] = dist
+                    dists_mtx[j][i] = dist
+                elif j == i:
+                    dists_mtx[i][i] = 1
+    else:
+        dists_mtx = global_mtx
 
     converged = False
     # Assign all points to the closest medoid's cluster
@@ -472,16 +478,8 @@ if __name__ == "__main__":
     lds = read_clustering_data(6)
     global_mtx, global_keys = compute_distances(lds)
 
-    data = {"X": {"a": 1, "b": 1},
-            "Y": {"a": 0.9, "b": 1},
-            "Z": {"a": 1, "b": 0}}
-    clusters1 = k_medoids(data, ["X", "Z"])  # dva medoida
-    # clusters2 = k_medoids(data, ["X", "Y", "Z"])  # trije medoidi
-    print(clusters1)
-    # print(clusters2)
-
-    # print(global_mtx)
-    # print(global_keys)
+    print(global_mtx)
+    print(global_keys)
     """
     for a, b in combinations(lds.keys(), 2):
         dist = cosine_dist(lds[a], lds[b])
@@ -489,11 +487,23 @@ if __name__ == "__main__":
         print("dist between", a[3:6], "and", b[3:6], ":", dist)
     """
 
-    # seed(1)
-    # indeces = rand.choice(len(lds), 5)
+    seed(1)
+    indeces = rand.choice(len(lds), 5)
+    keys_cpy = list(lds.keys())[:]
+    rand.shuffle(keys_cpy)
+    medoids = []
     # medoids = [list(lds.keys())[index] for index in indeces]
-    # arr = k_medoids(lds, medoids)
-    # print("arr:", arr)
+    for i in range(5):
+        medoids.append(keys_cpy.pop())
+    print(medoids)
+
+    arr = k_medoids(lds, medoids)
+    print("arr:", arr)
+    for i, a in enumerate(arr):
+        print("Group {} consists of:".format(i))
+        for a_ in a:
+            print("\t", a_)
+
     # odkomenirajte del naloge, ki ga želite pognati
     # del2()
     # del4()
