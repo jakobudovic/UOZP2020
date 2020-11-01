@@ -160,11 +160,11 @@ def k_medoids(data, medoids):
                 dists_mtx[j][i] = dist
             elif j == i:
                 dists_mtx[i][i] = 1
-    print(dists_mtx)
 
     converged = False
     # Assign all points to the closest medoid's cluster
     labels = [0 for i in range(len(clusters))]
+    distances = [0 for i in range(len(medoids))] # maximum values (so minimal distances) to other points in the same group
     labels_old = labels.copy()
     while not converged:
         for idx1, point in enumerate(clusters): # go through all points
@@ -175,13 +175,30 @@ def k_medoids(data, medoids):
                 if dist > min:  # we found closer mediod (higher value means closer the points are)
                     min = dist
                     labels[idx1] = i
-        print("labels:", labels)
         if labels == labels_old:
             converged = True
         else: # save labels for next iter
             labels_old = labels.copy()
-            ## update medoids
 
+            ## update medoids so that each medoids minimizes the distance WITHIN the cluster
+
+            for candidate, label1 in zip(clusters, labels):
+
+                dist1 = 0
+                num = 0
+                ii = clusters.index(candidate)
+
+                for point, label2 in zip(clusters, labels):
+
+                    if label1 == label2: # if we have points of the same label
+                        num = num + 1
+                        jj = clusters.index(point)
+                        dist1 = dist1 + dists_mtx[ii][jj]
+
+                dist1 = dist1 / num
+                if dist1 > distances[label1]: # we find a better distance for label1
+                    distances[label1] = dist1
+                    medoids[label1] = candidate[0] # update medoid with label1 to a candidate with a better distance to others
 
     final_arr = [[] for i in range(len(medoids))]
     for i, point in enumerate(clusters):
