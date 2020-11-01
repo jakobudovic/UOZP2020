@@ -9,6 +9,8 @@ import os
 import re
 from random import seed
 from numpy import random as rand
+import matplotlib.pyplot as plt
+
 
 from transliterate import translit, get_available_language_codes
 from itertools import combinations
@@ -29,7 +31,6 @@ def terke(text, n=4):
     Vrne slovar s preštetimi terkami dolžine n.
     """
     arr = kmers(text, n)
-    # print(arr)
     dic = {}
     for key in arr:
         if key not in dic:
@@ -42,7 +43,7 @@ def read_clustering_data(n_terke):
     # Prosim, ne spreminjajte te funkcije. Vso potrebno obdelavo naredite
     # v funkciji terke.
     lds = {}
-    print("Texts: ", listdir("clustering"))
+    # print("Texts: ", listdir("clustering"))
     for fn in listdir("clustering"):
     # for fn in ['ww_bs.txt', 'ww_ru.txt']:
         if fn.lower().endswith(".txt"):
@@ -146,11 +147,8 @@ def k_medoids(data, medoids):
     za 2 medoida out:
     clusters = [["X", "Y"], ["Z"]]
     """
-    print("medoids:", medoids)
-
     clusters = [[name] for name in sorted(list(data.keys()))]
     num_clusters = len(clusters)
-    print(clusters)
 
     dists_mtx = [[0] * num_clusters for i in range(num_clusters)]
 
@@ -232,7 +230,7 @@ def silhouette(data, clusters):
     dists_mtx = [[0] * num_clusters for i in range(num_clusters)]
 
     # for testing comment out this first if and else sentence
-    if clusters[0] not in global_keys:
+    if [clusters[0][0]] not in global_keys:
         for i, c1 in enumerate(all_clusters):
             for j, c2 in enumerate(all_clusters):
                 if j > i:  # zgornje trikotna matrika
@@ -240,6 +238,8 @@ def silhouette(data, clusters):
                     # print("i;", i, ", j:", j, "dist: ", dist, "       countries: ", c1[0], c2[0])
                     dists_mtx[i][j] = dist
                     dists_mtx[j][i] = dist
+                elif j == i:
+                    dists_mtx[i][i] = 1 # one on the diagonal
     else:  # we have global mtx of distances
         dists_mtx = global_mtx
 
@@ -266,10 +266,9 @@ def silhouette(data, clusters):
         pairs.append((i1, i2_memo))
 
     final_silhouettes = []
-    print(pairs)
     # calculate silhouette for the following pairs of the closest clusters
     for p1, p2 in pairs:
-        print(p1, p2)
+        # print(p1, p2)
         cluster1 = clusters[p1]
         cluster2 = clusters[p2]
 
@@ -309,7 +308,7 @@ def silhouette(data, clusters):
         avg_silh = sum(silh) / len(silh)
         final_silhouettes.append(avg_silh)
 
-    print(final_silhouettes)
+    # print(final_silhouettes)
     final_silhouettes_avg = sum(final_silhouettes) / len(final_silhouettes)
     return final_silhouettes_avg
 
@@ -454,8 +453,60 @@ def del2():
 
 
 def del4():
-    data = read_clustering_data(3)  # dolžino terk prilagodite
-    # ... nadaljujte
+    data = read_clustering_data(6)  # dolžino terk prilagodite
+    global_mtx, global_keys = compute_distances(data)
+
+    silhouettes = []
+    bad = []
+    med = []
+    high = []
+    for i in range(50):
+        seed(5)
+        keys_cpy = list(lds.keys())[:]
+        rand.shuffle(keys_cpy)
+        medoids = []
+        # medoids = [list(lds.keys())[index] for index in indeces]
+        for i in range(5):
+            medoids.append(keys_cpy.pop())
+
+        skupine = k_medoids(lds, medoids)
+
+        s = silhouette(data, skupine)
+        silhouettes.append(s)
+        print("medoids:", medoids, "\ts:", s)
+
+        if s < 0.2:
+            bad.append(medoids)
+        elif 0.2 < s < 0.4:
+            med.append(medoids)
+        elif s > 0.4:
+            high.append(medoids)
+        else:
+            print("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
+
+    # print(silhouettes)
+
+    bins = np.arange(0, 1, 0.03)  # fixed bin size
+    odmik = 0.1
+    plt.xlim([min(silhouettes) - odmik, max(silhouettes) + odmik])
+    plt.hist(silhouettes, bins=bins, alpha=0.8)
+    plt.title('Graf porazdelitve silhuet za 50 meritev')
+    plt.xlabel('Točnost silhuete (bin size = 0.05)')
+    plt.ylabel('Število meritev')
+
+    plt.show()
+
+    print("------------ bad: ------------")
+    for arr in bad:
+        print(arr)
+    # print("------------ med: ------------")
+    # for arr in med:
+    #    print(arr)
+    print("------------ high: ------------")
+    for arr in high:
+        print(arr)
+
+
 
 
 def del5():
@@ -478,8 +529,12 @@ if __name__ == "__main__":
     lds = read_clustering_data(6)
     global_mtx, global_keys = compute_distances(lds)
 
+    """
+
     print(global_mtx)
     print(global_keys)
+    """
+
     """
     for a, b in combinations(lds.keys(), 2):
         dist = cosine_dist(lds[a], lds[b])
@@ -487,8 +542,8 @@ if __name__ == "__main__":
         print("dist between", a[3:6], "and", b[3:6], ":", dist)
     """
 
+    """
     seed(1)
-    indeces = rand.choice(len(lds), 5)
     keys_cpy = list(lds.keys())[:]
     rand.shuffle(keys_cpy)
     medoids = []
@@ -498,11 +553,15 @@ if __name__ == "__main__":
     print(medoids)
 
     arr = k_medoids(lds, medoids)
+    """
+
+    """
     print("arr:", arr)
     for i, a in enumerate(arr):
         print("Group {} consists of:".format(i))
         for a_ in a:
             print("\t", a_)
+    """
 
     # odkomenirajte del naloge, ki ga želite pognati
     # del2()
