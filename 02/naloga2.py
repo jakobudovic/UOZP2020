@@ -3,9 +3,13 @@ import time
 from math import sqrt
 from os import listdir
 from os.path import join
+import numpy as np
 from os import walk
 import os
 import re
+from random import seed
+from numpy import random as rand
+
 from transliterate import translit, get_available_language_codes
 from itertools import combinations
 import copy
@@ -102,7 +106,7 @@ def cosine_dist(d1, d2):
 
     # |d2|
     dist2 = 0
-    for v in d1.values():
+    for v in d2.values():
         dist2 = dist2 + v**2
     dist2 = sqrt(dist2)
 
@@ -111,25 +115,180 @@ def cosine_dist(d1, d2):
     dist = ab / (dist1 * dist2)
     return dist
 
+def compute_distances(data):
+    clusters = [[name] for name in sorted(list(data.keys()))]
+    dists_mtx = [[0] * len(clusters) for i in range(len(clusters))]
+
+    for i, c1 in enumerate(clusters):
+        for j, c2 in enumerate(clusters):
+            if j > i:  # zgornje trikotna matrika
+                dist = cosine_dist(data[c1[0]], data[c2[0]])
+                # print("i;", i, ", j:", j, "dist: ", dist, "       countries: ", c1[0], c2[0])
+                dists_mtx[i][j] = dist
+                dists_mtx[j][i] = dist
+    return dists_mtx, clusters
+
 
 def k_medoids(data, medoids):
     """
     Za podane podatke (slovar slovarjev terk) in medoide vrne končne skupine
     kot seznam seznamov nizov (ključev v slovarju data).
+    Klic:
+    data = {"X": {"a": 1, "b": 1},
+                "Y": {"a": 0.9, "b": 1},
+                "Z": {"a": 1, "b": 0}}
+    clusters = k_medoids(data, ["X", "Z"])  # dva medoida
+    clusters = k_medoids(data, ["X", "Y", "Z"])  # trije medoidi
+
+    za 2 medoida out:
+    clusters = [["X", "Y"], ["Z"]]
     """
-    seznam = []
+    print("medoids:", medoids)
+
+    clusters = [[name] for name in sorted(list(data.keys()))]
+    num_clusters = len(clusters)
+    print(clusters)
+
+    dists_mtx = [[0] * num_clusters for i in range(num_clusters)]
+
+    for i, c1 in enumerate(clusters):
+        for j, c2 in enumerate(clusters):
+            if j > i:  # zgornje trikotna matrika
+                dist = cosine_dist(data[c1[0]], data[c2[0]])
+                # print("i;", i, ", j:", j, "dist: ", dist, "       countries: ", c1[0], c2[0])
+                dists_mtx[i][j] = dist
+                dists_mtx[j][i] = dist
+            elif j == i:
+                dists_mtx[i][i] = 1
+    print(dists_mtx)
+
+    converged = False
+    # Assign all points to the closest medoid's cluster
+    labels = [0 for i in range(len(clusters))]
+    labels_old = labels.copy()
+    while not converged:
+        for idx1, point in enumerate(clusters): # go through all points
+            min = 0
+            for i, medoid in enumerate(medoids): # compare each point with each medoids
+                idx2 = clusters.index([medoid])
+                dist = dists_mtx[idx1][idx2]
+                if dist > min:  # we found closer mediod (higher value means closer the points are)
+                    min = dist
+                    labels[idx1] = i
+        print("labels:", labels)
+        if labels == labels_old:
+            converged = True
+        else: # save labels for next iter
+            labels_old = labels.copy()
+            ## update medoids
 
 
-
-    pass
+    final_arr = [[] for i in range(len(medoids))]
+    for i, point in enumerate(clusters):
+        final_arr[labels[i]].append(point[0])
+    return  final_arr
 
 
 def silhouette(data, clusters):
     """
     Za podane podatke (slovar slovarjev terk) in skupine (seznam seznamov nizov:
     ključev v slovarju data) vrne silhueto.
+    data = {"X": {"a": 1, "b": 1},
+        "Y": {"a": 0.9, "b": 1},
+        "Z": {"a": 1, "b": 0}}
+    s1 = silhouette(data, [["X", "Y"], ["Z"], ["Q"]])
     """
-    pass
+    # S = (b - a) / max(b,a) = [-1, 1]
+    # b: avg med tocko iz c1 in tockami iz c2. MAXIMIZE b
+    # a: avg med tocko iz c1 in ostalimi tockami iz c1. MINIMIZE a
+
+    keys = data.keys()
+
+    all_clusters = [[name] for name in sorted(list(data.keys()))]
+    num_clusters = len(all_clusters)
+    dists_mtx = [[0] * num_clusters for i in range(num_clusters)]
+
+    # for testing comment out this first if and else sentence
+    if clusters[0] not in global_keys:
+        for i, c1 in enumerate(all_clusters):
+            for j, c2 in enumerate(all_clusters):
+                if j > i:  # zgornje trikotna matrika
+                    dist = cosine_dist(data[c1[0]], data[c2[0]])
+                    # print("i;", i, ", j:", j, "dist: ", dist, "       countries: ", c1[0], c2[0])
+                    dists_mtx[i][j] = dist
+                    dists_mtx[j][i] = dist
+    else:  # we have global mtx of distances
+        dists_mtx = global_mtx
+
+    # pairs of closest clusters. We compute the silhouette between them
+    pairs = []
+
+    # go through all clusters and find the closest neighboring cluster.
+    # Use that to compute the silhouette
+    for i1, cluster1 in enumerate(clusters):
+        min_dist = np.inf
+        i2_memo = 0
+        for i2, cluster2 in enumerate(clusters):
+            if cluster1 is not cluster2: # so we don't calcualate the difference between the cluster with himself
+                dist = 0
+                for c1 in cluster1:         # c1 are elements of the cluster 1
+                    for c2 in cluster2:     # c2 are elements of the cluster 2
+                        index1 = all_clusters.index([c1])
+                        index2 = all_clusters.index([c2])
+                        dist = dist + dists_mtx[index1][index2]
+                dist = dist / (len(cluster1) * len(cluster2)) # take average distance between the clusters
+                if dist < min_dist:
+                    min_dist = dist
+                    i2_memo = i2 # remember this index
+        pairs.append((i1, i2_memo))
+
+    final_silhouettes = []
+    print(pairs)
+    # calculate silhouette for the following pairs of the closest clusters
+    for p1, p2 in pairs:
+        print(p1, p2)
+        cluster1 = clusters[p1]
+        cluster2 = clusters[p2]
+
+        silh = []
+        for x1 in clusters[p1]:
+            idx1 = all_clusters.index([x1])
+            b = 0
+            a = 0
+            i = 0
+            j = 0
+            for x2 in clusters[p2]: # get the dist compared to points in other cluster: p1 with p2 cluster
+                idx2 = all_clusters.index([x2])
+                i = i + 1
+                b = b + dists_mtx[idx1][idx2]
+            """
+            cosine theorem: 
+            similarity is not equal to distance
+            So, we need to flip the values with the formula:
+                distance = sqrt[2(1-similarity)]
+            in our case:
+                b = sqrt(2*(1-b))
+            theory behind the formula:
+                https://stats.stackexchange.com/questions/36152/converting-similarity-matrix-to-euclidean-distance-matrix/36158#36158
+            """
+            b = b / i # average b
+            b = sqrt(2 * (1 - b))
+            for x3 in clusters[p1]: # p1 with p1 cluster
+                idx3 = all_clusters.index([x3])
+                if x1 is not x3:
+                    j = j + 1
+                    a = a + dists_mtx[idx1][idx3]
+            if j != 0:
+                a = a / j
+                a = sqrt(2 * (1 - a))
+            s = (b-a)/max(a,b)
+            silh.append(s)
+        avg_silh = sum(silh) / len(silh)
+        final_silhouettes.append(avg_silh)
+
+    print(final_silhouettes)
+    final_silhouettes_avg = sum(final_silhouettes) / len(final_silhouettes)
+    return final_silhouettes_avg
 
 
 def predict(data, text, n_terke):
@@ -292,25 +451,36 @@ if __name__ == "__main__":
     # dic = set(terke(translit(f.read().lower(), 'sr', reversed=True), 4))
     # print(dic)
     # print(len(dic))
+
+    lds = read_clustering_data(6)
+    global_mtx, global_keys = compute_distances(lds)
+
+    data = {"X": {"a": 1, "b": 1},
+            "Y": {"a": 0.9, "b": 1},
+            "Z": {"a": 1, "b": 0}}
+    clusters1 = k_medoids(data, ["X", "Z"])  # dva medoida
+    # clusters2 = k_medoids(data, ["X", "Y", "Z"])  # trije medoidi
+    print(clusters1)
+    # print(clusters2)
+
+    # print(global_mtx)
+    # print(global_keys)
     """
-    lds = read_clustering_data(4)
     for a, b in combinations(lds.keys(), 2):
         dist = cosine_dist(lds[a], lds[b])
         print()
         print("dist between", a[3:6], "and", b[3:6], ":", dist)
     """
+
+    # seed(1)
+    # indeces = rand.choice(len(lds), 5)
+    # medoids = [list(lds.keys())[index] for index in indeces]
+    # arr = k_medoids(lds, medoids)
+    # print("arr:", arr)
     # odkomenirajte del naloge, ki ga želite pognati
-    del2()
+    # del2()
     # del4()
     # del5()
     print("--- %s seconds ---" % (time.time() - start_time))
     print("-- END --")
     pass
-
-
-"""
-rom - norw = 0.9
-
-
-
-"""
