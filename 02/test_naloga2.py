@@ -35,7 +35,8 @@ class Naloga2Test(unittest.TestCase):
     def test_cosine_dist(self):
         d1 = {"a": 1, "b": 1}
         d2 = {"c": 1, "d": 1}
-        self.assertAlmostEqual(cosine_dist(d1, d2), 1)
+        dist = cosine_dist(d1, d2)
+        self.assertAlmostEqual(dist, 1)
         d1 = {"a": 1, "b": 1}
         d2 = {"a": 1, "b": 1}
         self.assertAlmostEqual(cosine_dist(d1, d2), 0)

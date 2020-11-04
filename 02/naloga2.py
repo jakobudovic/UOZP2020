@@ -16,13 +16,14 @@ from transliterate import translit, get_available_language_codes
 from itertools import combinations
 import copy
 
-def kmers(s, k=3):
+def kmers(s, k=3): # default is 3
     """Generates k-mers for an input string."""
+    s = re.sub('[1-9]', '', s).lower() # eliminate all numbers
     arr = []
     for i in range(len(s)-k+1):
         str = s[i:i + k]
         # if re.match('^[a-z]*[\ .]*[\ .\ ]*[a-z]*$', str):
-        if re.match('^[a-z]*[\ .]*[a-z]*$', str):
+        if re.match('^[a-z]*[\ . ]*[a-z]*', str):
             arr.append(s[i:i+k])
     return arr
 
@@ -79,7 +80,28 @@ def read_prediction_data(n_terke):
             with open(join("prediction", fn), encoding="utf8") as f:
                 text = f.read()
                 nter = terke(text, n=n_terke)
-                lds[fn] = nter
+                if fn[0:2] == "cz":
+                    if "cz" not in lds.keys():
+                        lds["cz"] = {} # Create a new dict of dicts
+                    lds["cz"][fn] = nter
+                elif fn[0:2] == "en":
+                    if "en" not in lds.keys():
+                        lds["en"] = {} # Create a new dict of dicts
+                    lds["en"][fn] = nter
+                elif fn[0:2] == "es":
+                    if "es" not in lds.keys():
+                        lds["es"] = {} # Create a new dict of dicts
+                    lds["es"][fn] = nter
+                elif fn[0:2] == "ma":
+                    if "ma" not in lds.keys():
+                        lds["ma"] = {} # Create a new dict of dicts
+                    lds["ma"][fn] = nter
+                elif fn[0:2] == "si":
+                    if "si" not in lds.keys():
+                        lds["si"] = {} # Create a new dict of dicts
+                    lds["si"][fn] = nter
+                else:
+                    print("Error in reading prediction data...", fn)
     return lds
 
 
@@ -114,7 +136,7 @@ def cosine_dist(d1, d2):
     # print("ab={0}, dist1={1}, dist2={2}".format(ab, dist1, dist2))
 
     dist = ab / (dist1 * dist2)
-    return dist
+    return 1 - dist
 
 def compute_distances(data):
     clusters = [[name] for name in sorted(list(data.keys()))]
@@ -128,7 +150,7 @@ def compute_distances(data):
                 dists_mtx[i][j] = dist
                 dists_mtx[j][i] = dist
             elif j == i:
-                dists_mtx[i][i] = 1
+                dists_mtx[i][i] = 0
 
     return dists_mtx, clusters
 
@@ -152,18 +174,18 @@ def k_medoids(data, medoids):
 
     dists_mtx = [[0] * num_clusters for i in range(num_clusters)]
 
-    if clusters[0] not in global_keys:
-        for i, c1 in enumerate(clusters):
-            for j, c2 in enumerate(clusters):
-                if j > i:  # zgornje trikotna matrika
-                    dist = cosine_dist(data[c1[0]], data[c2[0]])
-                    # print("i;", i, ", j:", j, "dist: ", dist, "       countries: ", c1[0], c2[0])
-                    dists_mtx[i][j] = dist
-                    dists_mtx[j][i] = dist
-                elif j == i:
-                    dists_mtx[i][i] = 1
-    else:
-        dists_mtx = global_mtx
+    # if clusters[0] not in global_keys:
+    for i, c1 in enumerate(clusters):
+        for j, c2 in enumerate(clusters):
+            if j > i:  # zgornje trikotna matrika
+                dist = cosine_dist(data[c1[0]], data[c2[0]])
+                # print("i;", i, ", j:", j, "dist: ", dist, "       countries: ", c1[0], c2[0])
+                dists_mtx[i][j] = dist
+                dists_mtx[j][i] = dist
+            elif j == i:
+                dists_mtx[i][i] = 0
+    # else:
+    #     dists_mtx = global_mtx
 
     converged = False
     # Assign all points to the closest medoid's cluster
@@ -172,11 +194,11 @@ def k_medoids(data, medoids):
     labels_old = labels.copy()
     while not converged:
         for idx1, point in enumerate(clusters): # go through all points
-            min = 0
+            min = np.inf # max value so anything will be closer
             for i, medoid in enumerate(medoids): # compare each point with each medoids
                 idx2 = clusters.index([medoid])
                 dist = dists_mtx[idx1][idx2]
-                if dist > min:  # we found closer mediod (higher value means closer the points are)
+                if dist < min:  # we found closer mediod
                     min = dist
                     labels[idx1] = i
         if labels == labels_old:
@@ -200,7 +222,7 @@ def k_medoids(data, medoids):
                         dist1 = dist1 + dists_mtx[ii][jj]
 
                 dist1 = dist1 / num
-                if dist1 > distances[label1]: # we find a better distance for label1
+                if dist1 < distances[label1]: # we find a better distance for label1
                     distances[label1] = dist1
                     medoids[label1] = candidate[0] # update medoid with label1 to a candidate with a better distance to others
 
@@ -230,18 +252,18 @@ def silhouette(data, clusters):
     dists_mtx = [[0] * num_clusters for i in range(num_clusters)]
 
     # for testing comment out this first if and else sentence
-    if [clusters[0][0]] not in global_keys:
-        for i, c1 in enumerate(all_clusters):
-            for j, c2 in enumerate(all_clusters):
-                if j > i:  # zgornje trikotna matrika
-                    dist = cosine_dist(data[c1[0]], data[c2[0]])
-                    # print("i;", i, ", j:", j, "dist: ", dist, "       countries: ", c1[0], c2[0])
-                    dists_mtx[i][j] = dist
-                    dists_mtx[j][i] = dist
-                elif j == i:
-                    dists_mtx[i][i] = 1 # one on the diagonal
-    else:  # we have global mtx of distances
-        dists_mtx = global_mtx
+    # if [clusters[0][0]] not in global_keys:
+    for i, c1 in enumerate(all_clusters):
+        for j, c2 in enumerate(all_clusters):
+            if j > i:  # zgornje trikotna matrika
+                dist = cosine_dist(data[c1[0]], data[c2[0]])
+                # print("i;", i, ", j:", j, "dist: ", dist, "       countries: ", c1[0], c2[0])
+                dists_mtx[i][j] = dist
+                dists_mtx[j][i] = dist
+            elif j == i:
+                dists_mtx[i][i] = 0 # one on the diagonal
+    # else:  # we have global mtx of distances
+    #    dists_mtx = global_mtx
 
     # pairs of closest clusters. We compute the silhouette between them
     pairs = []
@@ -294,7 +316,8 @@ def silhouette(data, clusters):
                 https://stats.stackexchange.com/questions/36152/converting-similarity-matrix-to-euclidean-distance-matrix/36158#36158
             """
             b = b / i # average b
-            b = sqrt(2 * (1 - b))
+            # b = sqrt(2 * (1 - b))
+            b = 1 - b
             for x3 in clusters[p1]: # p1 with p1 cluster
                 idx3 = all_clusters.index([x3])
                 if x1 is not x3:
@@ -302,7 +325,8 @@ def silhouette(data, clusters):
                     a = a + dists_mtx[idx1][idx3]
             if j != 0:
                 a = a / j
-                a = sqrt(2 * (1 - a))
+                # a = sqrt(2 * (1 - a)) obratna vrednost
+                a = 1 - a
             s = (b-a)/max(a,b)
             silh.append(s)
         avg_silh = sum(silh) / len(silh)
@@ -310,16 +334,34 @@ def silhouette(data, clusters):
 
     # print(final_silhouettes)
     final_silhouettes_avg = sum(final_silhouettes) / len(final_silhouettes)
-    return final_silhouettes_avg
+    return 1 - final_silhouettes_avg
 
 
 def predict(data, text, n_terke):
     """
     Za podano bazo jezikov data za vsak jezik vrne verjetnost, da je besedilo text
     napisano v tem jeziku (izhod je v obliki slovarja).
-    """
-    pass
 
+    data = dict dictov
+    text = string
+    n_terke = int
+    """
+
+    text_vector = terke(text, n_terke)
+
+    similarity_vector = {}
+    for language_key, language in data.items():
+        sim_language = [] # similarity list for 3 different texts
+        for i, example in enumerate(language.values()): # go through all (3) vectors for one language
+            sim_language.append(cosine_dist(text_vector, example))
+        avg = sum(sim_language) / len(sim_language)
+        similarity_vector[language_key] = avg
+
+    normalized_vector = {}
+    for k,v in similarity_vector.items():   # normalize similarities so they sum up in 1
+        normalized_vector[k] = similarity_vector[k] / sum(similarity_vector.values())
+
+    return normalized_vector
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # flatten an array that you don't know the dimensions of
 def flatten_rec(arr, new_arr):
@@ -506,13 +548,19 @@ def del4():
     for arr in high:
         print(arr)
 
-
+    # High: ['cz.txt', 'ser.txt', 'es.txt', 'mad.txt', 'norw.txt']
 
 
 def del5():
-    data = read_prediction_data(3)  # dolžino terk prilagodite
-    # ... nadaljujte
+    nterk = 6
+    data = read_prediction_data(nterk)  # dolžino terk prilagodite
     # primer klica predict: print(predict(data, "Danes je lep dan", 3))
+    string = "Danes je lep dan"
+    print("Normalized similarity for string:'", string ,"':")
+    rez = predict(data, string, nterk)
+    print(rez)
+
+
 
 
 if __name__ == "__main__":
