@@ -201,4 +201,44 @@ Z nomalizacijo med dobljenimi vrednostmi za vseh 5 jezikov sem le-te pretvoril v
 \\Jeziki, s katerimi sem primerjal odlomke so češčina, angleščina, španščina, madžarščina in slovenščina.
 
 
+Tudi tu sem imel zelo lepe rezultate pa sem jih nevem kako pokvaril, da nič več nima smisla. Za stavek "Danes je lep dan" sem dobil pr ntrerkah dolžine 6 75\% verjetnost in
+25\%, da je niz v češčini.
+Na koncu sem ugotovil da sem rabil ponovno obrnit vrednost kosinusne razdalje, da sem imel opravka s podobnostjo in ne z razdaljo:
+\\
+
+Za španski odlomek o nogometu sem dobil vrednosti:
+\\Odstavek: cada bando tiene su lugar de marca, en este caso las porterías son ruedas de molino incrustadas en el centro de unos muros de piedra. Estas están situadas a la orilla del río, separadas por una distancia de tres
+{'si': 0.06493148413725684, 'es': 0.7924870045520438, 'ma': 0.05647705538723061, 'cz': 0.029139790533865693, 'en': 0.056964665389603035}
+\\
+
+Za slovensko poved "Danes je lep dan" sem dobil vrednosti:
+\\Odstavek: Danes je lep dan
+\\
+{'si': 0.627352218875449, 'es': 0.1301125589299184, 'ma': 0.022638238037705254, 'cz': 0.19390214087943217, 'en': 0.025994843277495246}
+\\
+
+Za madžarski odlomek o luni sem dobil vrednosti:
+\\Odlomek: A felszíni nehézségi gyorsulás (és így a testek súlya) körülbelül hatoda a földinek, így a rajta járó űrhajósok a 80–90 kg-os űrruhában is könnyedén mozogtak, ugráltak. A Holdnak nincsen számottevő légköre
+\\
+{'si': 0.044840778184110544, 'es': 0.04724704510075924, 'ma': 0.7505988139379031, 'cz': 0.10619303881221806, 'en': 0.051120323965009026}
+\\
+
+Za angleški odstavek o lesu sem dobil vrednosti:
+\\Odstavek: Wood is sometimes defined as only the secondary xylem in the stems of trees,[1] or it is defined more broadly to include the same type of tissue elsewhere such as in the roots of trees or shrubs.
+\\{'si': 0.08511081823308327, 'es': 0.07286592665435758, 'ma': 0.02464219738694819, 'cz': 0.026450289405044302, 'en': 0.7909307683205666}
+\\
+
+
+Za češki odstavek o pivu sem dobil vrednosti:
+\\Odstavek: V současnosti je pivo konzumováno prakticky na celém světě. K roku 2008 drží obyvatelé Česka přední pozici v průměrné spotřebě piva na osobu, která dosahuje v průměru 160 litrů na hlavu za rok.
+\\
+{'si': 0.3803708169795609, 'es': 0.01679186185562227, 'ma': 0.013924444140972696, 'cz': 0.5756639433899943, 'en': 0.013248933633849984}
+\\
+
+Vidimo lahko, da so predikcije kar dobre. Edinokrat ko so procenti med sabo manj razmaknjeni je, ko imamo opravka s slovenskim ali češkim odlomkom.
+\\Namreč jezika sta si podobna.
+
+
+
+
 \end{document}

@@ -174,18 +174,19 @@ def k_medoids(data, medoids):
 
     dists_mtx = [[0] * num_clusters for i in range(num_clusters)]
 
-    if clusters[0] not in global_keys:
-        for i, c1 in enumerate(clusters):
-            for j, c2 in enumerate(clusters):
-                if j > i:  # zgornje trikotna matrika
-                    dist = cosine_dist(data[c1[0]], data[c2[0]])
-                    # print("i;", i, ", j:", j, "dist: ", dist, "       countries: ", c1[0], c2[0])
-                    dists_mtx[i][j] = dist
-                    dists_mtx[j][i] = dist
-                elif j == i:
-                    dists_mtx[i][i] = 0
-    else:
-        dists_mtx = global_mtx
+    # comment this if-else for test examples - uncomment for bigger data, texts
+    # if clusters[0] not in global_keys:
+    for i, c1 in enumerate(clusters):
+        for j, c2 in enumerate(clusters):
+            if j > i:  # zgornje trikotna matrika
+                dist = cosine_dist(data[c1[0]], data[c2[0]])
+                # print("i;", i, ", j:", j, "dist: ", dist, "       countries: ", c1[0], c2[0])
+                dists_mtx[i][j] = dist
+                dists_mtx[j][i] = dist
+            elif j == i:
+                dists_mtx[i][i] = 0
+    # else:
+    #    dists_mtx = global_mtx
 
     converged = False
     # Assign all points to the closest medoid's cluster
@@ -353,7 +354,7 @@ def predict(data, text, n_terke):
     for language_key, language in data.items():
         sim_language = [] # similarity list for 3 different texts
         for i, example in enumerate(language.values()): # go through all (3) vectors for one language
-            sim_language.append(cosine_dist(text_vector, example))
+            sim_language.append(1 - cosine_dist(text_vector, example))
         avg = sum(sim_language) / len(sim_language)
         similarity_vector[language_key] = avg
 
@@ -552,10 +553,25 @@ def del4():
 
 
 def del5():
-    nterk = 6
+    nterk = 4
     data = read_prediction_data(nterk)  # dolžino terk prilagodite
     # primer klica predict: print(predict(data, "Danes je lep dan", 3))
+    # Use some string here:
+    # string = "Danes je lep dan"
     string = "Danes je lep dan"
+
+    # esp
+    # string =  "cada bando tiene su lugar de marca, en este caso las porterías son ruedas de molino incrustadas en el centro de unos muros de piedra. Estas están situadas a la orilla del río, separadas por una distancia de tres"
+
+    # mad
+    # string = "A felszíni nehézségi gyorsulás (és így a testek súlya) körülbelül hatoda a földinek, így a rajta járó űrhajósok a 80–90 kg-os űrruhában is könnyedén mozogtak, ugráltak. A Holdnak nincsen számottevő légköre"
+
+    # en
+    # string = "Wood is sometimes defined as only the secondary xylem in the stems of trees,[1] or it is defined more broadly to include the same type of tissue elsewhere such as in the roots of trees or shrubs."
+
+    # cz
+    string = "V současnosti je pivo konzumováno prakticky na celém světě. K roku 2008 drží obyvatelé Česka přední pozici v průměrné spotřebě piva na osobu, která dosahuje v průměru 160 litrů na hlavu za rok."
+
     print("Normalized similarity for string:'", string ,"':")
     rez = predict(data, string, nterk)
     print(rez)
@@ -613,8 +629,8 @@ if __name__ == "__main__":
 
     # odkomenirajte del naloge, ki ga želite pognati
     # del2()
-    del4()
-    # del5()
+    # del4()
+    del5()
     print("--- %s seconds ---" % (time.time() - start_time))
     print("-- END --")
     pass
