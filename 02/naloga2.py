@@ -37,7 +37,7 @@ def terke(text, n=4):
         if key not in dic:
             dic[key] = 1
         else:
-            dic[key] += 1
+                dic[key] += 1
     return dic                  # return sorted dic with strings as keys
 
 def read_clustering_data(n_terke):
@@ -174,18 +174,18 @@ def k_medoids(data, medoids):
 
     dists_mtx = [[0] * num_clusters for i in range(num_clusters)]
 
-    # if clusters[0] not in global_keys:
-    for i, c1 in enumerate(clusters):
-        for j, c2 in enumerate(clusters):
-            if j > i:  # zgornje trikotna matrika
-                dist = cosine_dist(data[c1[0]], data[c2[0]])
-                # print("i;", i, ", j:", j, "dist: ", dist, "       countries: ", c1[0], c2[0])
-                dists_mtx[i][j] = dist
-                dists_mtx[j][i] = dist
-            elif j == i:
-                dists_mtx[i][i] = 0
-    # else:
-    #     dists_mtx = global_mtx
+    if clusters[0] not in global_keys:
+        for i, c1 in enumerate(clusters):
+            for j, c2 in enumerate(clusters):
+                if j > i:  # zgornje trikotna matrika
+                    dist = cosine_dist(data[c1[0]], data[c2[0]])
+                    # print("i;", i, ", j:", j, "dist: ", dist, "       countries: ", c1[0], c2[0])
+                    dists_mtx[i][j] = dist
+                    dists_mtx[j][i] = dist
+                elif j == i:
+                    dists_mtx[i][i] = 0
+    else:
+        dists_mtx = global_mtx
 
     converged = False
     # Assign all points to the closest medoid's cluster
@@ -252,18 +252,18 @@ def silhouette(data, clusters):
     dists_mtx = [[0] * num_clusters for i in range(num_clusters)]
 
     # for testing comment out this first if and else sentence
-    # if [clusters[0][0]] not in global_keys:
-    for i, c1 in enumerate(all_clusters):
-        for j, c2 in enumerate(all_clusters):
-            if j > i:  # zgornje trikotna matrika
-                dist = cosine_dist(data[c1[0]], data[c2[0]])
-                # print("i;", i, ", j:", j, "dist: ", dist, "       countries: ", c1[0], c2[0])
-                dists_mtx[i][j] = dist
-                dists_mtx[j][i] = dist
-            elif j == i:
-                dists_mtx[i][i] = 0 # one on the diagonal
-    # else:  # we have global mtx of distances
-    #    dists_mtx = global_mtx
+    if [clusters[0][0]] not in global_keys:
+        for i, c1 in enumerate(all_clusters):
+            for j, c2 in enumerate(all_clusters):
+                if j > i:  # zgornje trikotna matrika
+                    dist = cosine_dist(data[c1[0]], data[c2[0]])
+                    # print("i;", i, ", j:", j, "dist: ", dist, "       countries: ", c1[0], c2[0])
+                    dists_mtx[i][j] = dist
+                    dists_mtx[j][i] = dist
+                elif j == i:
+                    dists_mtx[i][i] = 0 # one on the diagonal
+    else:  # we have global mtx of distances
+       dists_mtx = global_mtx
 
     # pairs of closest clusters. We compute the silhouette between them
     pairs = []
@@ -334,7 +334,7 @@ def silhouette(data, clusters):
 
     # print(final_silhouettes)
     final_silhouettes_avg = sum(final_silhouettes) / len(final_silhouettes)
-    return 1 - final_silhouettes_avg
+    return final_silhouettes_avg
 
 
 def predict(data, text, n_terke):
@@ -613,7 +613,7 @@ if __name__ == "__main__":
 
     # odkomenirajte del naloge, ki ga želite pognati
     # del2()
-    # del4()
+    del4()
     # del5()
     print("--- %s seconds ---" % (time.time() - start_time))
     print("-- END --")

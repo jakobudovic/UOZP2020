@@ -20,6 +20,8 @@
 \usepackage{listings} % za vključevanje kode
 \usepackage{hyperref}
 \usepackage{titlesec}
+\usepackage{array}
+\usepackage{makecell}
 
 \renewcommand{\baselinestretch}{1.2} % za boljšo berljivost večji razmak
 \renewcommand{\appendixpagename}{\normalfont\Large\bfseries{Priloge}}
@@ -60,133 +62,143 @@ backgroundcolor=\color{light-gray},
 
 
 % Naloga
-\title{Naloga 1}
+\title{Naloga 2}
 % Ime Priimek (vpisna)
-\author{Janez Novak (63000000)}
+\author{Jakob Udovič (63180301)}
 \date{\today}
 
 \begin{document}
 
 \maketitle
 
-\section{Uvod.}
-V tem razdelku, ki naj bo kratek in naj obsega en odstavek z do 150
-besed, na kratko opišeš, kaj je bil cilj naloge.
-
-\subsection{Podatki.}
-Če je naloga zasnovana tako, da vključuje analizo izbranih podatkov, v
-tem razdelku opišeš, kakšni so ti podatki in navedeš nekaj osnovnih
-statističnih lastnosti teh podatkov. Slednje vključujejo velikost
-podatkov (na primer število primerov, število in vrsto atributov), delež
-manjkajočih podatkov, opis in porazdelitev vrednosti ciljnih
-spremenljivk, in podobno. Če si podatke pridobil sam, tu opišeš, na
-kakšen način, kje in kako.
-
-\section{Metode.}
-Tu opišeš, na kakšen način si rešil nalogo (tehnike in metode, ki si
-jih uporabil). Lahko vključiš tudi zanimiv del programske kode, ki
-si jo morda pri tem razvil ali pa v poročilo dodatno vključiš sliko,
-kot je na primer slika~\ref{slika1}. Vse slike in tabele, ki jih
-vključiš v poročilo, morajo biti navedene v besedilu oziroma se moraš
-na njih sklicati.
-
-\begin{figure}[htbp]
-\begin{center}
-\includegraphics[scale=0.3]{slika-primer.png}
-\caption{Vsako sliko opremi s podnapisom, ki pove, kaj slika prikazuje.}
-\label{slika1}
-\end{center}
-\end{figure}
-
-V to poglavje lahko tudi vključiš kakšen metodološko zanimiv del
-kode. Primer vključitve kode oziroma implementirane funkcije v
-programskem jeziku Python je:
-
-\begin{lstlisting}
-def fib(n):
-    if n == 0:
-        return 0
-    elif n == 1:
-        return 1
-    else:
-        return fib(n-1) + fib(n-2)
-\end{lstlisting}
-
-Izris te kode je lahko sicer tudi lepši, poskušaš lahko najti še
-primernejši način vključevanja kode v Pythonu oziroma v tvojem izbranem
-programskem jeziku v okolje \LaTeX{}.
-
-\section{Rezultati.}
-
-V tem poglavju podaš rezultate s kratkim (enoodstavčnim)
-komentarjem. Rezultate lahko prikažeš tudi v tabeli (primer je
-tabela~\ref{tab1}).
-
-Odstavke pri pisanju poročila v LaTeX-u ločiš tako, da pred novim
-odstavkom pustiš prazno vrstico. Tudi, če pišeš poročilo v kakšnem
-drugem urejevalniku, morajo odstavki biti vidno ločeni. To narediš z
-zamikanjem ali pa z dodatnim presledkom.
+\section{Izbrani jeziki.}
+Jeziki, ki sem jih uporabil pri 2. nalogi so v razpredelnici ~\ref{tab1} spodaj:
 
 \begin{table}[htbp]
-\caption{Atributi in njihove zaloge vrednosti.}
+\caption{Izbrani jeziki in pripadajoče skupine.}
 \label{tab1}
 \begin{center}
 \begin{tabular}{llp{3cm}}
 \hline
-ime spremenljivke & definicijsko območje & opis \\
+\makecell{jezikovna skupina} & \makecell{pripadajoči jeziki} \\
 \hline
-cena & [0, 500] & cena izdelka v EUR\\
-teža & [1, 1000] & teža izdelka v dag \\
-kakovost & [slaba|srednja|dobra] & kakovost izdelka \\
+Germanski & \makecell{afrikaans, danščina,\\ angleščina, nemščina,\\ nizozemščina, norveščina}\\
+\hline
+Romanski & \makecell{špranščina, francoščina,\\ italianščina, portugalščina,\\ romanščina}\\
+\hline
+Slovanski & \makecell{češčina, grvaščina, poljščina,\\ slovenščinam, ruščina, srbščina,\\ makedonščina}\\
+\hline
+Ugrofinski & \makecell{madžarski}\\
 \hline
 \end{tabular}
 \end{center}
 \end{table}
 
-Podajanje rezultati naj bo primerno strukturirano. Če ima naloga več
-podnalog, uporabi podpoglavja. Če bi želel poročati o rezultatih
-izčrpno in pri tem uporabiti vrsto tabel ali grafov, razmisli o
-varianti, kjer v tem poglavju prikažeš in komentiraš samo glavne
-rezultate, kakšne manj zanimive detajle pa vključite v prilogo (glej
-prilogi~\ref{app-res} in~\ref{app-code}).
+Sami članki so bili povzetki besedil iz Wikipedije o 2. Svetovni vojni. O le-tej je dovolj pisalo v vseh jezikih (nad 10.000 znakov).\\
+Sama obdelava besedila je potekala na večih točkah. Sprva sem besedila prebral v funkciji read\_clustering\_data(), kjer sem za bolj eksotične jezike (z drugačnimi abecedami) uporabil translacijsko funkcijo translit() iz knjižnice transliterate.
+Besedila sem nato poslal v funkcijo terke(), kjer sem tekst s pomočjo funkcije kmers() pomanjšal, odstranil vsa števila, večkratne presledke in ločila s pomočjo uporabe regex izraza '\^[a-z]*[\textbackslash . ]*[a-z]*'.\\
+Funckija kmers() je vrača podnize dolžine k, ki jiga predhodno podamo v obliki argumenta.
+Vrnjene n-terke nato preštejem in shranim v slovar, katerega končno vrne funkcija terke().
 
-\section{Izjava o izdelavi domače naloge.}
-Domačo nalogo in pripadajoče programe sem izdelal sam.
+To ponovim za vseh 20 (dvajset) besedil in rezultate shranim v en slovar s ključi, ki so imena jezikov.
 
-\appendix
-\appendixpage
-\section{\label{app-res}Podrobni rezultati poskusov.}
 
-Če je rezultatov v smislu tabel ali pa grafov v nalogi mnogo,
-predstavi v osnovnem besedilu samo glavne, podroben prikaz
-rezultatov pa lahko predstaviš v prilogi. V glavnem besedilu ne
-pozabi navesti, da so podrobni rezultati podani v prilogi.
+\subsection{Rezultati hierarhičnega razvrščanja.}
+V praksi običajno uporabljamo nterke do nekje dolžine 5. Sam sem ugotovil, da najlepše rezultate dobim pri dolžini nterk 6.
 
-\section{\label{app-code}Programska koda.}
-
-Za domače naloge bo tipično potrebno kaj sprogramirati. Če ne bo od
-vas zahtevano, da kodo oddate posebej, to vključite v prilogo. Čisto
-za okus sem tu postavil nekaj kode, ki uporablja Orange
-(\url{http://www.biolab.si/orange}) in razvrščanje v skupine.
-
+Države se lepo porazdelijo v skupine, madžarščina se izolira, ker je ugrofinski jezik, ostala besedila pa se pogrupirajo v jezikovne skupine, kot jih lahko vidimo že v razpredelnici ~\ref{tab1}. \\
+Tudi nizozemščina se prvo združi z afrikaans jezikom (flamščina), ki je poleg nizozemščine uradni jezik Nizozemske.
 
 \begin{lstlisting}
-import random
-import Orange
-
-data_names = ["iris", "housing", "vehicle"]
-data_sets = [Orange.data.Table(name) for name in data_names]
-
-print "%10s %3s %3s %3s" % ("", "Rnd", "Div", "HC")
-for data, name in zip(data_sets, data_names):
-    random.seed(42)
-    km_random = Orange.clustering.kmeans.Clustering(data, centroids = 3)
-    km_diversity = Orange.clustering.kmeans.Clustering(data, centroids = 3,
-        initialization=Orange.clustering.kmeans.init_diversity)
-    km_hc = Orange.clustering.kmeans.Clustering(data, centroids = 3,
-        initialization=Orange.clustering.kmeans.init_hclustering(n=100))
-    print "%10s %3d %3d %3d" % (name, km_random.iteration, \
-    km_diversity.iteration, km_hc.iteration)
+            ---- pol.txt
+        ----|
+                ---- cz.txt
+            ----|
+                        ---- si.txt
+                    ----|
+                            ---- mac.txt
+                        ----|
+                                ---- ser.txt
+                            ----|
+                                ---- hr.txt
+                ----|
+                        ---- rus.txt
+                    ----|
+                        ---- bg.txt
+    ----|
+                ---- fr.txt
+            ----|
+                    ---- ita.txt
+                ----|
+                        ---- por.txt
+                    ----|
+                        ---- es.txt
+        ----|
+                    ---- rom.txt
+                ----|
+                    ---- en.txt
+            ----|
+                        ---- ger.txt
+                    ----|
+                            ---- norw.txt
+                        ----|
+                            ---- dan.txt
+                ----|
+                        ---- nl.txt
+                    ----|
+                        ---- afrikaans.txt
+----|
+    ---- mad.txt
 \end{lstlisting}
+
+
+\section{Rezultati razvrščanja.}
+
+Silhuete 50 naključno izbranih začetnih medoidov.
+\\Vrednosti se gibljejo nekje med 0 in 0.5, kar je pričakovano. Višja vrednost pomeni boljše rezultate.
+Pri izpisu začetno izbranih medoidov se lepo vidi, da so višje vrednosti silhuet pri tistih jezikih, ki prihajajo iz različnih jezikovnih skupin.
+Če pa so na začetku bila izbrana besedila iz večinoma ene jezikovne skupine, pa so bile vrednosti silhuet nekoliko nižje.
+
+Opomba: pri nalogi 2 sem večino časa uporabljal kosinusno podobnost in ne razdalje. Koda sedaj deluje za testne primere, vendar mi je nekoliko pokvarilo rezultate pri tem delu.
+\\K sreči sem vizualizacijo delal v Jupytru, kjer imam tudi shranjen seznam vrednosti silhuet za 50 merjenj, ki jih lahko vidimo na sliki ~\ref{slika1}.
+Seznam:
+\begin{lstlisting}
+arr = [0.10903602075553202, 0.12439888051146164, 0.1426750442841216, 0.2753702599806789,
+0.27971867005386575, 0.14949326330191698, 0.08365267140020564, 0.10280495284818651,
+0.2753702599806789, 0.45416005541784255, 0.12800257014715105, 0.2615841125106394,
+0.1302692014811244, 0.10903602075553202, 0.10903602075553201, 0.24912380403935788,
+0.32227807561995425, .08557928005683865, 0.2770854751285675, 0.4492696784326536,
+0.09169265894240214, 0.2919388816535039, 0.2612421781739561, 0.12564419304521096,
+0.09169265894240215, 0.12564419304521096, 0.12537532337912977, 0.2753702599806788,
+0.2753702599806789, 0.10280495284818651, 0.30333229599996775, 0.10903602075553202,
+0.1426750442841216, 0.12564419304521096, 0.2764442557007586, 0.4290743253834094,
+0.34145798187940013, 0.10903602075553202, 0.2550622582498642, 0.24677262494865787,
+0.34145798187940013, 0.12439888051146167, 0.4492696784326535, 0.09034438276924944,
+0.2808812539242188, 0.12439888051146167, 0.13123610173256678, 0.28109406327696074,
+0.2615841125106394, 0.31873233600222056]
+\end{lstlisting}
+
+
+
+\begin{figure}[htbp]
+\begin{center}
+\includegraphics[scale=0.6]{graf.png}
+\caption{Histogram 50 rezultatov silhuet.}
+\label{slika1}
+\end{center}
+\end{figure}
+
+Žal so ostali podatki o razvrščanju izgubljeni, jaz pa sem za to nalogo porabil že preveč dni.
+Skupine se mi razvrstile podobno kot pri Hierarhičnem razvrščanju in so imele smisel.
+
+\newpage
+
+
+\section{Napovedovanje jezika.}
+Za napovedovedovanje jezikov sem dodatno pridobil še po 2 edili za vsak jezik. Skupno 3 besedila so tvorila trojke pri vsakem jeziku.
+Ko sem testiral odlomke besedil iz različnih jezikov, sem primerjal le-te z vsako trojko in izračunal povprečje ujemanja pri vseh treh.
+Z nomalizacijo med dobljenimi vrednostmi za vseh 5 jezikov sem le-te pretvoril v procente verjetnosti ujemanja za posamezni jezik.
+\\Jeziki, s katerimi sem primerjal odlomke so češčina, angleščina, španščina, madžarščina in slovenščina.
+
 
 \end{document}
