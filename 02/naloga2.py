@@ -630,7 +630,7 @@ if __name__ == "__main__":
     # odkomenirajte del naloge, ki ga želite pognati
     # del2()
     # del4()
-    del5()
+    # del5()
     print("--- %s seconds ---" % (time.time() - start_time))
     print("-- END --")
     pass
