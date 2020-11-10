@@ -46,7 +46,7 @@ class PowerIterationPCATest(unittest.TestCase):
 
     def test_power_iteration_single(self):
         vec, val = power_iteration(DATA)
-
+        print("val:", val)
         np.testing.assert_almost_equal(val, EVALS[0], decimal=3)
 
         vec = maybe_negate(vec, EVECS[0])

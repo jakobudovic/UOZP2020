@@ -147,7 +147,6 @@ def power_iteration(X):
         len = np.linalg.norm(x)
         x = x / len
 
-        # if (x==x_store).all():
         if np.allclose(x, x_store, atol=0.00001):
             converged = True
         else:
@@ -157,6 +156,7 @@ def power_iteration(X):
     # x.T * X * x = lambda
     l1 = x.T.dot(X).dot(x) # first eigenvalue
 
+    print("val before return:", l1)
     return x, l1
 
 def power_iteration_two_components(X):
@@ -169,45 +169,6 @@ def power_iteration_two_components(X):
     - the corresponding eigenvalues (a 1D numpy array)
     """
 
-    power_iteration
-
-    pass
-
-
-def project_to_eigenvectors(X, vecs):
-    """
-    Project matrix X onto the space defined by eigenvectors.
-    The output array should have as many rows as X and as many columns as there
-    are vectors.
-    """
-    pass
-
-
-def total_variance(X):
-    """
-    Total variance of the data matrix X. You will need to use for
-    to compute the explained variance ratio.
-    """
-    return np.var(X, axis=0, ddof=1).sum()
-
-
-def explained_variance_ratio(X, eigenvectors, eigenvalues):
-    """
-    Compute explained variance ratio.
-    """
-
-
-
-
-    pass
-
-
-def plot_PCA():
-    """
-    Everything (opening files, computation, plotting) needed
-    to produce a plot of PCA on languages data.
-    """
-    X, languages = prepare_data_matrix()
     # normalize the data
     X_nor = X / X.max()
     # center the data
@@ -224,30 +185,59 @@ def plot_PCA():
     vec1 = np.array([vector1])
     # project data X_center to eigen vector v1
     projection = X_center.dot(vec1.T) * vec1
-    # X_center = X_center.T
     X_center -= projection  # subtract the projection from matrix X
 
-    """ 
-    center matrix, do i need this again? - turns out the meantRow is just 0s so it doesn't change anything
-    Skip next 3 rows
-    X_center = X_center.T
-    meanRow = X_center.mean(axis=0)  # axis=0 we calculate mean of the columns (parameters)
-    X_center = X_center - meanRow
-    X_center = X_center / X_center.max()
-    """
-
-
-    cov2 = np.cov(X_center.T) # covaraince matrix 2
+    cov2 = np.cov(X_center.T)  # covaraince matrix 2
 
     vector2, v2 = power_iteration(cov2)
 
     # Transform data onto the 2 eigenvectors with 2 vectors stacked in W matrix
     W = np.hstack((vector1.reshape(100, 1), vector2.reshape(100, 1)))
-    print(languages)
-    transformed = W.T.dot(X.T)
-    print(transformed)
+
+    return W.T, [v1, v2]
+
+
+def project_to_eigenvectors(X, vecs):
+    """
+    Project matrix X onto the space defined by eigenvectors.
+    The output array should have as many rows as X and as many columns as there
+    are vectors.
+    """
+    return vecs.dot(X.T)
+
+
+def total_variance(X):
+    """
+    Total variance of the data matrix X. You will need to use for
+    to compute the explained variance ratio.
+    """
+    return np.var(X, axis=0, ddof=1).sum()
+
+
+def explained_variance_ratio(X, eigenvectors, eigenvalues):
+    """
+    Compute explained variance ratio.
+    """
+    total_var = total_variance(X)
+    explained_variance = sum(eigenvalues) / total_var
+    return explained_variance
+
+
+def plot_PCA():
+    """
+    Everything (opening files, computation, plotting) needed
+    to produce a plot of PCA on languages data.
+    """
+    X, languages = prepare_data_matrix()
+
+    W, eigenvalues = power_iteration_two_components(X)
+
+    transformed = project_to_eigenvectors(X, W)
 
     plt.scatter(transformed[0, :], transformed[1, :], c='green', s=50, alpha=0.4)
+
+    title = 'Explained variance:' + str(explained_variance_ratio(X, W, eigenvalues))
+    print(title)
 
     for i, language in enumerate(languages):
         plt.annotate(language,  # this is the text
@@ -256,7 +246,7 @@ def plot_PCA():
                      xytext=(0, 10),  # distance from text to points (x,y)
                      ha='center')  # horizontal alignment can be left, right or center
 
-    title = 'Explained variance:' + str(v1+v2)
+
     plt.title(title)
     plt.show()
 
