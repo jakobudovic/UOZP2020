@@ -1,9 +1,17 @@
 import numpy as np
 import re
+
+from sklearn.preprocessing import StandardScaler
 from transliterate import translit, get_available_language_codes
 from os import listdir
 from os.path import join
 import time
+import matplotlib.pyplot as plt
+from matplotlib import *
+from numpy import random
+
+from numpy import linalg as LA
+
 
 def kmers(s, k=3): # default is 3
     """Generates k-mers for an input string."""
@@ -29,7 +37,6 @@ def terke(text, n=4):
         else:
                 dic[key] += 1
     return dic                  # return sorted dic with strings as keys
-
 
 def read_clustering_data(n_terke):
     # Prosim, ne spreminjajte te funkcije. Vso potrebno obdelavo naredite
@@ -76,7 +83,7 @@ def prepare_data_matrix():
     for a language. Columns should be the 100 most common triplets
     according to the idf measure.
     """
-    start_time = time.time()
+
     # create matrix X and list of languages
     langs = read_clustering_data(3)
     all_nters = {}
@@ -114,7 +121,6 @@ def prepare_data_matrix():
             X[j][i] = vector[k] # find the number of k occurences in document of language "lang" and save it in matrix
             j = j + 1
 
-    print("--- %s seconds ---" % (time.time() - start_time))
     return X, languages
 
 
@@ -127,8 +133,31 @@ def power_iteration(X):
     - the eigenvector (1D numpy array) and
     - the corresponding eigenvalue (a float)
     """
-    pass
+    # Su = lambda * u
+    # det(A - lambda I) = 0
 
+    converged = False
+
+    # random vector x
+    x = random.rand(100)
+    x_store = np.ones((100,))
+
+    while not converged:
+        x = np.dot(X, x)
+        len = np.linalg.norm(x)
+        x = x / len
+
+        # if (x==x_store).all():
+        if np.allclose(x, x_store, atol=0.00001):
+            converged = True
+        else:
+            x_store = x
+
+    # x is our first eigenvector
+    # x.T * X * x = lambda
+    l1 = x.T.dot(X).dot(x) # first eigenvalue
+
+    return x, l1
 
 def power_iteration_two_components(X):
     """
@@ -139,6 +168,9 @@ def power_iteration_two_components(X):
     - the two eigenvectors (2D numpy array, each eigenvector in a row) and
     - the corresponding eigenvalues (a 1D numpy array)
     """
+
+    power_iteration
+
     pass
 
 
@@ -163,6 +195,10 @@ def explained_variance_ratio(X, eigenvectors, eigenvalues):
     """
     Compute explained variance ratio.
     """
+
+
+
+
     pass
 
 
@@ -172,7 +208,59 @@ def plot_PCA():
     to produce a plot of PCA on languages data.
     """
     X, languages = prepare_data_matrix()
-    # ...
+    # normalize the data
+    X_nor = X / X.max()
+    # center the data
+    meanRow = X_nor.mean(axis=0)  # axis=0 we calculate mean of the columns (parameters)
+    X_center = X_nor - meanRow
+
+    # calculate the covariance matrix 100x100
+    cov1 = np.cov(X_center.T)
+
+    # TEMP, used to check final results, ignore this
+    values, vectors = LA.eig(cov1)
+
+    vector1, v1 = power_iteration(cov1)
+    vec1 = np.array([vector1])
+    # project data X_center to eigen vector v1
+    projection = X_center.dot(vec1.T) * vec1
+    # X_center = X_center.T
+    X_center -= projection  # subtract the projection from matrix X
+
+    """ 
+    center matrix, do i need this again? - turns out the meantRow is just 0s so it doesn't change anything
+    Skip next 3 rows
+    X_center = X_center.T
+    meanRow = X_center.mean(axis=0)  # axis=0 we calculate mean of the columns (parameters)
+    X_center = X_center - meanRow
+    X_center = X_center / X_center.max()
+    """
+
+
+    cov2 = np.cov(X_center.T) # covaraince matrix 2
+
+    vector2, v2 = power_iteration(cov2)
+
+    # Transform data onto the 2 eigenvectors with 2 vectors stacked in W matrix
+    W = np.hstack((vector1.reshape(100, 1), vector2.reshape(100, 1)))
+    print(languages)
+    transformed = W.T.dot(X.T)
+    print(transformed)
+
+    plt.scatter(transformed[0, :], transformed[1, :], c='green', s=50, alpha=0.4)
+
+    for i, language in enumerate(languages):
+        plt.annotate(language,  # this is the text
+                     (transformed[0, i], transformed[1, i]),  # this is the point to label
+                     textcoords="offset points",  # how to position the text
+                     xytext=(0, 10),  # distance from text to points (x,y)
+                     ha='center')  # horizontal alignment can be left, right or center
+
+    title = 'Explained variance:' + str(v1+v2)
+    plt.title(title)
+    plt.show()
+
+    print("over")
 
 
 def plot_MDS():
@@ -189,5 +277,10 @@ def plot_MDS():
 
 
 if __name__ == "__main__":
-   plot_MDS()
-   plot_PCA()
+    # X, languages = prepare_data_matrix
+    start_time = time.time()
+
+    plot_MDS()
+    plot_PCA()
+    print("--- %s seconds ---" % (time.time() - start_time))
+
