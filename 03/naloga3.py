@@ -8,6 +8,8 @@ from matplotlib import *
 from numpy import random
 from numpy.linalg import norm
 from transliterate import translit
+from math import sqrt
+from sklearn.manifold import MDS
 
 import sklearn
 
@@ -233,7 +235,7 @@ def plot_PCA():
 
     W, eigenvalues = power_iteration_two_components(X)
 
-    transformed = project_to_eigenvectors(X, W)
+    transformed = project_to_eigenvectors(X, W).T
 
     plt.scatter(transformed[0, :], transformed[1, :], c='green', s=50, alpha=0.4)
 
@@ -247,11 +249,30 @@ def plot_PCA():
                      xytext=(0, 10),  # distance from text to points (x,y)
                      ha='center')  # horizontal alignment can be left, right or center
 
-
     plt.title(title)
     plt.show()
 
     print("over")
+
+def compute_distances(X):
+
+    dists_mtx = np.zeros((X.shape[0], X.shape[0]))
+
+    print(range(X.shape[0]))
+    print(range(X.shape[0] - 1))
+
+    for i in range(X.shape[0]):
+        for j in range(X.shape[0]):
+            if j > i:
+                print(X[i][j])
+                v1 = X[i]
+                v2 = X[j]
+
+                dist = 1 -(v1.dot(v2) / np.linalg.norm(v1) / np.linalg.norm(v2))
+                dists_mtx[i][j] = dist
+                dists_mtx[j][i] = dist
+
+    return dists_mtx
 
 
 def plot_MDS():
@@ -263,8 +284,10 @@ def plot_MDS():
     matrix obtained with cosine distance on full triplets, like
     in the previous homework.
     """
-    pass
-    # ...
+    X, languages = prepare_data_matrix()
+
+    global_distances = compute_distances(X)
+
 
 
 if __name__ == "__main__":
@@ -272,6 +295,6 @@ if __name__ == "__main__":
     start_time = time.time()
 
     plot_MDS()
-    plot_PCA()
+    # plot_PCA()
     print("--- %s seconds ---" % (time.time() - start_time))
 
