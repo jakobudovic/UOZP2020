@@ -1,16 +1,15 @@
-import numpy as np
-import re
-
-from sklearn.preprocessing import StandardScaler
-from transliterate import translit, get_available_language_codes
+import time
 from os import listdir
 from os.path import join
-import time
+
 import matplotlib.pyplot as plt
+import numpy as np
 from matplotlib import *
 from numpy import random
+from numpy.linalg import norm
+from transliterate import translit
 
-from numpy import linalg as LA
+import sklearn
 
 
 def kmers(s, k=3): # default is 3
@@ -136,18 +135,26 @@ def power_iteration(X):
     # Su = lambda * u
     # det(A - lambda I) = 0
 
+    # calculate the covariance matrix 100x100
+    X = np.cov(X.T)
+
+
     converged = False
 
     # random vector x
-    x = random.rand(100)
-    x_store = np.ones((100,))
+    dimension = X.shape
+    x = random.rand(dimension[1])
+    x_store = random.rand(dimension[1])
 
     while not converged:
         x = np.dot(X, x)
         len = np.linalg.norm(x)
         x = x / len
 
-        if np.allclose(x, x_store, atol=0.00001):
+        # if np.allclose(x, x_store, atol=0.000000000001):
+        # try with angle between the vectors
+        c = np.dot(x, x_store.reshape(-1, 1)) / norm(x) / norm(x_store)
+        if c == 1:
             converged = True
         else:
             x_store = x
@@ -155,8 +162,6 @@ def power_iteration(X):
     # x is our first eigenvector
     # x.T * X * x = lambda
     l1 = x.T.dot(X).dot(x) # first eigenvalue
-
-    print("val before return:", l1)
     return x, l1
 
 def power_iteration_two_components(X):
@@ -170,29 +175,23 @@ def power_iteration_two_components(X):
     """
 
     # normalize the data
-    X_nor = X / X.max()
+    # X_nor = X / X.max()
     # center the data
-    meanRow = X_nor.mean(axis=0)  # axis=0 we calculate mean of the columns (parameters)
-    X_center = X_nor - meanRow
 
-    # calculate the covariance matrix 100x100
-    cov1 = np.cov(X_center.T)
+    meanRow = X.mean(axis=0)  # axis=0 we calculate mean of the columns (parameters)
+    X_center = X - meanRow
 
-    # TEMP, used to check final results, ignore this
-    values, vectors = LA.eig(cov1)
+    vector1, v1 = power_iteration(X_center)
 
-    vector1, v1 = power_iteration(cov1)
     vec1 = np.array([vector1])
     # project data X_center to eigen vector v1
     projection = X_center.dot(vec1.T) * vec1
     X_center -= projection  # subtract the projection from matrix X
 
-    cov2 = np.cov(X_center.T)  # covaraince matrix 2
-
-    vector2, v2 = power_iteration(cov2)
+    vector2, v2 = power_iteration(X_center)
 
     # Transform data onto the 2 eigenvectors with 2 vectors stacked in W matrix
-    W = np.hstack((vector1.reshape(100, 1), vector2.reshape(100, 1)))
+    W = np.hstack((vector1.reshape(vector1.shape[0], 1), vector2.reshape(vector2.shape[0], 1)))
 
     return W.T, [v1, v2]
 
@@ -203,7 +202,9 @@ def project_to_eigenvectors(X, vecs):
     The output array should have as many rows as X and as many columns as there
     are vectors.
     """
-    return vecs.dot(X.T)
+    meanRow = X.mean(axis=0)  # axis=0 we calculate mean of the columns (parameters)
+    X = X - meanRow
+    return X.dot(vecs.T)
 
 
 def total_variance(X):
