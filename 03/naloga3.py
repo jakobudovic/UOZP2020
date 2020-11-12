@@ -8,13 +8,9 @@ from matplotlib import *
 from numpy import random
 from numpy.linalg import norm
 from transliterate import translit
-from math import sqrt
 
 from sklearn.manifold import MDS
 from sklearn.manifold import TSNE
-
-import sklearn
-
 
 def kmers(s, k=3): # default is 3
     """Generates k-mers for an input string."""
@@ -242,7 +238,6 @@ def plot_PCA():
     plt.scatter(transformed[0, :], transformed[1, :], c='green', s=50, alpha=0.4)
 
     title = 'Explained variance:' + str(explained_variance_ratio(X, W, eigenvalues))
-    print(title)
 
     for i, language in enumerate(languages):
         plt.annotate(language,  # this is the text
@@ -253,8 +248,6 @@ def plot_PCA():
 
     plt.title(title)
     plt.show()
-
-    print("over")
 
 def compute_distances(X):
 
@@ -330,11 +323,7 @@ def plot_MDS():
     print(arr_MDS)
     print("---------")
     print(arr_tSNE)
-
     plt.title(title)
-    # plt.show()
-
-
 
 if __name__ == "__main__":
     # X, languages = prepare_data_matrix
