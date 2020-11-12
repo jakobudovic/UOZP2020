@@ -47,18 +47,20 @@ def read_clustering_data(n_terke):
         if fn.lower().endswith(".txt"):
             with open(join("clustering", fn), encoding="utf8") as f:
                 text = f.read()
+                fn_compare = fn[:-6] # remove .txt and a number with dash
+                fn = fn[:-4] # remove .txt
                 # nter = terke(translit(f.read().lower(), reversed=True), n=n_terke)
                 # ['mn', 'ru', 'mk', 'sr', 'bg', 'hy', 'el', 'ka', 'l1', 'uk']
-                if fn == "mac.txt":
+                if fn_compare == "mc":
                     nter = terke(translit(text.lower(), 'mk', reversed=True), n=n_terke)
                     lds[fn] = nter
-                elif fn == "rus.txt":
+                elif fn_compare == "ru":
                     nter = terke(translit(text.lower(), 'ru', reversed=True), n=n_terke)
                     lds[fn] = nter
-                elif fn == "ser.txt":
+                elif fn_compare == "sr":
                     nter = terke(translit(text.lower(), 'sr', reversed=True), n=n_terke)
                     lds[fn] = nter
-                elif fn == "bg.txt":
+                elif fn_compare == "bg":
                     nter = terke(translit(text.lower(), 'bg', reversed=True), n=n_terke)
                     lds[fn] = nter
                 else:
@@ -95,7 +97,7 @@ def prepare_data_matrix():
     all_nters_cp = {}
     # remove all nters not occuring everywhere
     for k,v in all_nters.items():
-        if v == 20:
+        if v >= 58: # more than N files have this string key
             all_nters_cp[k] = v
 
     # find tutal number of occurences of certain nter in all documents
@@ -103,7 +105,10 @@ def prepare_data_matrix():
     for k,v in all_nters_cp.items():
         nters_total[k] = 0
         for language, dict in langs.items(): # go through all languages
-            nters_total[k] += dict[k]
+            if k not in dict.keys(): # some files, very few of them, don't have a certain string so we have to catch those and assign 0 to them
+                nters_total[k] += 0
+            else:
+                nters_total[k] += dict[k]
 
     # total number of occurences sorted so we can later  on pick top 100
     nters_total_sorted_reverse = {k: v for k, v in sorted(nters_total.items(), key=lambda item: item[1])}
@@ -112,12 +117,15 @@ def prepare_data_matrix():
     for x in list(reversed(list(nters_total_sorted_reverse)))[0:100]:
         nters_total_sorted[x] = nters_total_sorted_reverse[x]
 
-    X = np.zeros((20,100)) # 20 rows for 20 languages with 100 triplets
-    languages = list(key[:-4] for key in langs.keys()) # substring languages from data
+    X = np.zeros((len(langs),100)) # 60 rows for 20*3 languages with 100 triplets
+    languages = list(key for key in langs.keys()) # substring languages from data
     for i, k in enumerate(nters_total_sorted.keys()):
         j = 0
         for lang, vector in langs.items():  # fill column i for all languages, then move on to the next triplet aka next column
-            X[j][i] = vector[k] # find the number of k occurences in document of language "lang" and save it in matrix
+            if k in vector.keys(): # check if the document of language has this key
+                X[j][i] = vector[k] # find the number of k occurences in document of language "lang" and save it in matrix
+            else:   # assign 0 to it
+                X[j][i]
             j = j + 1
 
     return X, languages
@@ -240,7 +248,7 @@ def plot_PCA():
     title = 'Explained variance:' + str(explained_variance_ratio(X, W, eigenvalues))
 
     for i, language in enumerate(languages):
-        plt.annotate(language,  # this is the text
+        plt.annotate(language[:-2],  # this is the text
                      (transformed[0, i], transformed[1, i]),  # this is the point to label
                      textcoords="offset points",  # how to position the text
                      xytext=(0, 10),  # distance from text to points (x,y)
@@ -313,22 +321,33 @@ def plot_MDS():
     arr_tSNE = project_in_2D(global_distances, 'tSNE').T
 
     title = 'MDS'
+    plt.scatter(arr_MDS[0, :], arr_MDS[1, :], c='green', s=50, alpha=0.4)
 
     for i, language in enumerate(languages):
-        plt.annotate(language,  # this is the text
+        plt.annotate(language[:-2],  # this is the text
                      (arr_MDS[0, i], arr_MDS[1, i]),  # this is the point to label
                      textcoords="offset points",  # how to position the text
                      xytext=(0, 10),  # distance from text to points (x,y)
                      ha='center')  # horizontal alignment can be left, right or center
-    print(arr_MDS)
-    print("---------")
-    print(arr_tSNE)
     plt.title(title)
+    plt.show()
+
+    title = 'tSNE'
+    plt.scatter(arr_tSNE[0, :], arr_tSNE[1, :], c='green', s=50, alpha=0.4)
+
+    for i, language in enumerate(languages):
+        plt.annotate(language[:-2],  # this is the text
+                     (arr_tSNE[0, i], arr_tSNE[1, i]),  # this is the point to label
+                     textcoords="offset points",  # how to position the text
+                     xytext=(0, 10),  # distance from text to points (x,y)
+                     ha='center')  # horizontal alignment can be left, right or center
+    plt.title(title)
+    plt.show()
+
 
 if __name__ == "__main__":
     # X, languages = prepare_data_matrix
     start_time = time.time()
-eheh
     plot_MDS()
     # plot_PCA()
     print("--- %s seconds ---" % (time.time() - start_time))
