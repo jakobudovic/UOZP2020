@@ -9,7 +9,9 @@ from numpy import random
 from numpy.linalg import norm
 from transliterate import translit
 from math import sqrt
+
 from sklearn.manifold import MDS
+from sklearn.manifold import TSNE
 
 import sklearn
 
@@ -258,25 +260,51 @@ def compute_distances(X):
 
     dists_mtx = np.zeros((X.shape[0], X.shape[0]))
 
-    print(range(X.shape[0]))
-    print(range(X.shape[0] - 1))
-
     for i in range(X.shape[0]):
         for j in range(X.shape[0]):
             if j > i:
-                print(X[i][j])
                 v1 = X[i]
                 v2 = X[j]
-
                 dist = 1 -(v1.dot(v2) / np.linalg.norm(v1) / np.linalg.norm(v2))
                 dists_mtx[i][j] = dist
                 dists_mtx[j][i] = dist
 
     return dists_mtx
 
+def project_in_2D(distance_mat, method='mds'):
+  """
+  Project SDRs onto a 2D space using manifold learning algorithms
+  :param distance_mat: A square matrix with pairwise distances
+  :param method: Select method from 'mds' and 'tSNE'
+  :return: an array with dimension (numSDRs, 2). It contains the 2D projections
+     of each SDR
+  """
+  seed = np.random.RandomState(seed=3)
+
+  if method == 'mds':
+    mds = MDS(n_components=2, max_iter=3000, eps=1e-9,
+              random_state=seed,
+              dissimilarity="precomputed", n_jobs=1)
+
+    pos = mds.fit(distance_mat).embedding_
+
+    nmds = MDS(n_components=2, metric=False, max_iter=3000, eps=1e-12,
+               dissimilarity="precomputed", random_state=seed,
+               n_jobs=1, n_init=1)
+
+    pos = nmds.fit_transform(distance_mat, init=pos)
+
+  elif method == 'tSNE':
+    tsne = TSNE(n_components=2, init='pca', random_state=0, perplexity=40)
+    pos = tsne.fit_transform(distance_mat)
+  else:
+    raise NotImplementedError
+
+  return pos
 
 def plot_MDS():
     """
+    source: https://python.hotexamples.com/examples/sklearn.manifold/MDS/fit_transform/python-mds-fit_transform-method-examples.html
     Everything (opening files, computation, plotting) needed
     to produce a plot of MDS on languages data.
 
@@ -288,12 +316,30 @@ def plot_MDS():
 
     global_distances = compute_distances(X)
 
+    arr_MDS = project_in_2D(global_distances).T
+    arr_tSNE = project_in_2D(global_distances, 'tSNE').T
+
+    title = 'MDS'
+
+    for i, language in enumerate(languages):
+        plt.annotate(language,  # this is the text
+                     (arr_MDS[0, i], arr_MDS[1, i]),  # this is the point to label
+                     textcoords="offset points",  # how to position the text
+                     xytext=(0, 10),  # distance from text to points (x,y)
+                     ha='center')  # horizontal alignment can be left, right or center
+    print(arr_MDS)
+    print("---------")
+    print(arr_tSNE)
+
+    plt.title(title)
+    # plt.show()
+
 
 
 if __name__ == "__main__":
     # X, languages = prepare_data_matrix
     start_time = time.time()
-
+eheh
     plot_MDS()
     # plot_PCA()
     print("--- %s seconds ---" % (time.time() - start_time))
