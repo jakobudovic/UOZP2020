@@ -119,13 +119,16 @@ def prepare_data_matrix():
 
     X = np.zeros((len(langs),100)) # 60 rows for 20*3 languages with 100 triplets
     languages = list(key for key in langs.keys()) # substring languages from data
-    for i, k in enumerate(nters_total_sorted.keys()):
+    for i, k in enumerate(nters_total_sorted.keys()): # keys are most common nters in across documents
         j = 0
         for lang, vector in langs.items():  # fill column i for all languages, then move on to the next triplet aka next column
             if k in vector.keys(): # check if the document of language has this key
-                X[j][i] = vector[k] # find the number of k occurences in document of language "lang" and save it in matrix
+                # find the number of k occurences in document of language "lang",
+                # NORMALIZE IT with the len of the document and save it in matrix
+                num = 100 * vector[k] / len(langs[lang]) # divide with the size of the document
+                X[j][i] = num
             else:   # assign 0 to it
-                X[j][i]
+                X[j][i] = 0
             j = j + 1
 
     return X, languages
@@ -348,7 +351,7 @@ def plot_MDS():
 if __name__ == "__main__":
     # X, languages = prepare_data_matrix
     start_time = time.time()
-    plot_MDS()
-    # plot_PCA()
+    # plot_MDS()
+    plot_PCA()
     print("--- %s seconds ---" % (time.time() - start_time))
 
