@@ -43,7 +43,6 @@ def read_clustering_data(n_terke):
     lds = {}
     # print("Texts: ", listdir("clustering"))
     for fn in listdir("clustering"):
-    # for fn in ['ww_bs.txt', 'ww_ru.txt']:
         if fn.lower().endswith(".txt"):
             with open(join("clustering", fn), encoding="utf8") as f:
                 text = f.read()
