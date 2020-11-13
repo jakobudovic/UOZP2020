@@ -1,0 +1,40 @@
+            ---- pol.txt
+        ----|
+                ---- cz.txt
+            ----|
+                        ---- si.txt
+                    ----|
+                            ---- mac.txt
+                        ----|
+                                ---- ser.txt
+                            ----|
+                                ---- hr.txt
+                ----|
+                        ---- rus.txt
+                    ----|
+                        ---- bg.txt
+    ----|
+                ---- fr.txt
+            ----|
+                    ---- ita.txt
+                ----|
+                        ---- por.txt
+                    ----|
+                        ---- es.txt
+        ----|
+                    ---- rom.txt
+                ----|
+                    ---- en.txt
+            ----|
+                        ---- ger.txt
+                    ----|
+                            ---- norw.txt
+                        ----|
+                            ---- dan.txt
+                ----|
+                        ---- nl.txt
+                    ----|
+                        ---- afrikaans.txt
+----|
+    ---- mad.txt
+--- 7.675048351287842 seconds ---

@@ -1,0 +1,403 @@
+Arsenic concerns
+Main article: Arsenic toxicity
+
+As arsenic is a natural element in soil, water, and air, the United States Food and Drug Administration (FDA) monitors the levels of arsenic in foods, particularly in rice products used commonly for infant food.[28] While growing, rice plants tend to absorb arsenic more readily than other food crops, requiring expanded testing by the FDA for possible arsenic-related risks associated with rice consumption in the United States.[28] In April 2016, the FDA proposed a limit of 100 parts per billion (ppb) for inorganic arsenic in infant rice cereal and other foods to minimize exposure of infants to arsenic.[28] For water contamination by arsenic, the United States Environmental Protection Agency has set a lower standard of 10 ppb.[29]
+
+Arsenic is a Group 1 carcinogen.[28][30] The amount of arsenic in rice varies widely with the greatest concentration in brown rice and rice grown on land formerly used to grow cotton, such as in Arkansas, Louisiana, Missouri, and Texas.[31] White rice grown in Arkansas, Louisiana, Missouri, and Texas, which account collectively for 76 percent of American-produced rice, had higher levels of arsenic than other regions of the world studied, possibly because of past use of arsenic-based pesticides to control cotton weevils.[32] Jasmine rice from Thailand and Basmati rice from Pakistan and India contain the least arsenic among rice varieties in one study.[33] China has set a limit of 150 ppb for arsenic in rice.[34]
+Bacillus cereus
+
+Cooked rice can contain Bacillus cereus spores, which produce an emetic toxin when left at 4–60 °C (39–140 °F). When storing cooked rice for use the next day, rapid cooling is advised to reduce the risk of toxin production.[35] One of the enterotoxins produced by Bacillus cereus is heat-resistant; reheating contaminated rice kills the bacteria, but does not destroy the toxin already present.
+Other uses
+[icon]	
+This section needs expansion. You can help by adding to it. (September 2019)
+
+Medieval Islamic texts spoke of medical uses for the plant.[36]
+Rice-growing environments
+
+Rice can be grown in different environments, depending upon water availability.[37] Generally, rice does not thrive in a waterlogged area, yet it can survive and grow herein[38] and it can survive flooding.[39]
+
+    Lowland, rainfed, which is drought prone, favors medium depth; waterlogged, submergence, and flood prone
+    Lowland, irrigated, grown in both the wet season and the dry season
+    Deep water or floating rice
+    Coastal wetland
+    Upland rice is also known as Ghaiya rice, well known for its drought tolerance[40]
+
+History of domestication and cultivation
+Origins in China
+See also: Neolithic Revolution and Neolithic China
+Spatial distribution of rice, millet and mixed farming sites in Neolithic China (He et al., 2017)[41]
+
+The current scientific consensus, based on archaeological and linguistic evidence, is that rice was first domesticated in the Yangtze River basin in China.[42][43][44][45] Because the functional allele for nonshattering, the critical indicator of domestication in grains, as well as five other single-nucleotide polymorphisms, is identical in both indica and japonica, Vaughan et al. (2008) determined a single domestication event for O. sativa.[43] This was supported by a genetic study in 2011 that showed that all forms of Asian rice, both indica and japonica, sprang from a single domestication event that occurred 13,500 to 8,200 years ago in China from the wild rice Oryza rufipogon.[46] A more recent population genomic study indicates that japonica was domesticated first, and that indica rice arose when japonica arrived in India about ~4,500 years ago and hybridized with an undomesticated proto-indica or wild O. nivara.[47]
+
+There are two most likely centers of domestication for rice as well as the development of the wetland agriculture technology. The first, and most likely, is in the lower Yangtze River, believed to be the homelands of the pre-Austronesians and possibly also the Kra-Dai, and associated with the Kauhuqiao, Hemudu, Majiabang, Songze, Liangzhu, and Maqiao cultures. It is characterized by pre-Austronesian features, including stilt houses, jade carving, and boat technologies. Their diet were also supplemented by acorns, water chestnuts, foxnuts, and pig domestication.[45][41][48][49][50]
+
+The second is in the middle Yangtze River, believed to be the homelands of the early Hmong-Mien-speakers and associated with the Pengtoushan, Nanmuyuan, Liulinxi, Daxi, Qujialing, and Shijiahe cultures. Both of these regions were heavily populated and had regular trade contacts with each other, as well as with early Austroasiatic speakers to the west, and early Kra-Dai speakers to the south, facilitating the spread of rice cultivation throughout southern China.[41][48][50]
+
+Rice was gradually introduced north into early Sino-Tibetan Yangshao and Dawenkou culture millet farmers, either via contact with the Daxi culture or the Majiabang-Hemudu culture. By around 4000 to 3800 BC, they were a regular secondary crop among southernmost Sino-Tibetan cultures. It did not replace millet, largely because of different environment conditions in northern China, but it was cultivated alongside millet in the southern boundaries of the millet-farming regions. Conversely, millet was also introduced into rice-farming regions.[41][51]
+Model of a Liangzhu culture (3400 to 2250 BC) ancient city surrounded by a moat
+
+By the late Neolithic (3500 to 2500 BC), population in the rice cultivating centers had increased rapidly, centered around the Qujialing-Shijiahe culture and the Liangzhu culture. There was also evidence of intensive rice cultivation in paddy fields as well as increasingly sophisticated material cultures in these two regions. The number of settlements among the Yangtze cultures and their sizes increased, leading some archeologists to characterize them as true states, with clearly advanced socio-political structures. However, it is unknown if they had centralized control.[52][53]
+
+Liangzhu and Shijiahe declined abruptly in the terminal Neolithic (2500 to 2000 BC). With Shijiahe shrinking in size, and Liangzhu disappearing altogether. This is largely believed to be the result of the southward expansion of the early Sino-Tibetan Longshan culture. Fortifications like walls (as well as extensive moats in Liangzhu cities) are common features in settlements during this period, indicating widespread conflict. This period also coincides with the southward movement of rice-farming cultures to the Lingnan and Fujian regions, as well as the southward migrations of the Austronesian, Kra-Dai, and Austroasiatic-speaking peoples to Mainland Southeast Asia and Island Southeast Asia.[52][54][55] A genomic study also indicates that at around this time, a global cooling event (the 4.2 k event) led to tropical japonica rice being pushed southwards, as well as the evolution of temperate japonica rice that could grow in more northern latitudes.[56]
+
+Genomic studies suggests that indica rice arrives in China from India between 2,000 and 1,400 years ago.[56]
+Southeast Asia
+See also: Domesticated plants and animals of Austronesia
+
+The spread of japonica rice cultivation to Southeast Asia started with the migrations of the Austronesian Dapenkeng culture into Taiwan between 3500 and 2000 BC (5,500 BP to 4,000 BP). The Nanguanli site in Taiwan, dated to ca. 2800 BC, has yielded numerous carbonized remains of both rice and millet in waterlogged conditions, indicating intensive wetland rice cultivation and dryland millet cultivation.[48] A multidisciplinary study using rice genome sequences indicate that tropical japonica rice was pushed southwards from China after a global cooling event (the 4.2k event) that occurred approximately 4,200 years ago.[56]
+Likely routes of early rice transfer, and possible language family homelands (ca. 3500 to 500 BC). The approximate coastlines during the early Holocene are shown in lighter blue. (Bellwood, 2011)[48]
+Map of the Neolithic China
+(8500 to 1500 BC)
+
+From about 2000 to 1500 BC, the Austronesian expansion began, with settlers from Taiwan moving south to colonize Luzon in the Philippines, bringing rice cultivation technologies with them. From Luzon, Austronesians rapidly colonized the rest of Island Southeast Asia, moving westwards to Borneo, the Malay Peninsula and Sumatra; and southwards to Sulawesi and Java. By 500 BC, there is evidence of intensive wetland rice agriculture already established in Java and Bali, especially near very fertile volcanic islands.[48]
+Banaue Rice Terraces in Luzon, Philippines
+The Austronesian Expansion
+(3500 BC to AD 1200)
+
+However, rice (as well as dogs and pigs) did not survive the first Austronesian voyages into Micronesia due to the sheer distance of ocean they were crossing. These voyagers became the ancestors of the Lapita culture. By the time they migrated southwards to the Bismarck Archipelago, they had already lost the technology of rice farming, as well as pigs and dogs. However, knowledge of rice cultivation is still evident in the way they adapted the wetland agriculture techniques to taro cultivation. The Lapita culture in Bismarck reestablished trade connections with other Austronesian branches in Island Southeast Asia. They also came into contact with the non-Austronesian (Papuan) early agriculturists of New Guinea and introduced wetland farming techniques to them. In turn, they assimilated their range of indigenous cultivated fruits and tubers, as well as reacquiring domesticated dogs and pigs, before spreading further eastward to Island Melanesia and Polynesia.[48]
+
+Rice, along with other Southeast Asian food plants, were also later introduced to Madagascar, the Comoros, and the coast of East Africa by around the 1st millennium AD by Austronesian settlers from the Greater Sunda Islands.[57]
+
+Much later Austronesian voyages from Island Southeast Asia succeeded in bringing rice to Guam during the Latte Period (AD 900 to AD 1700). Guam is the only island in Oceania where rice was grown in pre-colonial times.[58][59]
+
+Within Mainland Southeast Asia, rice was presumably spread through river trade between the early Hmong-Mien-speakers of the Middle Yangtze basin and the early Kra-Dai-speakers of the Pearl River and Red River basins, as well as the early Austroasiatic-speakers of the Mekong River basin. Evidence for rice cultivation in these regions, dates to slightly later than the Dapenkeng settlement of Taiwan, at around 3000 BC. Southward migrations of the Austroasiatic and Kra-Dai-speakers introduced it into Mainland Southeast Asia. The earliest evidence of rice cultivation in Mainland Southeast Asia come from the Ban Chiang site in northern Thailand (ca. 2000 to 1500 BC); and the An Sơn site in southern Vietnam (ca. 2000 to 1200 BC).[48][60] A genomic study indicates that rice diversified into Maritime Southeast Asia between 2,500 and 1,500 years ago.[56]
+Korean peninsula and Japanese archipelago
+Rice broker in 1820s Japan of the Edo period ("36 Views of Mount Fuji" Hokusai)
+
+Mainstream archaeological evidence derived from palaeoethnobotanical investigations indicate dry-land rice was introduced to Korea and Japan sometime between 3500 and 1200 BC. The cultivation of rice then occurred on a small scale, fields were impermanent plots, and evidence shows that in some cases domesticated and wild grains were planted together. The technological, subsistence, and social impact of rice and grain cultivation is not evident in archaeological data until after 1500 BC. For example, intensive wet-paddy rice agriculture was introduced into Korea shortly before or during the Middle Mumun pottery period (circa 850–550 BC) and reached Japan by the final Jōmon or initial Yayoi periods circa 300 BC.[61][62] A genomic study indicates that temperate japonica, which predominates in Korea and Japan, evolved after a global cooling event (the 4.2k event) that occurred 4,200 years ago.[56]
+Indian subcontinent
+Paddy field in West Bengal, India
+
+Rice was cultivated in the Indian subcontinent from as early as 5,000 BC.[63] "Several wild cereals, including rice, grew in the Vindhyan Hills, and rice cultivation, at sites such as Chopani-Mando and Mahagara, may have been underway as early as 7,000 BP. Rice appeared in the Belan and Ganges valley regions of northern India as early as 4530 BC and 5440 BC, respectively.[64] The early domestication process of rice in ancient India was based around the wild species Oryza nivara. This led to the local development of a mix of 'wetland' and 'dryland' agriculture of local Oryza sativa var. indica rice agriculture, before the truly 'wetland' rice Oryza sativa var. japonica, arrived around 2000 BC.[65]
+
+Rice was cultivated in the Indus Valley civilization (3rd millennium BC).[66] Agricultural activity during the second millennium BC included rice cultivation in the Kashmir and Harrappan regions.[64] Mixed farming was the basis of Indus valley economy.[66]
+
+O. sativa was recovered from a grave at Susa in Iran (dated to the first century AD) at one end of the ancient world, while at the same time rice was grown in the Po valley in Italy. In northern Iran, in Gilan province, many indica rice cultivars including 'Gerdeh', 'Hashemi', 'Hasani', and 'Gharib' have been bred by farmers.[67]
+Other hypotheses
+
+A 2012 study, through a map of genome variation in modern wild rice populations, indicated that the domestication of rice probably occurred around the central Pearl River valley region of southern China, in contradiction to archaeological evidence.[68] However, the study is based on modern distribution maps of wild rice populations which are potentially misleading due to drastic climatic changes that happened during the end of the last glacial period, ca. 12,000 years ago. Human activity over thousands of years has also removed populations of wild rice from their previous ranges. Based on Chinese texts, there were populations of wild rice along the Yangtze basin in c. AD 1,000 that have recently become extinct.[51]
+
+An older theory, based on one chloroplast and two nuclear gene regions, Londo et al. (2006) had proposed that O. sativa rice was domesticated at least twice—indica in eastern India, Myanmar, and Thailand; and japonica in southern China and Vietnam—though they concede that archaeological and genetic evidence exist for a single domestication of rice in the lowlands of southern China.[69]
+
+In 2003, Korean archaeologists alleged they discovered burnt grains of domesticated rice in Soro-ri, Korea, which dated to 13,000 BC. These antedate the oldest grains in China, which were dated to 10,000 BC, and potentially challenge the mainstream explanation that domesticated rice originated in China.[70] The findings were received by academia with strong skepticism at first,[71][72] but later accepted in secondary sources such as the archaeology text book Archaeology: Theories, Methods and Practice.[73]
+Regional history
+Africa
+Main article: Oryza glaberrima
+Rice crop in Madagascar
+
+African rice has been cultivated for 3,500 years. Between 1500 and 800 BC, Oryza glaberrima propagated from its original centre, the Niger River delta, and extended to Senegal. However, it never developed far from its original region. Its cultivation even declined in favour of the Asian species, which was introduced to East Africa early in the common era and spread westward.[74]
+Asia
+
+Today, the majority of all rice produced comes from China, India, Indonesia, Bangladesh, Vietnam, Thailand, Myanmar, Pakistan, Philippines, Korea and Japan. Asian farmers still account for 87% of the world's total rice production. Because so much rice is produced in Bangladesh, it is also the staple food of the country.
+Indonesia
+Main article: Rice production in Indonesia
+Bas-relief of Karmawibhanga of 9th century Borobudur describe rice barn and rice plants being infested by mouse pestilence. Rice farming has a long history in Indonesia.
+
+Rice is a staple food for all classes in contemporary Indonesia,[75][76] and it holds the central place in Indonesian culture and Indonesian cuisine: it shapes the landscape; is sold at markets; and is served in most meals. Rice accounts for more than half of the calories in the average diet, and the source of livelihood for about 20 million households. The importance of rice in Indonesian culture is demonstrated through the reverence of Dewi Sri, the rice goddess of ancient Java and Bali.
+
+Evidence of wild rice on the island of Sulawesi dates from 3000 BC. Historic written evidence for the earliest cultivation, however, comes from eighth century stone inscriptions from the central island of Java, which show kings levied taxes in rice. The images of rice cultivation, rice barn, and mouse pest investing a rice field is evident in Karmawibhangga bas-reliefs of Borobudur. Divisions of labour between men, women, and animals that are still in place in Indonesian rice cultivation, were carved into relief friezes on the ninth century Prambanan temples in Central Java: a water buffalo attached to a plough; women planting seedlings and pounding grain; and a man carrying sheaves of rice on each end of a pole across his shoulders (pikulan). In the sixteenth century, Europeans visiting the Indonesian islands saw rice as a new prestige food served to the aristocracy during ceremonies and feasts.[76]
+Nepal
+Rice fields in Dili, East Timor
+
+Rice is the major food amongst all the ethnic groups in Nepal. In the Terai, most rice varieties are cultivated during the rainy season. The principal rice growing season, known as "Berna-Bue Charne", is from June to July when water is sufficient for only a part of the fields; the subsidiary season, known as "Ropai, is from April to September, when there is usually enough water to sustain the cultivation of all rice fields. Farmers use irrigation channels throughout the cultivation seasons.[citation needed]
+Philippines
+See also: Banaue Rice Terraces
+Ricefields at Santa Maria, Bulacan, Philippines
+
+The Banaue Rice Terraces (Filipino: Hagdan-hagdang Palayan ng Banawe) are 2,000-year-old terraces that were carved into the mountains of Ifugao in the Philippines by the ancestors of the Igorot people. The Rice Terraces are commonly referred to as the "Eighth Wonder of the World".[77][78][79] It is commonly thought that the terraces were built with minimal equipment, largely by hand. The terraces are located approximately 1,500 meters (5,000 ft) above sea level. They are fed by an ancient irrigation system from the rainforests above the terraces. It is said that if the steps were put end to end, it would encircle half the globe.[80] The terraces are found in the province of Ifugao and the Ifugao people have been its caretakers. Ifugao culture revolves[81] around rice and the culture displays an elaborate array of celebrations linked with agricultural rites from rice cultivation to rice consumption. The harvest season generally calls for thanksgiving feasts, while the concluding harvest rites called tango or tungul (a day of rest) entails a strict taboo on any agricultural work. Partaking of the bayah (rice beer), rice cakes, and betel nut constitutes an indelible practise during the festivities.
+
+The Ifugao people practice traditional farming spending most of their labor at their terraces and forest lands while occasionally tending to root crop cultivation. The Ifugaos have also[80] been known to culture edible shells, fruit trees, and other vegetables which have been exhibited among Ifugaos for generations. The building of the rice terraces consists of blanketing walls with stones and earth which are designed to draw water from a main irrigation canal above the terrace clusters. Indigenous rice terracing technologies have been identified with the Ifugao's rice terraces such as their knowledge of water irrigation, stonework, earthwork and terrace maintenance. As their source of life and art, the rice terraces have sustained and shaped the lives of the community members.
+Sri Lanka
+Indian women separating rice from straw
+
+Rice is the staple food amongst all the ethnic groups in Sri Lanka. Agriculture in Sri Lanka mainly depends on the rice cultivation. Rice production is acutely dependent on rainfall and government supply necessity of water through irrigation channels throughout the cultivation seasons. The principal cultivation season, known as "Maha", is from October to March and the subsidiary cultivation season, known as "Yala", is from April to September. During Maha season, there is usually enough water to sustain the cultivation of all rice fields, nevertheless in Yala season there is only enough water for cultivation of half of the land extent. Traditional rice varieties are now making a comeback with the recent interest in green foods.
+Thailand
+Main article: Rice production in Thailand
+Cambodian women planting rice.
+
+Rice is the main export of Thailand, especially white jasmine rice 105 (Dok Mali 105).[82] Thailand has a large number of rice varieties, 3,500 kinds with different characters, and five kinds of wild rice cultivates.[83] In each region of the country there are different rice seed types. Their use depends on weather, atmosphere, and topography.[84]
+
+The northern region has both low lands and high lands. The farmers' usual crop is non-glutinous rice[84] such as Niew Sun Pah Tong rice. This rice is naturally protected from leaf disease, and its paddy (unmilled rice) (Thai: ข้าวเปลือก) has a brown color.[85] The northeastern region is a large area where farmers can cultivate about 36 million square meters of rice. Although most of it is plains and dry areas,[86] white jasmine rice 105—the most famous Thai rice—can be grown there. White jasmine rice was developed in Chonburi Province first and after that grown in many areas in the country, but the rice from this region has a high quality, because it is softer, whiter, and more fragrant.[87] This rice can resist drought, acidic soil, and alkaline soil.[88]
+
+The central region is mostly composed of plains. Most farmers grow Jao rice.[86] For example, Pathum Thani 1 rice which has qualities similar to white jasmine 105 rice. Its paddy has the color of thatch and the cooked rice has fragrant grains also.[89]
+
+In the southern region, most farmers transplant around boundaries to the flood plains or on the plains between mountains. Farming in the region is slower than other regions because the rainy season comes later.[86] The popular rice varieties in this area are the Leb Nok Pattani seeds, a type of Jao rice. Its paddy has the color of thatch and it can be processed to make noodles.[90]
+Companion plant
+
+One of the earliest known examples of companion planting is the growing of rice with Azolla, the mosquito fern, which covers the top of a fresh rice paddy's water, blocking out any competing plants, as well as fixing nitrogen from the atmosphere for the rice to use. The rice is planted when it is tall enough to poke out above the azolla. This method has been used for at least a thousand years.
+Double-headed rice, illustration from the Japanese agricultural encyclopedia Seikei Zusetsu (1804)
+Middle East
+
+Rice was grown in some areas of Mesopotamia (southern Iraq). With the rise of Islam it moved north to Nisibin, the southern shores of the Caspian Sea (in Gilan and Mazanderan provinces of Iran)[67] and then beyond the Muslim world into the valley of the Volga. In Egypt, rice is mainly grown in the Nile Delta. In Palestine, rice came to be grown in the Jordan Valley. Rice is also grown in Saudi Arabia at Al-Ahsa Oasis and in Yemen.[91]
+Europe
+
+Rice was known to the Classical world, being imported from Egypt, and perhaps west Asia. It was known to Greece (where it is still cultivated in Macedonia and Thrace) by returning soldiers from Alexander the Great's military expedition to Asia. Large deposits of rice from the first century AD have been found in Roman camps in Germany.[92]
+
+The Moors brought Asiatic rice to the Iberian Peninsula in the 10th century. Records indicate it was grown in Valencia and Majorca. In Majorca, rice cultivation seems to have stopped after the Christian conquest, although historians are not certain.[91]
+
+Muslims also brought rice to Sicily with cultivation starting in the 9th century,[93] where it was an important crop[91] long before it is noted in the plain of Pisa (1468) or in the Lombard plain (1475), where its cultivation was promoted by Ludovico Sforza, Duke of Milan, and demonstrated in his model farms.[94]
+
+After the 15th century, rice spread throughout Italy and then France, later propagating to all the continents during the age of European exploration.
+
+In Russia, a short-grain, starchy rice similar to the Italian varieties, has been grown in the Krasnodar Krai, and known in Russia as "Kuban Rice" or "Krasnodar Rice". In the Russian Far East several japonica cultivars are grown in Primorye around the Khanka lake. Increasing scale of rice production in the region has recently brought criticism towards growers' alleged bad practices in regards to the environment.
+Caribbean and Latin America
+
+Most of the rice used today in the cuisine of the Americas is not native, but was introduced to Latin America and the Caribbean by European colonizers at an early date. However, there are at least two native (endemic) species of rice present in the Amazon region of South America, and one or both were used by the indigenous inhabitants of the region to create the domesticated form Oryza sp., some 4000 years ago.[95]
+
+Spanish colonizers introduced Asian rice to Mexico in the 1520s at Veracruz, and the Portuguese and their African slaves introduced it at about the same time to colonial Brazil.[96] Recent scholarship suggests that enslaved Africans played an active role in the establishment of rice in the New World and that African rice was an important crop from an early period.[97] Varieties of rice and bean dishes that were a staple dish along the peoples of West Africa remained a staple among their descendants subjected to slavery in the Spanish New World colonies, Brazil and elsewhere in the Americas.[98]
+North America
+Main article: Rice production in the United States
+US Food and Drug Administration officials at a rice farm in California
+
+In 1694, rice arrived in South Carolina, probably originating from Madagascar.[96] Tradition (possibly apocryphal) has it that pirate John Thurber was returning from a slave-trading voyage to Madagascar when he was blown off course and put into Charleston for repairs. While there he gave a bag of seed rice to explorer Dr. Henry Woodward, who planted the rice and experimented with it until finding that it grew exceptionally well in the wet Carolina soil.[99][100]
+
+The mastery of rice farming was a challenge for the English and other European settlers who were unfamiliar with the crop. Native Americans, who mostly gathered wild rice, were also inexperienced with rice cultivation. However, within the first fifty years of settlement rice became the dominant crop in South Carolina.[101]
+
+In the United States, colonial South Carolina and Georgia grew and amassed great wealth from the slave labor obtained from the Senegambia area of West Africa and from coastal Sierra Leone. At the port of Charleston, through which 40% of all American slave imports passed, slaves from this region of Africa brought the highest prices due to their prior knowledge of rice culture, which was put to use on the many rice plantations around Georgetown, Charleston, and Savannah.
+
+From the enslaved Africans, plantation owners learned how to dyke the marshes and periodically flood the fields. At first the rice was laboriously milled by hand using large mortars and pestles made of wood, then winnowed in sweetgrass baskets (the making of which was another skill brought by slaves from Africa). The invention of the rice mill increased profitability of the crop, and the addition of water power for the mills in 1787 by millwright Jonathan Lucas was another step forward.
+
+Rice culture in the southeastern U.S. became less profitable with the loss of slave labor after the American Civil War, and it finally died out just after the turn of the 20th century. Today, people can visit the only remaining rice plantation in South Carolina that still has the original winnowing barn and rice mill from the mid-19th century at the historic Mansfield Plantation in Georgetown, South Carolina. The predominant strain of rice in the Carolinas was from Africa and was known as 'Carolina Gold'. The cultivar has been preserved and there are current attempts to reintroduce it as a commercially grown crop.[102]
+
+In the southern United States, rice has been grown in southern Arkansas, Louisiana, and east Texas since the mid-19th century. Many Cajun farmers grew rice in wet marshes and low-lying prairies where they could also farm crayfish when the fields were flooded.[103] In recent years rice production has risen in North America, especially in the Mississippi embayment in the states of Arkansas and Mississippi (see also Arkansas Delta and Mississippi Delta).
+Rice paddy fields just north of the city of Sacramento, California.
+
+Rice cultivation began in California during the California Gold Rush, when an estimated 40,000 Chinese laborers immigrated to the state and grew small amounts of the grain for their own consumption. However, commercial production began only in 1912 in the town of Richvale in Butte County.[104] By 2006, California produced the second-largest rice crop in the United States,[105] after Arkansas, with production concentrated in six counties north of Sacramento.[106] Unlike the Arkansas–Mississippi Delta region, California's production is dominated by short- and medium-grain japonica varieties, including cultivars developed for the local climate such as Calrose, which makes up as much as 85% of the state's crop.[107]
+
+References to "wild rice" native to North America are to the unrelated Zizania palustris.[108]
+
+More than 100 varieties of rice are commercially produced primarily in six states (Arkansas, Texas, Louisiana, Mississippi, Missouri, and California) in the U.S.[109] According to estimates for the 2006 crop year, rice production in the U.S. is valued at $1.88 billion, approximately half of which is expected to be exported. The U.S. provides about 12% of world rice trade.[109] The majority of domestic utilization of U.S. rice is direct food use (58%), while 16% is used in each of processed foods and beer. 10% is found in pet food.[109]
+Oceania
+
+Rice was one of the earliest crops planted in Australia by British settlers, who had experience with rice plantations in the Americas and India.
+
+Although attempts to grow rice in the well-watered north of Australia have been made for many years, they have consistently failed because of inherent iron and manganese toxicities in the soils and destruction by pests.
+
+In the 1920s, it was seen as a possible irrigation crop on soils within the Murray–Darling basin that were too heavy for the cultivation of fruit and too infertile for wheat.[110]
+
+Because irrigation water, despite the extremely low runoff of temperate Australia,[111] was (and remains) very cheap, the growing of rice was taken up by agricultural groups over the following decades. Californian varieties of rice were found suitable for the climate in the Riverina,[110] and the first mill opened at Leeton in 1951.
+Monthly value (A$ millions) of rice imports to Australia since 1988
+
+Even before this Australia's rice production greatly exceeded local needs,[110] and rice exports to Japan have become a major source of foreign currency. Above-average rainfall from the 1950s to the middle 1990s[112] encouraged the expansion of the Riverina rice industry, but its prodigious water use in a practically waterless region began to attract the attention of environmental scientists. These became severely concerned with declining flow in the Snowy River and the lower Murray River.
+
+Although rice growing in Australia is highly profitable due to the cheapness of land, several recent years of severe drought have led many to call for its elimination because of its effects on extremely fragile aquatic ecosystems. The Australian rice industry is somewhat opportunistic, with the area planted varying significantly from season to season depending on water allocations in the Murray and Murrumbidgee irrigation regions.
+
+Australian Aboriginal people have harvested native rice varieties for thousands of years, and there are ongoing efforts to grow commercial quantities of these species.[113][114]
+Production and commerce
+Rice production – 2018
+Country 	millions of tonnes
+ China 	212.1
+ India 	172.6
+ Indonesia 	83.0
+ Bangladesh 	56.4
+ Vietnam 	44.0
+ Thailand 	32.2
+ Myanmar 	25.4
+ Philippines 	19.1
+ Brazil 	11.7
+ Pakistan 	10.8
+World 	688.2
+Source: FAOSTAT of the United Nations[1]
+Production
+Worldwide rice production
+Burning of rice residues after harvest, to quickly prepare the land for wheat planting, around Sangrur, Punjab, India.
+
+In 2017, world production of paddy rice was 769.7 million tonnes,[115] led by China and India with a combined 49% of this total.[1] Other major producers were Indonesia, Bangladesh and Vietnam. The five major producers accounted for 72% of total production, while the top fifteen producers accounted for 91% of total world production in 2017 (see table on right). Developing countries account for 95% of the total production.[116]
+
+Rice is a major food staple and a mainstay for the rural population and their food security. It is mainly cultivated by small farmers in holdings of less than one hectare. Rice is also a wage commodity for workers in the cash crop or non-agricultural sectors. Rice is vital for the nutrition of much of the population in Asia, as well as in Latin America and the Caribbean and in Africa; it is central to the food security of over half the world population.
+
+Many rice grain producing countries have significant losses post-harvest at the farm and because of poor roads, inadequate storage technologies, inefficient supply chains and farmer's inability to bring the produce into retail markets dominated by small shopkeepers. A World Bank – FAO study claims 8% to 26% of rice is lost in developing nations, on average, every year, because of post-harvest problems and poor infrastructure. Some sources claim the post-harvest losses exceed 40%.[116][117] Not only do these losses reduce food security in the world, the study claims that farmers in developing countries such as China, India and others lose approximately US$89 billion of income in preventable post-harvest farm losses, poor transport, the lack of proper storage and retail. One study claims that if these post-harvest grain losses could be eliminated with better infrastructure and retail network, in India alone enough food would be saved every year to feed 70 to 100 million people.[118]
+Processing
+
+The seeds of the rice plant are first milled using a rice huller to remove the chaff (the outer husks of the grain) (see: rice hulls). At this point in the process, the product is called brown rice. The milling may be continued, removing the bran, i.e., the rest of the husk and the germ, thereby creating white rice. White rice, which keeps longer, lacks some important nutrients; moreover, in a limited diet which does not supplement the rice, brown rice helps to prevent the disease beriberi.
+
+Either by hand or in a rice polisher, white rice may be buffed with glucose or talc powder (often called polished rice, though this term may also refer to white rice in general), parboiled, or processed into flour. White rice may also be enriched by adding nutrients, especially those lost during the milling process. While the cheapest method of enriching involves adding a powdered blend of nutrients that will easily wash off (in the United States, rice which has been so treated requires a label warning against rinsing), more sophisticated methods apply nutrients directly to the grain, coating the grain with a water-insoluble substance which is resistant to washing.
+
+In some countries, a popular form, parboiled rice (also known as converted rice and easy-cook rice[119]) is subjected to a steaming or parboiling process while still a brown rice grain. The parboil process causes a gelatinisation of the starch in the grains. The grains become less brittle, and the color of the milled grain changes from white to yellow. The rice is then dried, and can then be milled as usual or used as brown rice. Milled parboiled rice is nutritionally superior to standard milled rice, because the process causes nutrients from the outer husk (especially thiamine) to move into the endosperm, so that less is subsequently lost when the husk is polished off during milling. Parboiled rice has an additional benefit in that it does not stick to the pan during cooking, as happens when cooking regular white rice. This type of rice is eaten in parts of India and countries of West Africa are also accustomed to consuming parboiled rice.
+
+Rice bran, called nuka in Japan, is a valuable commodity in Asia and is used for many daily needs. It is a moist, oily inner layer which is heated to produce oil. It is also used as a pickling bed in making rice bran pickles and takuan.
+
+Raw rice may be ground into flour for many uses, including making many kinds of beverages, such as amazake, horchata, rice milk, and rice wine. Rice does not contain gluten, so is suitable for people on a gluten-free diet.[120] Rice can be made into various types of noodles. Raw, wild, or brown rice may also be consumed by raw-foodist or fruitarians if soaked and sprouted (usually a week to 30 days – gaba rice).
+
+Processed rice seeds must be boiled or steamed before eating. Boiled rice may be further fried in cooking oil or butter (known as fried rice), or beaten in a tub to make mochi.
+
+Rice is a good source of protein and a staple food in many parts of the world, but it is not a complete protein: it does not contain all of the essential amino acids in sufficient amounts for good health, and should be combined with other sources of protein, such as nuts, seeds, beans, fish, or meat.[121]
+
+Rice, like other cereal grains, can be puffed (or popped). This process takes advantage of the grains' water content and typically involves heating grains in a special chamber. Further puffing is sometimes accomplished by processing puffed pellets in a low-pressure chamber. The ideal gas law means either lowering the local pressure or raising the water temperature results in an increase in volume prior to water evaporation, resulting in a puffy texture. Bulk raw rice density is about 0.9 g/cm³. It decreases to less than one-tenth that when puffed.
+Harvesting, drying and milling
+Rice combine harvester Katori-city, Chiba Prefecture, Japan
+After the harvest, rice straw is gathered in the traditional way from small paddy fields in Mae Wang District, Chiang Mai Province, Thailand
+Further information: Paddy field
+
+Unmilled rice, known as "paddy" (Indonesia and Malaysia: padi; Philippines, palay), is usually harvested when the grains have a moisture content of around 25%. In most Asian countries, where rice is almost entirely the product of smallholder agriculture, harvesting is carried out manually, although there is a growing interest in mechanical harvesting. Harvesting can be carried out by the farmers themselves, but is also frequently done by seasonal labor groups. Harvesting is followed by threshing, either immediately or within a day or two. Again, much threshing is still carried out by hand but there is an increasing use of mechanical threshers. Subsequently, paddy needs to be dried to bring down the moisture content to no more than 20% for milling.
+
+A familiar sight in several Asian countries is paddy laid out to dry along roads. However, in most countries the bulk of drying of marketed paddy takes place in mills, with village-level drying being used for paddy to be consumed by farm families. Mills either sun dry or use mechanical driers or both. Drying has to be carried out quickly to avoid the formation of molds. Mills range from simple hullers, with a throughput of a couple of tonnes a day, that simply remove the outer husk, to enormous operations that can process 4,000 tonnes a day and produce highly polished rice. A good mill can achieve a paddy-to-rice conversion rate of up to 72% but smaller, inefficient mills often struggle to achieve 60%. These smaller mills often do not buy paddy and sell rice but only service farmers who want to mill their paddy for their own consumption.
+Distribution
+
+Because of the importance of rice to human nutrition and food security in Asia, the domestic rice markets tend to be subject to considerable state involvement. While the private sector plays a leading role in most countries, agencies such as BULOG in Indonesia, the NFA in the Philippines, VINAFOOD in Vietnam and the Food Corporation of India are all heavily involved in purchasing of paddy from farmers or rice from mills and in distributing rice to poorer people. BULOG and NFA monopolise rice imports into their countries while VINAFOOD controls all exports from Vietnam.[122]
+Drying rice in Peravoor, India
+Trade
+
+World trade figures are very different from those for production, as less than 8% of rice produced is traded internationally.[123] In economic terms, the global rice trade was a small fraction of 1% of world mercantile trade. Many countries consider rice as a strategic food staple, and various governments subject its trade to a wide range of controls and interventions.
+
+Developing countries are the main players in the world rice trade, accounting for 83% of exports and 85% of imports. While there are numerous importers of rice, the exporters of rice are limited. Just five countries—Thailand, Vietnam, China, the United States and India—in decreasing order of exported quantities, accounted for about three-quarters of world rice exports in 2002.[116] However, this ranking has been rapidly changing in recent years. In 2010, the three largest exporters of rice, in decreasing order of quantity exported were Thailand, Vietnam and India. By 2012, India became the largest exporter of rice with a 100% increase in its exports on year-to-year basis, and Thailand slipped to third position.[124][125] Together, Thailand, Vietnam and India accounted for nearly 70% of the world rice exports.
+
+The primary variety exported by Thailand and Vietnam were Jasmine rice, while exports from India included aromatic Basmati variety. China, an exporter of rice in early 2000s, was a net importer of rice in 2010 and will become the largest net importer, surpassing Nigeria, in 2013.[123][126] According to a USDA report, the world's largest exporters of rice in 2012 were India (9.75 million tonnes), Vietnam (7 million tonnes), Thailand (6.5 million tonnes), Pakistan (3.75 million tonnes) and the United States (3.5 million tonnes).[127]
+
+Major importers usually include Nigeria, Indonesia, Bangladesh, Saudi Arabia, Iran, Iraq, Malaysia, the Philippines, Brazil and some African and Persian Gulf countries. In common with other West African countries, Nigeria is actively promoting domestic production. However, its very heavy import duties (110%) open it to smuggling from neighboring countries.[128] Parboiled rice is particularly popular in Nigeria. Although China and India are the two largest producers of rice in the world, both countries consume the majority of the rice produced domestically, leaving little to be traded internationally.
+World's most productive rice farms and farmers
+
+The average world yield for rice was 4.3 tonnes per hectare, in 2010.
+
+Australian rice farms were the most productive in 2010, with a nationwide average of 10.8 tonnes per hectare.[129]
+
+Yuan Longping of China National Hybrid Rice Research and Development Center, China, set a world record for rice yield in 2010 at 19 tonnes per hectare on a demonstration plot. In 2011, this record was surpassed by an Indian farmer, Sumant Kumar, with 22.4 tonnes per hectare in Bihar. Both these farmers claim to have employed newly developed rice breeds and System of Rice Intensification (SRI), a recent innovation in rice farming. SRI is claimed to have set new national records in rice yields, within the last 10 years, in many countries. The claimed Chinese and Indian yields have yet to be demonstrated on seven-hectare lots and to be reproducible over two consecutive years on the same farm.[130][131][132][133]
+Price
+
+In late 2007 to May 2008, the price of grains rose greatly due to droughts in major producing countries (particularly Australia), increased use of grains for animal feed and US subsidies for bio-fuel production. Although there was no shortage of rice on world markets this general upward trend in grain prices led to panic buying by consumers, government rice export bans (in particular, by Vietnam and India) and inflated import orders by the Philippines marketing board, the National Food Authority. This caused significant rises in rice prices. In late April 2008, prices hit 24 US cents a pound, twice the price of seven months earlier.[134] Over the period of 2007 to 2013, the Chinese government has substantially increased the price it pays domestic farmers for their rice, rising to US$500 per metric ton by 2013.[123] The 2013 price of rice originating from other southeast Asian countries was a comparably low US$350 per metric ton.[123]
+
+On April 30, 2008, Thailand announced plans for the creation of the Organisation of Rice Exporting Countries (OREC) with the intention that this should develop into a price-fixing cartel for rice.[135][136] However, as of mid-2011 little progress had been made to achieve this.
+Worldwide consumption
+
+As of 2013, world food consumption of rice was 565.6 million metric tons of paddy equivalent (377,283 of milled equivalent), while the largest consumers were China consuming 162.4 million metric tons of paddy equivalent (28.7% of world consumption) and India consuming 130.4 million metric tons of paddy equivalent (23.1% of world consumption).[137]
+
+Between 1961 and 2002, per capita consumption of rice increased by 40%.
+
+Rice is the most important crop in Asia. In Cambodia, for example, 90% of the total agricultural area is used for rice production.[138]
+
+U.S. rice consumption has risen sharply over the past 25 years, fueled in part by commercial applications such as beer production.[139] Almost one in five adult Americans now report eating at least half a serving of white or brown rice per day.[140]
+Environmental impacts
+Work by the International Center for Tropical Agriculture to measure the greenhouse gas emissions of rice production.
+
+Rice cultivation on wetland rice fields is thought to be responsible for 11% of the anthropogenic methane emissions.[141] Rice requires slightly more water to produce than other grains.[142] Rice production uses almost a third of Earth's fresh water.[143]
+
+Long-term flooding of rice fields cuts the soil off from atmospheric oxygen and causes anaerobic fermentation of organic matter in the soil.[144] Methane production from rice cultivation contributes ~1.5% of anthropogenic greenhouse gases.[145] Methane is twenty times more potent a greenhouse gas than carbon dioxide.[146]
+
+A 2010 study found that, as a result of rising temperatures and decreasing solar radiation during the later years of the 20th century, the rice yield growth rate has decreased in many parts of Asia, compared to what would have been observed had the temperature and solar radiation trends not occurred.[147][148] The yield growth rate had fallen 10–20% at some locations. The study was based on records from 227 farms in Thailand, Vietnam, Nepal, India, China, Bangladesh, and Pakistan. The mechanism of this falling yield was not clear, but might involve increased respiration during warm nights, which expends energy without being able to photosynthesize.
+Rainfall
+Temperature
+
+Rice requires high temperature above 20 °C (68 °F) but not more than 35 to 40 °C (95 to 104 °F); the optimal temperature is between 20 and 30 °C (68 and 86 °F).[149]
+Solar radiation
+
+The amount of solar radiation received during the 45 days leading up to harvest determines final crop output.[149]
+Atmospheric water vapor
+
+High water vapor content (in humid tropics) subjects unusual stress which favors the spread of fungal and bacterial diseases.[149]
+Wind
+
+Light wind transports CO2 to the leaf canopy but strong wind causes severe damage and may lead to sterility (due to pollen dehydration, spikelet sterility, and abortive endosperms).[149]
+Pests and diseases
+
+Rice pests are any organisms or microbes with the potential to reduce the yield or value of the rice crop (or of rice seeds).[150] Rice pests include weeds, pathogens, insects, nematode, rodents, and birds. A variety of factors can contribute to pest outbreaks, including climatic factors, improper irrigation, the overuse of insecticides and high rates of nitrogen fertilizer application.[151] Weather conditions also contribute to pest outbreaks. For example, rice gall midge and army worm outbreaks tend to follow periods of high rainfall early in the wet season, while thrips outbreaks are associated with drought.[152]
+Insects
+Chinese rice grasshopper
+(Oxya chinensis)
+Borneo, Malaysia
+
+Major rice insect pests include: the brown planthopper (BPH),[153] several species of stemborers—including those in the genera Scirpophaga and Chilo,[154] the rice gall midge,[155] several species of rice bugs,[156] notably in the genus Leptocorisa,[157] defoliators such as the rice: leafroller, hispa and grasshoppers.[158] The fall army worm, a species of Lepidoptera, also targets and causes damage to rice crops.[159] Rice weevils attack stored produce.
+Diseases
+Main article: List of rice diseases
+
+Rice blast, caused by the fungus Magnaporthe grisea,[160] is the most significant disease affecting rice cultivation. Other major rice diseases include: sheath blight (caused by Rhizoctonia solani), rice ragged stunt (vector: BPH), and tungro (vector: Nephotettix spp).[161] There is also an ascomycete fungus, Cochliobolus miyabeanus, that causes brown spot disease in rice.[162][163]
+Nematodes
+
+Several nematode species infect rice crops, causing diseases such as Ufra (Ditylenchus dipsaci), White tip disease (Aphelenchoide bessei), and root knot disease (Meloidogyne graminicola). Some nematode species such as Pratylenchus spp. are most dangerous in upland rice of all parts of the world. Rice root nematode (Hirschmanniella oryzae) is a migratory endoparasite which on higher inoculum levels will lead to complete destruction of a rice crop. Beyond being obligate parasites, they also decrease the vigor of plants and increase the plants' susceptibility to other pests and diseases.
+Other pests
+
+These include the apple snail Pomacea canaliculata, panicle rice mite, rats,[164] and the weed Echinochloa crusgali.[165]
+Integrated pest management
+Main article: Integrated pest management
+
+Crop protection scientists are trying to develop rice pest management techniques which are sustainable. In other words, to manage crop pests in such a manner that future crop production is not threatened.[166] Sustainable pest management is based on four principles: biodiversity, host plant resistance (HPR), landscape ecology, and hierarchies in a landscape—from biological to social.[167] At present, rice pest management includes cultural techniques, pest-resistant rice varieties, and pesticides (which include insecticide). Increasingly, there is evidence that farmers' pesticide applications are often unnecessary, and even facilitate pest outbreaks.[168][169][170][171] By reducing the populations of natural enemies of rice pests,[172] misuse of insecticides can actually lead to pest outbreaks.[173] The International Rice Research Institute (IRRI) demonstrated in 1993 that an 87.5% reduction in pesticide use can lead to an overall drop in pest numbers.[174] IRRI also conducted two campaigns in 1994 and 2003, respectively, which discouraged insecticide misuse and smarter pest management in Vietnam.[175][176]
+
+Rice plants produce their own chemical defenses to protect themselves from pest attacks. Some synthetic chemicals, such as the herbicide 2,4-D, cause the plant to increase the production of certain defensive chemicals and thereby increase the plant's resistance to some types of pests.[177] Conversely, other chemicals, such as the insecticide imidacloprid, can induce changes in the gene expression of the rice that cause the plant to become more susceptible to attacks by certain types of pests.[178] 5-Alkylresorcinols are chemicals that can also be found in rice.[179]
+
+Botanicals, so-called "natural pesticides", are used by some farmers in an attempt to control rice pests. Botanicals include extracts of leaves, or a mulch of the leaves themselves. Some upland rice farmers in Cambodia spread chopped leaves of the bitter bush (Chromolaena odorata) over the surface of fields after planting. This practice probably helps the soil retain moisture and thereby facilitates seed germination. Farmers also claim the leaves are a natural fertilizer and helps suppress weed and insect infestations.[180]
+Chloroxylon is used for pest management in organic rice cultivation in Chhattisgarh, India.
+
+Among rice cultivars, there are differences in the responses to, and recovery from, pest damage.[156][181] Many rice varieties have been selected for resistance to insect pests.[182][183] Therefore, particular cultivars are recommended for areas prone to certain pest problems. The genetically based ability of a rice variety to withstand pest attacks is called resistance. Three main types of plant resistance to pests are recognized as nonpreference, antibiosis, and tolerance.[184] Nonpreference (or antixenosis) describes host plants which insects prefer to avoid; antibiosis is where insect survival is reduced after the ingestion of host tissue; and tolerance is the capacity of a plant to produce high yield or retain high quality despite insect infestation.[185]
+
+Over time, the use of pest-resistant rice varieties selects for pests that are able to overcome these mechanisms of resistance. When a rice variety is no longer able to resist pest infestations, resistance is said to have broken down. Rice varieties that can be widely grown for many years in the presence of pests and retain their ability to withstand the pests are said to have durable resistance. Mutants of popular rice varieties are regularly screened by plant breeders to discover new sources of durable resistance.[184][186]
+Parasitic weeds
+
+Rice is parasitized by the weed eudicot Striga hermonthica,[187] which is of local importance for this crop.
+Ecotypes and cultivars
+Main article: List of rice cultivars
+Rice seed collection from IRRI
+
+While most rice is bred for crop quality and productivity, there are varieties selected for characteristics such as texture, smell, and firmness. There are four major categories of rice worldwide: indica, japonica, aromatic and glutinous. The different varieties of rice are not considered interchangeable, either in food preparation or agriculture, so as a result, each major variety is a completely separate market from other varieties. It is common for one variety of rice to rise in price while another one drops in price.[188]
+
+Rice cultivars also fall into groups according to environmental conditions, season of planting, and season of harvest, called ecotypes. Some major groups are the Japan-type (grown in Japan), "buly" and "tjereh" types (Indonesia); sali (or aman—main winter crop), ahu (also aush or ghariya, summer), and boro (spring) (Bengal and Assam).[189][190] Cultivars exist that are adapted to deep flooding, and these are generally called "floating rice".[191]
+
+The largest collection of rice cultivars is at the International Rice Research Institute[192] in the Philippines, with over 100,000 rice accessions[193] held in the International Rice Genebank.[194] Rice cultivars are often classified by their grain shapes and texture. For example, Thai Jasmine rice is long-grain and relatively less sticky, as some long-grain rice contains less amylopectin than short-grain cultivars. Chinese restaurants often serve long-grain as plain unseasoned steamed rice though short-grain rice is common as well. Japanese mochi rice and Chinese sticky rice are short-grain. Chinese people use sticky rice which is properly known as "glutinous rice" (note: glutinous refer to the glue-like characteristic of rice; does not refer to "gluten") to make zongzi. The Japanese table rice is a sticky, short-grain rice. Japanese sake rice is another kind as well.
+
+Indian rice cultivars include long-grained and aromatic Basmati (ਬਾਸਮਤੀ) (grown in the North), long and medium-grained Patna rice, and in South India (Andhra Pradesh and Karnataka) short-grained Sona Masuri (also called as Bangaru theegalu). In the state of Tamil Nadu, the most prized cultivar is ponni which is primarily grown in the delta regions of the Kaveri River. Kaveri is also referred to as ponni in the South and the name reflects the geographic region where it is grown. In the Western Indian state of Maharashtra, a short grain variety called Ambemohar is very popular. This rice has a characteristic fragrance of Mango blossom.
+
+Aromatic rices have definite aromas and flavors; the most noted cultivars are Thai fragrant rice, Basmati, Patna rice, Vietnamese fragrant rice, and a hybrid cultivar from America, sold under the trade name Texmati. Both Basmati and Texmati have a mild popcorn-like aroma and flavor. In Indonesia, there are also red and black cultivars.
+
+High-yield cultivars of rice suitable for cultivation in Africa and other dry ecosystems, called the new rice for Africa (NERICA) cultivars, have been developed. It is hoped that their cultivation will improve food security in West Africa.
+
+Draft genomes for the two most common rice cultivars, indica and japonica, were published in April 2002. Rice was chosen as a model organism for the biology of grasses because of its relatively small genome (~430 megabase pairs). Rice was the first crop with a complete genome sequence.[195]
+
+On December 16, 2002, the UN General Assembly declared the year 2004 the International Year of Rice. The declaration was sponsored by more than 40 countries.
+Biotechnology
+High-yielding varieties
+
+The high-yielding varieties are a group of crops created intentionally during the Green Revolution to increase global food production. This project enabled labor markets in Asia to shift away from agriculture, and into industrial sectors. The first "Rice Car", IR8 was produced in 1966 at the International Rice Research Institute which is based in the Philippines at the University of the Philippines' Los Baños site. IR8 was created through a cross between an Indonesian variety named "Peta" and a Chinese variety named "Dee Geo Woo Gen."[196]
+
+Scientists have identified and cloned many genes involved in the gibberellin signaling pathway, including GAI1 (Gibberellin Insensitive) and SLR1 (Slender Rice).[197] Disruption of gibberellin signaling can lead to significantly reduced stem growth leading to a dwarf phenotype. Photosynthetic investment in the stem is reduced dramatically as the shorter plants are inherently more stable mechanically. Assimilates become redirected to grain production, amplifying in particular the effect of chemical fertilizers on commercial yield. In the presence of nitrogen fertilizers, and intensive crop management, these varieties increase their yield two to three times.
+Future potential
+
+As the UN Millennium Development project seeks to spread global economic development to Africa, the "Green Revolution" is cited as the model for economic development. With the intent of replicating the successful Asian boom in agronomic productivity, groups like the Earth Institute are doing research on African agricultural systems, hoping to increase productivity. An important way this can happen is the production of "New Rices for Africa" (NERICA). These rices, selected to tolerate the low input and harsh growing conditions of African agriculture, are produced by the African Rice Center, and billed as technology "from Africa, for Africa". The NERICA have appeared in The New York Times (October 10, 2007) and International Herald Tribune (October 9, 2007), trumpeted as miracle crops that will dramatically increase rice yield in Africa and enable an economic resurgence. Ongoing research in China to develop perennial rice could result in enhanced sustainability and food security.
+Golden rice
+Rice & curry at a restaurant in Kuala Lumpur International Airport, Malaysia
+Main article: Golden rice
+
+Rice kernels do not contain vitamin A, so people who obtain most of their calories from rice are at risk of vitamin A deficiency. German and Swiss researchers have genetically engineered rice to produce beta-carotene, the precursor to vitamin A, in the rice kernel. The beta-carotene turns the processed (white) rice a "gold" color, hence the name "golden rice." The beta-carotene is converted to vitamin A in humans who consume the rice.[198] Although some rice strains produce beta-carotene in the hull, no non-genetically engineered strains have been found that produce beta-carotene in the kernel, despite the testing of thousands of strains. Additional efforts are being made to improve the quantity and quality of other nutrients in golden rice.[199]
+
+The International Rice Research Institute is currently further developing and evaluating Golden Rice as a potential new way to help address vitamin A deficiency.[200]
+Expression of human proteins
+
+Ventria Bioscience has genetically modified rice to express lactoferrin, lysozyme which are proteins usually found in breast milk, and human serum albumin, These proteins have antiviral, antibacterial, and antifungal effects.[201]
+
+Rice containing these added proteins can be used as a component in oral rehydration solutions which are used to treat diarrheal diseases, thereby shortening their duration and reducing recurrence. Such supplements may also help reverse anemia.[202]
+Flood-tolerant rice
+
+Due to the varying levels that water can reach in regions of cultivation, flood tolerant varieties have long been developed and used. Flooding is an issue that many rice growers face, especially in South and South East Asia where flooding annually affects 20 million hectares.[203] Standard rice varieties cannot withstand stagnant flooding of more than about a week,[204] mainly as it disallows the plant access to necessary requirements such as sunlight and essential gas exchanges, inevitably leading to plants being unable to recover.[203] In the past, this has led to massive losses in yields, such as in the Philippines, where in 2006, rice crops worth $65 million were lost to flooding.[205] Recently developed cultivars seek to improve flood tolerance.
+Drought-tolerant rice
+
+Drought represents a significant environmental stress for rice production, with 19–23 million hectares of rainfed rice production in South and South East Asia often at risk.[206][207] Under drought conditions, without sufficient water to afford them the ability to obtain the required levels of nutrients from the soil, conventional commercial rice varieties can be severely affected—for example, yield losses as high as 40% have affected some parts of India, with resulting losses of around US$800 million annually.[208]
+
+The International Rice Research Institute conducts research into developing drought-tolerant rice varieties, including the varieties 5411 and Sookha dhan, currently being employed by farmers in the Philippines and Nepal respectively.[207] In addition, in 2013 the Japanese National Institute for Agrobiological Sciences led a team which successfully inserted the DEEPER ROOTING 1 (DRO1) gene, from the Philippine upland rice variety Kinandang Patong, into the popular commercial rice variety IR64, giving rise to a far deeper root system in the resulting plants.[208] This facilitates an improved ability for the rice plant to derive its required nutrients in times of drought via accessing deeper layers of soil, a feature demonstrated by trials which saw the IR64 + DRO1 rice yields drop by 10% under moderate drought conditions, compared to 60% for the unmodified IR64 variety.[208][209]
+Salt-tolerant rice
+Further information: Crop tolerance to seawater
+
+Soil salinity poses a major threat to rice crop productivity, particularly along low-lying coastal areas during the dry season.[206] For example, roughly 1 million hectares of the coastal areas of Bangladesh are affected by saline soils.[210] These high concentrations of salt can severely affect rice plants' normal physiology, especially during early stages of growth, and as such farmers are often forced to abandon these otherwise potentially usable areas.[211][212]
+
+Progress has been made, however, in developing rice varieties capable of tolerating such conditions; the hybrid created from the cross between the commercial rice variety IR56 and the wild rice species Oryza coarctata is one example.[213] O. coarctata is capable of successful growth in soils with double the limit of salinity of normal varieties, but lacks the ability to produce edible rice.[213] Developed by the International Rice Research Institute, the hybrid variety can utilise specialised leaf glands that allow for the removal of salt into the atmosphere. It was initially produced from one successful embryo out of 34,000 crosses between the two species; this was then backcrossed to IR56 with the aim of preserving the genes responsible for salt tolerance that were inherited from O. coarctata.[211] Extensive trials are planned prior to the new variety being available to farmers by approximately 2017–18.[211]
+The irrigated rice (paddy) crop in Egypt has a salt tolerance of ECe=5.5 dS/m beyond which the yield declines.[214]
+
+When the problem of soil salinity arises it will be opportune to select salt tolerant varieties (IRRI[215] or to resort to soil salinity control.
+
+Soil salinity is often measured as the electric conductivity (EC) of the extract of a saturated soil paste (ECe). The EC units are usually expressed in decisiemens per metre or dS/m. The critical ECe value of 5.5 dS/m in the figure, obtained from measurements in farmers' fields, indicates that the rice crop is slightly salt sensitive.
+Environment-friendly rice
+
+Producing rice in paddies is harmful for the environment due to the release of methane by methanogenic bacteria. These bacteria live in the anaerobic waterlogged soil, and live off nutrients released by rice roots. Researchers have recently reported in Nature that putting the barley gene SUSIBA2 into rice creates a shift in biomass production from root to shoot (above ground tissue becomes larger, while below ground tissue is reduced), decreasing the methanogen population, and resulting in a reduction of methane emissions of up to 97%. Apart from this environmental benefit, the modification also increases the amount of rice grains by 43%, which makes it a useful tool in feeding a growing world population.[216][217]
+Meiosis and DNA repair
+
+Rice is used as a model organism for investigating the molecular mechanisms of meiosis and DNA repair in higher plants. Meiosis is a key stage of the sexual cycle in which diploid cells in the ovule (female structure) and the anther (male structure) produce haploid cells that develop further into gametophytes and gametes. So far, 28 meiotic genes of rice have been characterized.[218] Studies of rice gene OsRAD51C showed that this gene is necessary for homologous recombinational repair of DNA, particularly the accurate repair of DNA double-strand breaks during meiosis.[219] Rice gene OsDMC1 was found to be essential for pairing of homologous chromosomes during meiosis,[220] and rice gene OsMRE11 was found to be required for both synapsis of homologous chromosomes and repair of double-strand breaks during meiosis.[221]
+Cultural roles of rice
+Ancient statue of Dewi Sri from Java (c. 9th century)
+
+Rice plays an important role in certain religions and popular beliefs. In many cultures relatives will scatter rice during or towards the end of a wedding ceremony in front of the bride and groom.[222]
+
+The pounded rice ritual is conducted during weddings in Nepal. The bride gives a leafplate full of pounded rice to the groom after he requests it politely from her.[223]
+
+In the Philippines rice wine, popularly known as tapuy, is used for important occasions such as weddings, rice harvesting ceremonies and other celebrations.[224]
+
+Dewi Sri is the traditional rice goddess of the Javanese, Sundanese, and Balinese people in Indonesia. Most rituals involving Dewi Sri are associated with the mythical origin attributed to the rice plant, the staple food of the region.[225][226] In Thailand, a similar rice deity is known as Phosop; she is a deity more related to ancient local folklore than a goddess of a structured, mainstream religion.[227] The same female rice deity is known as Po Ino Nogar in Cambodia and as Nang Khosop in Laos. Ritual offerings are made during the different stages of rice production to propitiate the Rice Goddess in the corresponding cultures.
+
+A 2014 study of Han Chinese communities found that a history of farming rice makes cultures more psychologically interdependent, whereas a history of farming wheat makes cultures more independent.[228]
+
+A Royal Ploughing Ceremony is held in certain Asian countries to mark the beginning of the rice planting season. It is still honored in the kingdoms of Cambodia and Thailand. 
