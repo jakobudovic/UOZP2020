@@ -248,7 +248,7 @@ def plot_PCA():
 
     plt.scatter(transformed[0, :], transformed[1, :], c='green', s=50, alpha=0.4)
 
-    title = 'Explained variance:' + str(explained_variance_ratio(X, W, eigenvalues))
+    title = 'PCA, Explained variance:' + str(explained_variance_ratio(X, W, eigenvalues))
 
     for i, language in enumerate(languages):
         plt.annotate(language[:-2],  # this is the text
