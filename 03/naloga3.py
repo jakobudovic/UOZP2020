@@ -125,8 +125,8 @@ def prepare_data_matrix():
             if k in vector.keys(): # check if the document of language has this key
                 # find the number of k occurences in document of language "lang",
                 # NORMALIZE IT with the len of the document and save it in matrix
-                len = sum(langs[lang].values())
-                num = 100 * vector[k] / len # divide with the size of the document
+                lenn = sum(langs[lang].values())
+                num = 100 * vector[k] / lenn # divide with the size of the document
                 X[j][i] = num
             else:   # assign 0 to it
                 X[j][i] = 0
@@ -249,7 +249,8 @@ def plot_PCA():
 
     plt.scatter(transformed[0, :], transformed[1, :], c='green', s=50, alpha=0.4)
 
-    title = 'PCA normalized, Explained variance:' + str(explained_variance_ratio(X, W, eigenvalues))
+    variance = explained_variance_ratio(X, W, eigenvalues)
+    title = 'PCA normalized, Explained variance: ' + str(round(variance, 5))
 
     for i, language in enumerate(languages):
         plt.annotate(language[:-2],  # this is the text
