@@ -8,6 +8,8 @@ import scipy.sparse as sp
 import numpy as np
 import os
 import sys
+import csv
+import linear
 
 def append_ones(X):
     if sp.issparse(X):
@@ -63,15 +65,21 @@ class LinearRegClassifier(object):
         x = np.hstack(([1.], x))
         return hl(x, self.th)
 
+def read_file(file_path):
+    os.chdir("/home/jakob/git/UOZP2020/04/pred")    # select working dir manually
+    csvreader = csv.reader(open(file_path), delimiter='\t')
+    list = [d for d in csvreader]
+    # headers = next(my_data) # remove header
+    return np.array(list)
 
 if __name__ == "__main__":
+    X_pred = read_file('./train_pred.csv')
+    X_test = read_file('./test_pred.csv')
 
-    # select working dir manually
-    os.chdir("/home/jakob/git/UOZP2020/04/pred")
-
-    files = [f for f in os.listdir('.') if os.path.isfile(f)]
-    for f in files:
-        print(f)
+    # build our model
+    lin = linear.LinearLearner(lambda_=1.)
+    print(linear)
+    print(lin)
 
 
 
