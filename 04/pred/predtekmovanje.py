@@ -10,34 +10,22 @@ import os
 import sys
 import csv
 import linear
+import lpp_date_helper as lpp
 
-def append_ones(X):
-    if sp.issparse(X):
-        return sp.hstack((np.ones((X.shape[0], 1)), X)).tocsr()
-    else:
-        return np.hstack((np.ones((X.shape[0], 1)), X))
-
-
-def hl(x, theta):
+def duration(data):
     """
-    Napovej verjetnost za razred 1 glede na podan primer (vektor vrednosti
-    znacilk) in vektor napovednih koeficientov theta.
+    duration of the bus route
+    :param data: matrix of departure and arrival dates (including other useless data)
+    :return:
     """
-    return x.dot(theta)
-
-
-def cost_grad_linear(theta, X, y, lambda_):
-    # do not regularize the first element
-    sx = hl(X, theta)
-    j = 0.5 * np.mean((sx - y) * (sx - y)) + 1 / 2. * lambda_ * theta[1:].dot(theta[1:]) / y.shape[0]
-    grad = X.T.dot(sx - y) / y.shape[0] + np.hstack([[0.], lambda_ * theta[1:]]) / y.shape[0]
-    return j, grad
-
-
-class LinearLearner(object):
-
-    def __init__(self, lambda_=0.0):
-        self.lambda_ = lambda_
+    y = []
+    for d in data:
+        start = lpp.parsedate(d[6])
+        if (start.month in (11, 12)):
+            arrival = d[8]
+            departure = d[6]
+            y.append(lpp.diff_dates(arrival, departure))
+    return y
 
 def join_day_time(data):
     """
@@ -60,13 +48,18 @@ def join_day_time(data):
 def read_file(file_path):
     os.chdir("/home/jakob/git/UOZP2020/04/pred")    # select working dir manually
     csvreader = csv.reader(open(file_path), delimiter='\t')
+    headers = next(csvreader) # remove header
     list = [d for d in csvreader]
-    # headers = next(my_data) # remove header
     return np.array(list)
 
 if __name__ == "__main__":
-    X_pred = read_file('./train_pred.csv')
+    X_train = read_file('./train_pred.csv')
     X_test = read_file('./test_pred.csv')
+
+    X = np.vstack(join_day_time(X_train)) # convert from list to ndarray
+    y = np.array(duration(X_train))
+
+    X_test_matrix = np.vstack(join_day_time(X_test)) # matrix for testing and making predictions
 
     # build our model
     lin = linear.LinearLearner(lambda_=1.)
@@ -75,5 +68,11 @@ if __name__ == "__main__":
 
     print(lin)
 
+    date = "2020-12-7 16:32:01.000"
+    date_ = "2012-01-13 12:27:04.000"
+    date1 = lpp.parsedate(date_)
+    print(date1.isoweekday())
+    print(date1.hour)
+    print(date1)
 
 
