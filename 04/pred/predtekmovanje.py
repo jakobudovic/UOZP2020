@@ -37,9 +37,10 @@ def join_day_time(data):
     """
     X = []
     for d in data:
-        example = [0] * 31  # 24 + 7
+        example = [0] * 31  # 24 + 7 = 31
         departure = lpp.parsedate(d[6]) # departure time
-        if (departure.month): # december only
+        if (departure.month == 11 or departure.month == 12): # november and december only (both winter)
+        # if (departure.month): # november and december only (both winter)
             example[departure.hour] = 1 # first 24 slots are for deprature hours
             example[departure.isoweekday() + 23] = 1 # last 7 slots are for days
             X.append(example)
@@ -63,16 +64,24 @@ if __name__ == "__main__":
 
     # build our model
     lin = linear.LinearLearner(lambda_=1.)
-    # prediction_model = lin(X,y) # feed/train our model
+    prediction_model = lin(X,y) # feed/train our model
+
+    # for x in X_test_matrix:
+    #     print(prediction_model(x))
     # results = [prediction_model(example) for example in X_test_matrix]
 
-    print(lin)
+    result = [prediction_model(ex) for ex in X_test_matrix]
 
+    fo = open("04/pred/predtekmovanje2_ju.txt", "wt")
+    for l, e in zip(result, X_test):
+        fo.write(lpp.add_seconds(e[6], l) + "\n")
+
+    """
     date = "2020-12-7 16:32:01.000"
     date_ = "2012-01-13 12:27:04.000"
     date1 = lpp.parsedate(date_)
     print(date1.isoweekday())
     print(date1.hour)
     print(date1)
-
+    """
 

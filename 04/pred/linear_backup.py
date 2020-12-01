@@ -6,7 +6,6 @@ import scipy.sparse
 
 import scipy.sparse as sp
 import numpy as np
-import lpp_date_helper as lpp
 
 
 def append_ones(X):
@@ -31,13 +30,6 @@ def cost_grad_linear(theta, X, y, lambda_):
     grad = X.T.dot(sx - y) / y.shape[0] + numpy.hstack([[0.], lambda_ * theta[1:]]) / y.shape[0]
     return j, grad
 
-def past_month(x):
-    example = [0] * 31
-    departure = lpp.parsedate(x[6])
-    if (departure.month == 11 or departure.month == 12):  # gledamo samo november/december
-        example[departure.hour] = 1  # first 24 slots are for deprature hours
-        example[departure.isoweekday() + 23] = 1  # last 7 slots are for days
-    return example # all 0s if the month is not nov/dec
 
 class LinearLearner(object):
 
@@ -48,12 +40,14 @@ class LinearLearner(object):
         """
         Zgradi napovedni model za ucne podatke X z razredi y.
         """
+        print("before")
+        print(X)
+        X = append_ones(X)
+        print("after")
+        print(X)
 
-        # X, y = [], [] # X: data, y: duration of route
-
-        # X = numpy.vstack(X)
-        # y = numpy.array(y)
-
+        print("y:")
+        print(y)
         th = fmin_l_bfgs_b(cost_grad_linear,
                            x0=numpy.zeros(X.shape[1]),
                            args=(X, y, self.lambda_))[0]
@@ -71,15 +65,12 @@ class LinearRegClassifier(object):
         Napovej razred za vektor vrednosti znacilk. Vrni
         seznam [ verjetnost_razreda_0, verjetnost_razreda_1 ].
         """
-        # print("in lin reg class")
-        # print(x)
-        # x = numpy.hstack(([1.], past_month(x)))
-        # print("x after hstack: ", x)
+        x = numpy.hstack(([1.], x))
         return hl(x, self.th)
 
 
 if __name__ == "__main__":
-    
+
     X = numpy.array([[6.3200e-03, 1.8000e+01, 2.3100e+00, 0.0000e+00, 5.3800e-01,
                       6.5750e+00, 6.5200e+01, 4.0900e+00, 1.0000e+00, 2.9600e+02,
                       1.5300e+01, 3.9690e+02, 4.9800e+00],
@@ -111,14 +102,19 @@ if __name__ == "__main__":
                       6.0040e+00, 8.5900e+01, 6.5921e+00, 5.0000e+00, 3.1100e+02,
                       1.5200e+01, 3.8671e+02, 1.7100e+01]])
 
+    # X1 = np.vstack(X)
     y = numpy.array([24., 21.6, 34.7, 33.4, 36.2, 28.7, 22.9, 27.1, 16.5, 18.9])
 
     Xsp = scipy.sparse.csr_matrix(X)
 
-    """
     lr = LinearLearner(lambda_=1.)
     linear = lr(Xsp, y)
 
     for a in X:
         print(linear(a))
-    """
+
+    print()
+    print(linear([1.7004e-01, 1.2500e+01, 7.8700e+00, 0.0000e+00, 5.2400e-01,
+                      6.0040e+00, 8.5900e+01, 6.5921e+00, 5.0000e+00, 3.1100e+02,
+                      1.5200e+01, 3.8671e+02, 1.7100e+01]))
+
