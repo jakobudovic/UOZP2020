@@ -39,31 +39,23 @@ class LinearLearner(object):
     def __init__(self, lambda_=0.0):
         self.lambda_ = lambda_
 
-    def __call__(self, X, y):
-        """
-        Zgradi napovedni model za ucne podatke X z razredi y.
-        """
-        X = append_ones(X)
-
-        th = fmin_l_bfgs_b(cost_grad_linear,
-                           x0=np.zeros(X.shape[1]),
-                           args=(X, y, self.lambda_))[0]
-
-        return LinearRegClassifier(th)
-
-
-class LinearRegClassifier(object):
-
-    def __init__(self, th):
-        self.th = th
-
-    def __call__(self, x):
-        """
-        Napovej razred za vektor vrednosti znacilk. Vrni
-        seznam [ verjetnost_razreda_0, verjetnost_razreda_1 ].
-        """
-        x = np.hstack(([1.], x))
-        return hl(x, self.th)
+def join_day_time(data):
+    """
+    join day and time of one departure to one 1D vector
+    :param data: Dates in non-parsed format
+    :return: logical matrix with 2 ones in each row;
+            - first one for departure hour
+            - second one for departure day of the week
+    """
+    X = []
+    for d in data:
+        example = [0] * 31  # 24 + 7
+        departure = lpp.parsedate(d[6]) # departure time
+        if (departure.month): # december only
+            example[departure.hour] = 1 # first 24 slots are for deprature hours
+            example[departure.isoweekday() + 23] = 1 # last 7 slots are for days
+            X.append(example)
+    return X
 
 def read_file(file_path):
     os.chdir("/home/jakob/git/UOZP2020/04/pred")    # select working dir manually
@@ -78,7 +70,9 @@ if __name__ == "__main__":
 
     # build our model
     lin = linear.LinearLearner(lambda_=1.)
-    print(linear)
+    # prediction_model = lin(X,y) # feed/train our model
+    # results = [prediction_model(example) for example in X_test_matrix]
+
     print(lin)
 
 
