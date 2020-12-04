@@ -10,7 +10,9 @@ import os
 import sys
 import csv
 import linear
-import lpp_date_helper as lpp
+import lpputils as lpp
+
+from sklearn.linear_model import LinearRegression
 
 def duration(data):
     """
@@ -21,13 +23,14 @@ def duration(data):
     y = []
     for d in data:
         start = lpp.parsedate(d[6])
-        if (start.month in (11, 12)):
+        if (start.month in (1, 2, 11, 12)):
+        # if (start.month):
             arrival = d[8]
             departure = d[6]
             y.append(lpp.diff_dates(arrival, departure))
     return y
 
-def join_day_time(data):
+def join_day_time(data, prazniki):
     """
     join day and time of one departure to one 1D vector
     :param data: Dates in non-parsed format
@@ -37,13 +40,30 @@ def join_day_time(data):
     """
     X = []
     for d in data:
-        example = [0] * 31  # 24 + 7 = 31
+        example = [0] * 31  # 24 + 7 + 1 = 32
+
         departure = lpp.parsedate(d[6]) # departure time
-        if (departure.month == 11 or departure.month == 12): # november and december only (both winter)
+
+        if (departure.month in (1, 2, 11, 12)):  # november and december only (both winter)
+            example[departure.hour] = 1  # first 24 slots are for deprature hours
+            example[departure.isoweekday() + 23] = 1 # last 7 slots are for days
+            # if departure.month in prazniki_matrix[0, :] and departure.day in prazniki_matrix[1, :]:
+                # print("praznik: ", departure.month, departure.day)
+                # example[31] = 1 # last slot is for work - free - days
+            X.append(example)
+
+        """
+        if (departure.month in (1, 2, 11, 12)): # november and december only (both winter)
         # if (departure.month): # november and december only (both winter)
             example[departure.hour] = 1 # first 24 slots are for deprature hours
-            example[departure.isoweekday() + 23] = 1 # last 7 slots are for days
+            if departure.isoweekday() < 6: # med tednom
+                example[23] = 1 # last 2 slots are for week/weekend
+            else:   # vikend
+                example[1 + 23] = 1  # last 2 slots are for week/weekend
+
             X.append(example)
+        """
+
     return X
 
 def read_file(file_path):
@@ -57,24 +77,32 @@ if __name__ == "__main__":
     X_train = read_file('./train_pred.csv')
     X_test = read_file('./test_pred.csv')
 
-    X = np.vstack(join_day_time(X_train)) # convert from list to ndarray
+    reader = csv.reader(open('prazniki.csv'), delimiter='\t')
+    prazniki = [d for d in reader]
+
+    prazniki_matrix = np.array([[int(praznik[0].split("-")[0]), int(praznik[0].split("-")[1])] for praznik in prazniki])
+
+    X = np.vstack(join_day_time(X_train, prazniki_matrix)) # convert from list to ndarray
     y = np.array(duration(X_train))
 
-    X_test_matrix = np.vstack(join_day_time(X_test)) # matrix for testing and making predictions
+    X_test_matrix = np.vstack(join_day_time(X_test, prazniki_matrix)) # matrix for testing and making predictions
 
     # build our model
     lin = linear.LinearLearner(lambda_=1.)
     prediction_model = lin(X,y) # feed/train our model
 
-    # for x in X_test_matrix:
-    #     print(prediction_model(x))
-    # results = [prediction_model(example) for example in X_test_matrix]
+    # build our model from library
+    LR = LinearRegression()
+    model = LR.fit(X, y)
+    print("model accuracy: ", model.score(X,y))
+    rez_sk = LR.predict(X)
 
     result = [prediction_model(ex) for ex in X_test_matrix]
 
-    fo = open("04/pred/predtekmovanje2_ju.txt", "wt")
-    for l, e in zip(result, X_test):
+    fo = open("rez10.txt", "wt")
+    for l, e in zip(rez_sk, X_test):
         fo.write(lpp.add_seconds(e[6], l) + "\n")
+    fo.close()
 
     """
     date = "2020-12-7 16:32:01.000"
