@@ -32,10 +32,10 @@ def cost_grad_linear(theta, X, y, lambda_):
     return j, grad
 
 def past_month(x):
-    example = [0] * 32
+    example = [0] * 31
     departure = lpp.parsedate(x[6])
 
-    if (departure.month in (1, 2, 11, 12)):  # gledamo samo november/december
+    if (departure.month in (1, 11, 12)):  # gledamo samo november/december
     # if (departure.month):  # gledamo samo november/december
         example[departure.hour] = 1  # first 24 slots are for deprature hours
         example[departure.isoweekday() + 23] = 1  # last 7 slots are for days
