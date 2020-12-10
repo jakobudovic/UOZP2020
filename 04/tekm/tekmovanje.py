@@ -85,8 +85,7 @@ def read_data(train_path, test_path):
     :param test_path: test csv file
     :return:
             - X: dict with routes as keys and 2D vector of encoded data and durations as value
-            - X_test_matrix: data from test.csv prepared to be predicted on
-            - X_test: raw data from test.csv (temporary)
+            - X_test: raw data from test.csv in rows
     """
     X_train = read_file(train_path)
     X_test = read_file(test_path)
@@ -94,14 +93,7 @@ def read_data(train_path, test_path):
     prazniki = [d for d in reader]
 
     prazniki_matrix = np.array([[int(praznik[0].split("-")[0]), int(praznik[0].split("-")[1])] for praznik in prazniki])
-
-    # create a dict
-    # X = np.vstack() # convert from list to ndarray
     X = join_day_time(X_train, prazniki_matrix)
-    # y = np.array(duration(X_train))
-
-    # old: # X_test_matrix = np.vstack(join_day_time(X_test, prazniki_matrix)) # matrix for testing and making predictions
-    # X_test_matrix = join_day_time_test(X_test, prazniki_matrix) # matrix for testing and making predictions
     return X, X_test
 
 def return_models(X, y):
@@ -118,10 +110,11 @@ def return_models(X, y):
     # build our model from library sklearn
     LR = LinearRegression()
     model_sk = LR.fit(X, y)
-    print("model accuracy: ", model_sk.score(X,y)) # test model accuracy
+    model_acc = model_sk.score(X,y)
+    # print("model accuracy: ", model_acc) # test model accuracy
     ## rez_sk = LR.predict(X)
 
-    return model_lin, model_sk # , rez_sk
+    return model_lin, model_sk, model_acc # , rez_sk
 
 def build_models(X, models_lin, models_sk):
     """
@@ -130,6 +123,7 @@ def build_models(X, models_lin, models_sk):
     :param models_sk: empty dict that we fill up with linear models from SKlearn lib
     :return: 2 dicts of models assigned to correct keys
     """
+    model_accuracies = []
     for key, value in X.items():
         if key not in models_lin.keys():
             models_lin[key] = {}
@@ -138,10 +132,11 @@ def build_models(X, models_lin, models_sk):
         X = np.vstack(value[0])
         y = np.asarray(value[1])
 
-        model_lin, model_sk = return_models(X, y)
+        model_lin, model_sk, model_acc = return_models(X, y)
         models_lin[key] = model_lin
         models_sk[key] = model_sk
-
+        model_accuracies.append(model_acc)
+    print("All models accuracy: {0}".format(sum(model_accuracies)/len(model_accuracies)))
     return models_lin, models_sk
 
 def encode_example(example):
@@ -155,18 +150,13 @@ def encode_example(example):
     example_encoded[departure.isoweekday() + 23] = 1  # last 7 slots are for daysž
     return example_encoded
 
-if __name__ == "__main__":
-    start_time = time.time()
-    # return dict with routes as keys and values as dict of one-hot encoded data matrix and last vector being times
-    X, X_test = read_data('./train_short.csv', './test_short.csv')
-
-    # build dict of models for each route
-    models_lin, models_sk = build_models(X, {}, {})
-
-    # make predictions by transforming each row in test.csv to correct array first
-    rez_lin = []
-    rez_sk = []
-    rez_lin, rez_sk = get_results()
+def get_results(X_test, rez_lin, rez_sk):
+    """
+    :param X_test: not-encoded data, rows are examples, we make predictions on
+    :param rez_lin: empty list
+    :param rez_sk: empty list
+    :return:
+    """
     for example in X_test:
         route = example[3]
         if route not in models_lin.keys():
@@ -177,26 +167,26 @@ if __name__ == "__main__":
         model_sk = models_sk[route]
 
         example_encoded = encode_example(example)
-        rez_lin.append(model_lin(example_encoded))
+        rez_lin.append(round(model_lin(example_encoded), 3))
         rez_sk.append(model_sk.predict([example_encoded]))
     rez_sk = [rez[0] for rez in np.asarray(rez_sk)] # convert sklearn results to list
+    return rez_lin, rez_sk
 
+def print_rez(rez, X_test, file):
+    fo = open(file, "wt")
+    for l, e in zip(rez, X_test):
+        fo.write(lpp.add_seconds(e[6], l) + "\n")
+    fo.close()
 
+if __name__ == "__main__":
+    start_time = time.time()
+    # return dict with routes as keys and values as dict of one-hot encoded data matrix and last vector being times
+    X, X_test = read_data('./train_short.csv', './test_short.csv')
+    models_lin, models_sk = build_models(X, {}, {})    # build dict of models for each route
+    rez_lin, rez_sk = get_results(X_test, [], [])
+    print_rez(rez_lin, X_test, "rez.txt")
 
-
-    # , X_test_matrix, X_test
-    # build our model
-    # model_lin, model_sk, rez_sk = build_models(X, y)
-    #
-    # rez_lin = [model_lin(ex) for ex in X_test_matrix]
-    # # rez_sk = [model_sk(ex) for ex in X_test_matrix]
-    #
-    # # print results, obtained from Sklearn lib or linear.py:
-    # # rez_sk / rez_lin
-    # print("--- %s seconds ---" % (time.time() - start_time))
     print("--- %s seconds ---" % (time.time() - start_time))
-    #
-    # print_res(rez_sk, X_test)
 
     """
     date = "2020-12-7 16:32:01.000"

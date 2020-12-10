@@ -99,7 +99,7 @@ if __name__ == "__main__":
 
     result = [prediction_model(ex) for ex in X_test_matrix]
 
-    fo = open("rez11_no_holidays_sklearn.txt", "wt")
+    fo = open("rez.txt", "wt")
     for l, e in zip(rez_sk, X_test):
         fo.write(lpp.add_seconds(e[6], l) + "\n")
     fo.close()
