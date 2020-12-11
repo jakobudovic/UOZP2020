@@ -15,22 +15,6 @@ import time
 
 from sklearn.linear_model import LinearRegression
 
-def duration(data):
-    """
-    duration of the bus route
-    :param data: matrix of departure and arrival dates (including other useless data)
-    :return:
-     """
-    y = []
-    for d in data:
-        start = lpp.parsedate(d[6])
-        if (start.month in (1, 11, 12)):
-        # if (start.month):
-            arrival = d[8]
-            departure = d[6]
-            y.append(lpp.diff_dates(arrival, departure))
-    return y
-
 def join_day_time(data, prazniki, sola, test=False):
     """
     join day and time of one departure to one 1D vector
@@ -81,11 +65,11 @@ def join_day_time(data, prazniki, sola, test=False):
 
             X_dict[route_name][0].append(example) # append our one-hot-encoded example to correct hash
             X_dict[route_name][1].append(duration)  # append our duration for this example to correct hash
-    print("vse poti enke ki jih natreniram: -----------------------------")
-    print(enka_debug)
-    for r in enka_debug:
-        print(r)
-    print("=============")
+    # print("vse poti enke ki jih natreniram: -----------------------------")
+    # print(enka_debug)
+    # for r in enka_debug:
+    #     print(r)
+    # print("=============")
     return X_dict
 
 def encode_example(example, sola):
@@ -164,8 +148,6 @@ def return_models(X, y):
     LR = LinearRegression()
     model_sk = LR.fit(X, y)
     model_acc = model_sk.score(X,y)
-    # print("model accuracy: ", model_acc) # test model accuracy
-    ## rez_sk = LR.predict(X)
 
     return model_lin, model_sk, model_acc # , rez_sk
 
@@ -219,7 +201,6 @@ def get_results(X_test, rez_lin, rez_sk, sola):
                 missing_models.append(route_name)
                 print("model for route {0} is not built!".format(route_name))
             continue
-        # print("model built")
         model_lin = models_lin[route_name]
         model_sk = models_sk[route_name]
 
@@ -254,15 +235,6 @@ if __name__ == "__main__":
     models_lin, models_sk = build_models(X, {}, {})    # build dict of models for each route
     rez_lin, rez_sk = get_results(X_test, [], [], sola)
     print_rez(rez_lin, X_test, "rez.txt")
-
     print("--- %s seconds ---" % (time.time() - start_time))
 
-    """
-    date = "2020-12-7 16:32:01.000"
-    date_ = "2012-01-13 12:27:04.000"
-    date1 = lpp.parsedate(date_)
-    print(date1.isoweekday())
-    print(date1.hour)
-    print(date1)
-    """
 
