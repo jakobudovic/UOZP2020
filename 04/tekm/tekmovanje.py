@@ -52,6 +52,7 @@ def join_day_time(data, prazniki, sola, test=False):
             departure_encoded = departure.minute // 15 # encode quarters of hour into 4 possible values
             # print(departure, departure.minute, departure.minute // 15)
 
+            # encode hour quartils
             if departure.hour != 0:
                 example[departure.hour - 1] = 1  # first 0-22 slots are for deprature hours
             if (departure.minute // 15) !=  0:
@@ -130,6 +131,7 @@ def read_data(train_path, test_path):
     reader = csv.reader(open('sola.csv'), delimiter='\t')
     sola = [d for d in reader]
 
+    # unused praki_matrix passed, i am using now "sola" array
     prazniki_matrix = np.array([[int(praznik[0].split("-")[0]), int(praznik[0].split("-")[1])] for praznik in prazniki])
     X = join_day_time(X_train, prazniki_matrix, sola)
     return X, X_test, sola
