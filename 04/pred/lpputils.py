@@ -9,8 +9,8 @@ def parsedate(x): # convert date to a FORMAT
 
 def diff_dates(x, y):  # calculate difference in dates in seconds, absolute value
     diff = abs((parsedate(x) - parsedate(y)).total_seconds())
-    if diff > 3600:  # buses over midnight
-        diff = diff - 3600
+    # if diff > 3600:  # buses over midnight
+    #     diff = diff - 3600
     return diff
 
 def add_seconds(x, seconds):  # add seconds to the date
