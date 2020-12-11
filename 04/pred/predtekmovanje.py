@@ -52,18 +52,6 @@ def join_day_time(data, prazniki):
                 # example[31] = 1 # last slot is for work - free - days
             X.append(example)
 
-        """
-        if (departure.month in (1, 2, 11, 12)): # november and december only (both winter)
-        # if (departure.month): # november and december only (both winter)
-            example[departure.hour] = 1 # first 24 slots are for deprature hours
-            if departure.isoweekday() < 6: # med tednom
-                example[23] = 1 # last 2 slots are for week/weekend
-            else:   # vikend
-                example[1 + 23] = 1  # last 2 slots are for week/weekend
-
-            X.append(example)
-        """
-
     return X
 
 def read_file(file_path):
