@@ -95,6 +95,8 @@ def encode_example(example, sola):
     """
     example_encoded = [0] * 33
     departure = lpp.parsedate(example[6])  # departure time without 0's at the end
+    linija = int(example[2])
+    smer = example[3][0]
 
     if departure.hour != 0:
         example_encoded[departure.hour - 1] = 1  # first 0-22 slots are for deprature hours
@@ -103,12 +105,21 @@ def encode_example(example, sola):
     if departure.isoweekday() != 1:
         example_encoded[(departure.isoweekday() - 2) + 26] = 1  # 26-31 slots are for days.
 
+    zimske_pocitnice = ["24,12", "25,12", "26,12", "27,12", "28,12", "29,12", "30,12", "31,12"]
     datum = "" + str(departure.day) + "," + str(departure.month)
     if [datum] in sola:
         example_encoded[32] = 1
 
-    # example_encoded[departure.hour] = 1  # first 24 slots are for deprature hours
-    # example_encoded[departure.isoweekday() + 23] = 1  # last 7 slots are for days
+    # set holidays back to 0 if the route is immune to winter holidays
+    imune_linije = ["3", "3B", "3G", "15", "18", "19B", "19I", "25", "27"]
+    if datum in zimske_pocitnice:
+        if linija == 3 and smer in ("L", "B", "G"): # preveri ce je linija imuna na pocitnice
+            example_encoded[32] = 0
+        elif linija == 19:
+            example_encoded[32] = 0
+        elif linija in (15, 18, 25, 27):
+            example_encoded[32] = 0
+
     return example_encoded
 
 def read_file(file_path):
@@ -190,9 +201,11 @@ def get_results(X_test, rez_lin, rez_sk, sola):
     """
     missing_models = []
     for d in X_test:
+        route_number = int(d[2])
         route_direction = d[3]
         route_name_description = d[4]
         first_station = d[5]
+        date = lpp.parsedate(d[6])
         route_name = route_direction + "#" + route_name_description + "#" + first_station
 
         # hardcoded fixes for missing models
@@ -211,8 +224,17 @@ def get_results(X_test, rez_lin, rez_sk, sola):
         model_sk = models_sk[route_name]
 
         example_encoded = encode_example(d, sola)
-        rez_lin.append(round(model_lin(np.asarray(example_encoded)), 3))
-        rez_sk.append(model_sk.predict([example_encoded]))
+
+        lin_prediction = round(model_lin(np.asarray(example_encoded)), 3)
+        sk_prediction = model_sk.predict([example_encoded])
+
+        # route 1 after 3.12 gets longer route and we hardcode cca 1.5 extra minutes
+        if route_number == 1 and date.month == 12 and date.day in range(3,30):
+            lin_prediction += 150
+            sk_prediction[0] += 150
+
+        rez_lin.append(lin_prediction)
+        rez_sk.append(sk_prediction)
     rez_sk = [rez[0] for rez in np.asarray(rez_sk)] # convert sklearn results to list
     print("missing_models: ", missing_models)
     return rez_lin, rez_sk
@@ -227,13 +249,11 @@ if __name__ == "__main__":
     start_time = time.time()
     # return dict with routes as keys and values as dict of one-hot encoded data matrix and last vector being times
     s = './train_short.csv'
-    l = './train.csv'
     s1 = './test_short.csv'
-    l1 = './test.csv'
-    X, X_test, sola = read_data(l, l1)
+    X, X_test, sola = read_data('./train.csv', './test.csv')
     models_lin, models_sk = build_models(X, {}, {})    # build dict of models for each route
     rez_lin, rez_sk = get_results(X_test, [], [], sola)
-    print_rez(rez_lin, X_test, "rez1.txt")
+    print_rez(rez_lin, X_test, "rez.txt")
 
     print("--- %s seconds ---" % (time.time() - start_time))
 
