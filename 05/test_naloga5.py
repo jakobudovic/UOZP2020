@@ -2,7 +2,6 @@ import time
 import unittest
 import numpy as np
 
-
 t = time.time()
 import naloga5
 if time.time() - t > 2:
@@ -328,4 +327,9 @@ def data_iris():
 
 
 if __name__ == '__main__':
+    start_time = time.time()
+    # print("test_naloga5")
     unittest.main()
+
+
+    print("--- %s seconds ---" % (time.time() - start_time))

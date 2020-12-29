@@ -1,7 +1,12 @@
 import numpy as np
 from matplotlib import pyplot
 from scipy.optimize import fmin_l_bfgs_b
+import time
 
+from math import e
+from math import log
+from math import sqrt
+import os
 
 def draw_decision(X, y, classifier, at1, at2, grid=50):
     points = np.take(X, [at1, at2], axis=1)
@@ -29,13 +34,15 @@ def draw_decision(X, y, classifier, at1, at2, grid=50):
             dists = (diff[:, 0]**2 + diff[:, 1]**2)**0.5  # euclidean
             ind = np.argsort(dists)
             prob[yi,xi] = classifier(X[ind[0]])[1]
+            # print("yi: {}, xi: {}".format(yi, xi))
+            # print(prob[yi,xi])
 
     pyplot.imshow(prob, extent=(minx, maxx, maxy, miny), cmap="seismic")
 
     pyplot.xlim(minx, maxx)
     pyplot.ylim(miny, maxy)
-    pyplot.xlabel(at1)
-    pyplot.ylabel(at2)
+    pyplot.xlabel(at1) # axis x label
+    pyplot.ylabel(at2) # axis y label
 
     pyplot.show()
 
@@ -56,15 +63,20 @@ def h(x, theta):
     znacilk) in vektor napovednih koeficientov theta.
     """
     # ... dopolnite (naloga 1)
-    return 0.
+    # returns [0,1], i could add some really small value here to avoid undefined log(0) later
+    return 1/(1+e**(-x.dot(theta))) # + 1.e-15
 
 
 def cost(theta, X, y, lambda_):
     """
     Vrednost cenilne funkcije.
+    Chapter 6.4: verjetje
     """
     # ... dopolnite (naloga 1, naloga 2)
-    return 0.
+    # print("lambda_ in cost:", lambda_)
+    reg = lambda_ * sum([e ** 2 for e in theta]) # L2 reg. Ridge Regression
+    S = [yi*log(max(h(x, theta), 1.e-15)) + (1 - yi)*log(max((1 - h(x, theta)), 1.e-15)) for x, yi in zip(X, y)]
+    return -1/len(y)*sum(S) + reg
 
 
 def grad(theta, X, y, lambda_):
@@ -72,7 +84,10 @@ def grad(theta, X, y, lambda_):
     Odvod cenilne funkcije. Vrne 1D numpy array v velikosti vektorja theta.
     """
     # ... dopolnite (naloga 1, naloga 2)
-    return None
+    l = []
+    for i, e in enumerate(theta):
+        l.append(1 / len(y) * sum([(h(x, theta) - yi) * x[i] for x, yi in zip(X, y)]) + 2 * lambda_ * e)
+    return np.array(l)
 
 
 def num_grad(theta, X, y, lambda_):
@@ -82,6 +97,7 @@ def num_grad(theta, X, y, lambda_):
     Za racunanje gradienta numericno uporabite funkcijo cost.
     """
     # ... dopolnite (naloga 1, naloga 2)
+
     return None
 
 
@@ -144,7 +160,8 @@ def test_cv(learner, X, y, k=5):
 
 def CA(real, predictions):
     # ... dopolnite (naloga 3)
-    pass
+    """return RMSE"""
+    return sqrt(sum([(e1-e2)**2 for e1, e2 in zip(real, predictions)]) / len(real))
 
 
 def AUC(real, predictions):
@@ -173,20 +190,31 @@ def del5():
 
 
 if __name__ == "__main__":
+    start_time = time.time()
+    print("naloga5")
+
     # Primer uporabe, ki bo delal, ko implementirate cost in grad
+    dir_path = os.path.dirname(os.path.realpath(__file__))
+    # print(dir_path)
 
     X, y = load('reg.data')
 
     learner = LogRegLearner(lambda_=0.0)
     classifier = learner(X, y) # dobimo model
-
     napoved = classifier(X[0])  # napoved za prvi primer
     print(napoved)
-
     # izris odlocitev
     draw_decision(X, y, classifier, 0, 1)
+
+
+    """
+
 
     # odpiranje GDS350
     X, y = load('GDS360.data')
     print(X.shape, y.shape)
     print(X, y)
+
+    """
+
+    print("--- %s seconds ---" % (time.time() - start_time))
