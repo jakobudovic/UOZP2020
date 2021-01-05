@@ -267,8 +267,10 @@ def AUC(real, predictions):
         else:
             zeros_temp -= 1
 
-    rez = stevec / (len(real_sorted)/2)
+    rez = stevec / ((len(real_sorted)/2)*(len(real_sorted)/2))
 
+    print("stevec", stevec)
+    print("len(real_sorted)/2:", len(real_sorted)/2)
     # for i in rng:   # linearno gremo čez vse primere
     #     for j in range(i + 1, len(real)):   # pregledamo od nekega primera naprej, koliko enk pokriva
     #        print(i, j)
