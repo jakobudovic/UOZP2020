@@ -2,6 +2,7 @@ import time
 import unittest
 import numpy as np
 
+
 t = time.time()
 import naloga5
 if time.time() - t > 2:
@@ -160,8 +161,9 @@ class TestEvaluation(unittest.TestCase):
     def test_cv(self):
         for X, y in [data1(), data2()]:
             X_copy = X.copy()
+            # print(X, y)
             pred = test_cv(DummyCVLearner(), X, y, k=4)
-
+            # print("PRED:", pred)
             if len(y) == 8:
                 # on the first DS training data should have 6 instances
                 self.assertEqual(pred[0][1], 6)
@@ -197,6 +199,9 @@ class TestEvaluation(unittest.TestCase):
         for num, correct in zip([100, 80, 60], correctaucs):
             real = y[:num]
             preds = pred[:num]
+            print("REAL:", real)
+            print("PREDS:", preds)
+            print()
             auc = AUC(real, preds)
             self.assertAlmostEqual(auc, correct, places=3)
 
@@ -327,9 +332,4 @@ def data_iris():
 
 
 if __name__ == '__main__':
-    start_time = time.time()
-    # print("test_naloga5")
     unittest.main()
-
-
-    print("--- %s seconds ---" % (time.time() - start_time))

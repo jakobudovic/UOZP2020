@@ -21,7 +21,3 @@ print(fmin_l_bfgs_b(value, #function to optimize
     args=(3.2453, 2.4), #arguments to all value and grad functions
                         #here the constants defining the function shape.
     fprime=grad)[0]) #function returning gradient(s)
-
-print("min_demo.py")
-
-
