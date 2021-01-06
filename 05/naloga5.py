@@ -185,12 +185,6 @@ def test_cv(learner, X, y, k=5):
         rez = [classifier(example) for example in X_test]
         predictions = predictions + rez
 
-        """
-        pred = test_learning(learner, X_train, y_train) # we create classifier in here and get results on train datar
-        # print("pred:", pred)
-        predictions = predictions + [pred]
-        """
-
     # get our shuffled indexes back in order, go over all range of data and find on what index is he and get that result
     predictions_ordered = [predictions[shuffle_idx.index(j)] for j in rng]
     return predictions_ordered
@@ -233,28 +227,37 @@ def AUC(real, predictions):
     # ... dopolnite (naloga 4)
 
     print("real:", real)
-    print("predictions:", predictions)
     pred = [x[1] for x in predictions] # get only second element in the tuple
     print("pred:", pred)
     indeces = np.argsort(pred)
-    print("indeces: ", indeces)
+    # print("indeces: ", indeces)
 
     pred_sorted = [pred[i] for i in indeces]
     pred_sorted = pred_sorted[::-1] # reverse so the higher "probabilities" are higher
-    print("arr_sorted: ", pred_sorted)
+    print("pred_sorted: ", pred_sorted)
 
     real_sorted = [real[i] for i in indeces]
     real_sorted = real_sorted[::-1]
     print("real_sorted: ", real_sorted)
 
-    rng = range(len(real))
+    # filter data out (same probabilities with different "correct" classes should be skipped)
+    false_data_indeces = set()
+    for i,(x,y) in enumerate(zip(pred_sorted, real_sorted)):
+        indeces = [i for i, j in enumerate(pred_sorted) if j == x] # find other occurences of certain probability
+        classes = [real_sorted[i] for i in indeces]
+        if 1 in classes and 0 in classes:
+            false_data_indeces.update(indeces) # add indeces of false data to the set
 
-    arr = np.array([100, 500, 300, 200, 400])
-    ar = np.argsort(arr)
+    print("false_data_indeces:", false_data_indeces)
+    all_ind = set(list(range(0, len(real_sorted))))
+    correct_data_indeces = all_ind - false_data_indeces
+
+    real_s = [real_sorted[i] for i in correct_data_indeces]
+    pred_s = [pred_sorted[i] for i in correct_data_indeces]
 
     num_ones = 0
     num_zeros = 0
-    for i in real_sorted:
+    for i in real_s:
         if i == 1:
             num_ones += 1
         else:
@@ -262,32 +265,30 @@ def AUC(real, predictions):
 
     print("num_ones: {}, num_zeros {}".format(num_ones, num_zeros))
 
-    ones_temp = num_ones
     zeros_temp = num_zeros # remaining number of zeros
     stevec = 0
-    for i in real_sorted:
+    for x, i in enumerate(real_s):
+        print(real_s[x], pred_s[x])
         if i == 1:
             stevec += zeros_temp
-            # ones_temp -= 1
         else:
             zeros_temp -= 1
 
-    rez = stevec / ((len(real_sorted)/2)*(len(real_sorted)/2))
+    rez = stevec / ((len(real_s)/2)*(len(real_s)/2))
 
     print("stevec", stevec)
-    print("len(real_sorted)/2:", len(real_sorted)/2)
+    print("len(real_sorted)/2:", len(real_s)/2)
     # for i in rng:   # linearno gremo čez vse primere
     #     for j in range(i + 1, len(real)):   # pregledamo od nekega primera naprej, koliko enk pokriva
     #        print(i, j)
 
-
     return rez
 
 
-def del2():
+def del2(lamb=0.01):
     X, y = load('reg.data')
 
-    learner = LogRegLearner(lambda_=0.01)
+    learner = LogRegLearner(lambda_=lamb)
     print(test_cv(learner, X, y, 5))
 
     classifier = learner(X, y)  # dobimo model
@@ -296,12 +297,13 @@ def del2():
 
 
 def del3():
-    X, y = load('reg.data')
-    print(X.shape, y.shape)
-    learner = LogRegLearner(lambda_=0.0)
-    res = test_cv(learner, X, y, k=5)
-    print(res)
-    return res
+    # X, y = load('reg.data')
+    # print(X.shape, y.shape)
+    # learner = LogRegLearner(lambda_=0.0)
+    # res = test_cv(learner, X, y, k=5)
+    # print(res)
+    lambde()
+    return None #res
 
 
 def del4():
@@ -318,20 +320,21 @@ def del5():
 def lambde():
     X, y = load('reg.data')
 
-    for i in range(-10,10):
+    for i in range(-5,5):
         lm = float(math.pow(10.0,i))
         learner = LogRegLearner(lambda_=lm)
-        res_cv = test_cv(learner,X,y)
-        res = test_learning(learner,X,y)
-        accuracy_cv = CA(y,res_cv)
-        accuracy = CA(y,res)
 
-        print("lambda: %f, $10^%d$ & %f  & %f \\\\" % (lm, i,accuracy,accuracy_cv))
+        res = test_learning(learner,X,y)
+        accuracyCA = CA(y,res)
+
+        res_cv = test_cv(learner,X,y)
+        accuracyCV = CA(y, res_cv)
+
+        print("lambda: %f, 10^%d & accuracy_CA: %f, accuracy_CV: %f \\\\" % (lm, i, accuracyCA, accuracyCV))
 
 if __name__ == "__main__":
     # Primer uporabe, ki bo delal, ko implementirate cost in grad
-    del2()
-
+    del3()
 
     """
     X, y = load('reg.data')
