@@ -10,6 +10,9 @@ from math import log
 from math import sqrt
 import math
 import os
+import sklearn.metrics as metrics
+import numpy as np
+import matplotlib.pyplot as plt
 
 def draw_decision(X, y, classifier, at1, at2, grid=50):
     points = np.take(X, [at1, at2], axis=1)
@@ -297,18 +300,34 @@ def del2(lamb=0.01):
 
 
 def del3():
-    # X, y = load('reg.data')
-    # print(X.shape, y.shape)
-    # learner = LogRegLearner(lambda_=0.0)
-    # res = test_cv(learner, X, y, k=5)
-    # print(res)
-    lambde()
-    return None #res
+    X, y = load('reg.data')
+    learner = LogRegLearner(lambda_=0.0)
+    res = test_cv(learner, X, y, k=5)
+    print(res)
+    return res
 
 
 def del4():
-    X, y = load('reg.data')
+    X, real = load('reg.data')
+    learner = LogRegLearner(lambda_=0)
+    predictions = test_cv(learner, X, real, 5)
 
+    print("real:", real)
+    pred = [x[0] for x in predictions] # get only second element in the tuple
+    print("pred:", pred)
+    indeces = np.argsort(pred)
+    # print("indeces: ", indeces)
+
+    pred_sorted = [pred[i] for i in indeces]
+    pred_sorted = pred_sorted[::-1]  # reverse so the higher "probabilities" are higher
+    print("pred_sorted: ", pred_sorted)
+
+    real_sorted = [real[i] for i in indeces]
+    real_sorted = real_sorted[::-1]
+    print("real_sorted: ", real_sorted)
+
+    # pred_sorted, real_sorted
+    ROC(real_sorted, pred_sorted)
 
     pass
 
@@ -330,11 +349,39 @@ def lambde():
         res_cv = test_cv(learner,X,y)
         accuracyCV = CA(y, res_cv)
 
-        print("lambda: %f, 10^%d & accuracy_CA: %f, accuracy_CV: %f \\\\" % (lm, i, accuracyCA, accuracyCV))
+        print("lambda: {}, & accuracy_CA: {}, accuracy_CV: {}".format(lm, accuracyCA, accuracyCV))
+
+def ROC(real, predictions):
+
+    plt.axis([0, 1, 0, 1])
+    num_ones = 0
+    num_zeros = 0
+    for i in real:
+        if i == 1:
+            num_ones += 1
+        else:
+            num_zeros += 1
+
+    print("num_ones: {}, num_zeros {}".format(num_ones, num_zeros))
+
+    korak_gor = 1/num_ones
+    korak_desno = 1/num_zeros
+
+    x = 0
+    y = 0
+    for p in real:
+        if p == 1:
+            y += korak_gor
+        else:
+            x += korak_desno
+        plt.scatter(y,x)
+
+    plt.show()
+    pass
 
 if __name__ == "__main__":
     # Primer uporabe, ki bo delal, ko implementirate cost in grad
-    del3()
+    del4()
 
     """
     X, y = load('reg.data')
