@@ -257,6 +257,8 @@ def AUC(real, predictions):
 
     real_s = [real_sorted[i] for i in correct_data_indeces]
     pred_s = [pred_sorted[i] for i in correct_data_indeces]
+    # real_s = real_sorted
+    # pred_s = pred_sorted
 
     num_ones = 0
     num_zeros = 0
@@ -281,14 +283,11 @@ def AUC(real, predictions):
 
     print("stevec", stevec)
     print("len(real_sorted)/2:", len(real_s)/2)
-    # for i in rng:   # linearno gremo čez vse primere
-    #     for j in range(i + 1, len(real)):   # pregledamo od nekega primera naprej, koliko enk pokriva
-    #        print(i, j)
 
     return rez
 
 
-def del2(lamb=0.01):
+def del2(lamb=0.001):
     X, y = load('reg.data')
 
     learner = LogRegLearner(lambda_=lamb)
@@ -382,31 +381,3 @@ def ROC(real, predictions):
 if __name__ == "__main__":
     # Primer uporabe, ki bo delal, ko implementirate cost in grad
     del4()
-
-    """
-    X, y = load('reg.data')
-
-    learner = LogRegLearner(lambda_=0.0)
-    print(test_cv(learner, X, y, 5))
-
-    classifier = learner(X, y) # dobimo model
-
-    napoved = classifier(X[0])  # napoved za prvi primer
-    print("napoved:", napoved)
-
-    # izris odlocitev
-    # draw_decision(X, y, classifier, 0, 1)
-
-    # odpiranje GDS350
-    X, y = load('GDS360.data')
-    print(X.shape, y.shape)
-    print(X, y)
-
-    print("-------------------------------")
-    # lambde()
-    k = 5
-    for i in range(1, k + 1):
-        X_train, X_test, y_train, y_test = k_fold(X, y, i, k)
-        classifier = learner(X_train, y_train)
-        # predictions = predictions + [classifier(row) for row in X_test]
-    """

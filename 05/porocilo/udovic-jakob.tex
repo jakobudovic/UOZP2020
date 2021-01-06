@@ -140,6 +140,10 @@ Najboljši rezultat je pri lambdi 0.001, saj je tam dobra ocena CA, pa tudi toč
 \newpage
 
 \section{Krivulja ROC.}
+AUC je implementiran vendar deluje z manjšo napako. Napaka nastane, ker sem podatke prefiltriral tako, da sem izpustil primere z enako verjetnostjo klasifikacije v več kot 1 razred.
+
+Pravilno bi bilo, da bi tudi te podatke upošteval in izračunal ploščino trikotnika, ki pri takih primerih nastane pri vizualizaciji ROC krivulje.
+Tako bi tudi test deloval pravilno, trenutno pa ne deluje, oz deluje z 0.001 natančnostjo.
 
 \begin{figure}[H]
 \begin{center}
