@@ -97,7 +97,8 @@ class TestLogisticRegression(unittest.TestCase):
                 an_grad = grad(theta, X, y, lambda_)
                 n_grad = num_grad(theta, X, y, lambda_)
                 np.testing.assert_almost_equal(an_grad, n_grad, decimal=5,
-                                               err_msg="lambvda: %d theta: %s" % (lambda_, theta))
+                                               err_msg="lambda: %d theta: %s" % (lambda_, theta))
+
 
 
 class DummyCVLearner:

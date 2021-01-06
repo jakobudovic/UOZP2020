@@ -88,7 +88,6 @@ def grad(theta, X, y, lambda_):
     l = []
     for i, e in enumerate(theta):
         l.append(1 / len(y) * sum([(h(x, theta) - yi) * x[i] for x, yi in zip(X, y)]) + 2 * lambda_ * e)
-    # print("np.array(l): ", np.array(l))
     return np.array(l)
 
 
@@ -99,10 +98,16 @@ def num_grad(theta, X, y, lambda_):
     Za racunanje gradienta numericno uporabite funkcijo cost.
     """
     # ... dopolnite (naloga 1, naloga 2)
-    # TODO
     l = []
+    alpha = 0.0001
     for i, e in enumerate(theta):
-        l.append((1 / len(y)) * sum([(h(x, theta) - yi) * x[i] for x, yi in zip(X, y)]) + 2 * lambda_ * e)
+        # formula:  (f(h + delta) - f(h - delta)) / 2 * delta
+        t1 = [x for x in theta] # copy theta to new variable
+        t2 = [x for x in theta]  # copy theta to new variable
+        t1[i] = theta[i] + alpha
+        t2[i] = theta[i] - alpha
+        derivative = (cost(t1, X, y, lambda_) - cost(t2, X, y, lambda_)) / (2 * alpha)
+        l.append(derivative)
     return np.array(l)
 
 
@@ -280,7 +285,13 @@ def AUC(real, predictions):
 
 
 def del2():
-    # ... dopolnite
+    X, y = load('reg.data')
+
+    learner = LogRegLearner(lambda_=0.01)
+    print(test_cv(learner, X, y, 5))
+
+    classifier = learner(X, y)  # dobimo model
+    draw_decision(X, y, classifier, 0, 1)
     pass
 
 
@@ -319,15 +330,9 @@ def lambde():
 
 if __name__ == "__main__":
     # Primer uporabe, ki bo delal, ko implementirate cost in grad
-    del4()
+    del2()
 
-    arr = np.array([100, 500, 300, 200, 400])
-    ar = np.argsort(arr)
-    arr_sorted = [arr[i] for i in ar]
 
-    print("arr:", arr)
-    print("ar:", ar)
-    print("arr_sorted", arr_sorted)
     """
     X, y = load('reg.data')
 
